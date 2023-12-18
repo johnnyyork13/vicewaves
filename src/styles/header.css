@@ -1,0 +1,13 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+nav {
+    display: flex;    
+}
+
+.nav-btn-container {
+    margin-left: 20px;
+}
