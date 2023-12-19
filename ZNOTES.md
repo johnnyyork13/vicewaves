@@ -1,3 +1,33 @@
+TODO
+Add filters
+Add filter page
+Add search bar
+Add categories
+Add cart system
+Add payments
+Add login
+Add orders (prototype working)
+Add orders history that saves a user's orders in database
+Make navbar toggle on click instead of hover
+Add icon on shopping cart to indicate items are in it
+Fix styling on shopping cart where it always fits the height of the screen
+Add notifications for when items are in cart
+Validate inputs on forms
+
+PRODUCT TAGS
+shirt
+shirt-tee
+shirt-all-over
+shirt-polo
+shirt-tank
+shirt-three-quarter
+shirt-long
+shirt-embroidered
+jacket
+hoodie
+sweatshirt
+
+
 HIERARCHIES
 LIST OF ITEMS
 listObj {
@@ -24,3 +54,8 @@ Shirts
 Hoodies
 Mugs
 Posters
+
+
+CATEGORY INFORMATION
+id     catalog_position    title
+

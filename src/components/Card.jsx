@@ -5,7 +5,7 @@ import '../styles/card.css';
 export default function Card(props) {
 
     function handleCardClick() {
-        props.setPage("view-product");
+        props.setPage("viewProduct");
         props.setCurrentProduct(props.product);
     }
 

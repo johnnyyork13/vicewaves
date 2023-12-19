@@ -1,4 +1,20 @@
-.view-product-thumbnail {
-    width: 40%;
-    display: block;
+.view-product {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+}
+
+.product-image-main {
+    width: 100%;
+}
+
+.product-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid red;
+}
+
+.add-to-cart-btn {
+    height: 30px;
 }

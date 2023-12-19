@@ -1,0 +1,17 @@
+.admin-section {
+    display: flex;
+    width: 500px;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.admin-section textarea {
+    height: 200px;
+}
+
+.admin-section button {
+    margin-top: 10px;
+    height: 30px;
+}

@@ -1,0 +1,14 @@
+.shopping-cart-card {
+    display: flex;
+    justify-content: space-between;
+}
+
+.shopping-cart-card img {
+    width: 30%;
+}
+
+.shopping-cart-buttons {
+    display: flex;
+    flex-direction: column;
+
+}

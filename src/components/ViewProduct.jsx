@@ -4,84 +4,118 @@ import '../styles/view-product.css';
 
 export default function ViewProduct(props) {
 
-    const [product, setPageProduct] = React.useState({})
-    const [description, setDescription] = React.useState("");
-    const [showEditDescription, setShowEditDescription] = React.useState(false);
-    const [sendDescription, setSendDescription] = React.useState(false);
-    const [variants, setVariants] = React.useState([]);
-    const [currentThumbnail, setCurrentThumbnail] = React.useState("");
+    const [selectedVariant, setSelectedVariant] = React.useState(props.currentProduct.sync_variants[0])
+    const [addToCart, setAddToCart] = React.useState(false);
+    const [sizeCharts, setSizeCharts] = React.useState(null);
+    const [showSizeCharts, setShowSizeCharts] = React.useState(false);
+    const [mainImage, setMainImage] = React.useState(props.currentProduct.thumbnail_url);
+    const [quantity, setQuantity] = React.useState(1);
 
     React.useEffect(() => {
         try {
-            setVariants(props.currentProduct.sync_variants)
-            setPageProduct(props.currentProduct);
+            const productID = props.currentProduct.sync_variants[0].product.product_id;
+            async function getSizeChart() {
+                const url = props.root + '/products/size/' + productID;
+                await fetch(url, {
+                    method: "GET",
+                    mode: "cors",
+                }).then((res) => res.json())
+                .then((chart) => setSizeCharts(chart.charts.result.size_tables))
+                .catch(() => setSizeCharts(null));
+            }
+            getSizeChart();
         } catch(err) {
             console.log(err);
         }
     }, [])
 
-    const mappedVariants = variants.map((variant) => {
-        return <option 
-                    key={uuidv4()}
-                    value={variant.id}
-                >{variant.name}</option>
-    })
-
-    const testMapped = variants.map((variant) => {
-        return <img 
-                    src={variant.files[1].preview_url}
-                />
-    })
-
     React.useEffect(() => {
-        try {
-            if (sendDescription) {
-                async function sendNewDescription() {
-                    const url = props.root + "/admin/product/description/update";
-                    await fetch(url, {
-                        method: "POST",
-                        mode: "cors",
-                        headers: {
-                            "Content-Type":"application/json",
-                        },
-                        body: JSON.stringify({
-                            id: product.id,
-                            description: description})
-                    }).then((res) => res.json())
-                    .then((res) => console.log(res));
-                }
-                sendNewDescription()
+        if (addToCart) {
+            try {            
+                props.setShoppingCartContents((prev) => [
+                    ...prev,
+                    {...props.currentProduct,
+                        quantity: quantity}
+                ])
+                localStorage.setItem(props.currentProduct.id, JSON.stringify(props.currentProduct));
+                setAddToCart(false);
+            } catch(err) {
+                console.log(err);
             }
-        } catch(err) {
-            console.log(err);
         }
-    }, [sendDescription])
 
-    function handleDescriptionChange(e) {
-        setDescription(e.target.value);
+    }, [addToCart])
+
+    function handleAddToCart() {
+        let itemExists = false;
+        props.shoppingCartContents.forEach((product) => {
+            if (product.id === Number(props.currentProduct.id)) {
+                itemExists = true;
+            }
+        })
+        if (!itemExists) {
+            setAddToCart(true);
+        }
     }
 
+    function handleVariantChange(e) {
+        const id = e.target.value;
+        props.currentProduct.sync_variants.forEach((variant) => {
+            if (variant.id === Number(id)) {
+                setSelectedVariant(variant);
+                return;
+            }
+        })
+    }
+
+    function handleQuantityChange(e) {
+        setQuantity(e.target.value);
+    }
+
+    const mappedVariants = props.currentProduct.sync_variants.map((variant) => {
+        return <option
+                    key={uuidv4()}
+                    value={variant.id}
+                >{variant.name}
+                </option>
+    })
+
+
     return (
-        <div className="product-page">
-            <button type="button" onClick={() => props.setPage("home")}>Back</button>
-            <button type="button" onClick={() => setShowEditDescription(true)}>Edit</button>
-            {showEditDescription && 
-                <div><textarea 
-                    name="description"
-                    onChange={handleDescriptionChange}
-                ></textarea>
-                <button type="button" onClick={() => setSendDescription(true)}>Update</button>
-            </div>}
-            <img
-                className="view-product-thumbnail" 
-                src={product.thumbnail_url} 
-            />
-            <p>{product.name}</p>
-            <p>{product.description}</p>
-            <select>
-                {mappedVariants}
-            </select>
-            {testMapped}
+        <div className="view-product">
+            <div className="product-images">
+                <img src={mainImage} className="product-image-main" />
+                <div className="product-images-slideshow">
+
+                </div>
+            </div>
+            <div className="product-sidebar">
+                <p className="product-name">{props.currentProduct.name}</p>
+                <p className="product-price">$ {selectedVariant && selectedVariant.retail_price}</p>
+                <label htmlFor="size">SIZE <select 
+                                    name="size" onChange={handleVariantChange}>
+                        {mappedVariants}
+                    </select>
+                </label>
+                <label htmlFor="quantity">Quantity
+                    <input
+                        onChange={handleQuantityChange} 
+                        value={quantity}
+                        type="number" 
+                        placeholder='quantity'
+                        min="1"
+                        />
+                </label>
+                {showSizeCharts && 
+                <div className="size-charts">
+                    <img src={sizeCharts && sizeCharts[0].image_url} />
+                </div>}
+                <p className="product-description">{props.currentProduct.description}</p>
+                <button 
+                    className="add-to-cart-btn"
+                    onClick={handleAddToCart}
+                >Add to Cart</button>
+            </div>
         </div>
     )
 }

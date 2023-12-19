@@ -9,5 +9,42 @@ nav {
 }
 
 .nav-btn-container {
-    margin-left: 20px;
+    margin-right: 30px;
+    position: relative;
+}
+
+.nav-btn-text {
+    display: flex;
+    align-items: center;
+}
+
+.nav-arrow {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    transform: translateY(-3px) rotate(45deg);
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    margin-left: 7px;
+}
+
+.nav-btn-text-shop:hover + .shop-dropdown, .shop-dropdown:hover {
+    visibility: visible;
+}
+
+.shop-dropdown {
+    visibility: hidden;
+    position: absolute;
+    background-color: white;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px;
+    padding-top: 20px;
+    border: 1px solid red;
+}
+
+.shop-dropdown-section a {
+    width: fit-content;
+    display: block;
 }

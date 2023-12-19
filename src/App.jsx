@@ -5,8 +5,13 @@ import './styles/App.css'
 import {v4 as uuidv4} from 'uuid';
 
 import Header from './components/Header';
-import Card from './components/Card';
+import Hero from './components/Hero';
+import CardContainer from './components/CardContainer';
 import ViewProduct from './components/ViewProduct';
+import ViewTagPage from './components/ViewTagPage';
+import ShoppingCart from './components/ShoppingCart';
+
+import Admin from './components/Admin';
 
 function App() {
 
@@ -14,22 +19,26 @@ function App() {
 
   const [products, setProducts] = React.useState([])
   const [page, setPage] = React.useState('home');
+  const [viewTag, setViewTag] = React.useState("none");
   const [currentProduct, setCurrentProduct] = React.useState(null);
-  const [updateDatabase, setUpdateDatabase] = React.useState(false);
+  const [showShoppingCart, setShowShoppingCart] = React.useState(false);
+  const [shoppingCartContents, setShoppingCartContents] = React.useState([])
 
   React.useEffect(() => {
-    if (updateDatabase) {
-      const url = "http://localhost:3000/admin/update-database"
-      // const url = 'http://localhost:3000/admin/categories';
-      async function test() {
-        await fetch(url, {
-          method: "GET",
-          mode: "cors",
-        }).then((res) => res.json()).then((data) => setShirt(data));
+    try {
+      for (const key in localStorage) {
+        const product = JSON.parse(localStorage.getItem(key));
+        if (product) {
+          setShoppingCartContents((prev) => ([
+            ...prev,
+            product
+          ]))
+        }
       }
-      test();
+    } catch(err) {
+      console.log(err);
     }
-  }, [updateDatabase]);
+  }, [])
 
   React.useEffect(() => {
     try {
@@ -46,32 +55,64 @@ function App() {
     } catch(err) {
       console.log(err);
     }
-  }, [])
-
-  const mappedProducts = products.map((product) => {
-    return <Card 
-              key={uuidv4()}
-              product={product}
-              setCurrentProduct={setCurrentProduct} 
-              setPage={setPage}
-      />
-  })
+  }, [page])
 
   return (
     <div className="App">
-      <button type="button" onClick={() => setUpdateDatabase((prev) => !prev)}>Update Database</button>
-      <Header />
-      {page === "home" && <div className="card-container">
-        {mappedProducts}
-      </div>}
-      {page === "view-product" && 
+      {showShoppingCart && 
+        <ShoppingCart 
+          setShowShoppingCart={setShowShoppingCart}
+          shoppingCartContents={shoppingCartContents}
+          setShoppingCartContents={setShoppingCartContents}
+          setPage={setPage}
+          setCurrentProduct={setCurrentProduct}
+        />
+      }
+      
+      <Header 
+        setPage={setPage}
+        setViewTag={setViewTag}
+        setShowShoppingCart={setShowShoppingCart}
+      />
+
+
+      {page === "home" && <>
+      <Hero />
+      <CardContainer 
+        productList={products}
+        setCurrentProduct={setCurrentProduct}
+        setPage={setPage}
+      />
+      </>}
+
+
+      {page === "viewTag" &&
+      <ViewTagPage 
+        root={root}
+        viewTag={viewTag}
+        setCurrentProduct={setCurrentProduct}
+        setPage={setPage}
+      />
+      }
+
+
+      {page === "viewProduct" && 
       <ViewProduct 
         root={root}
         setPage={setPage}
         currentProduct={currentProduct}
+        setShoppingCartContents={setShoppingCartContents}
+        shoppingCartContents={shoppingCartContents}
       />
       }
 
+
+      {page === "admin" && 
+        <Admin
+          root={root}
+          currentProduct={currentProduct}
+        />
+      }
     </div>
   )
 }
