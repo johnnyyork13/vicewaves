@@ -1,15 +1,37 @@
 import React from 'react';
+import {v4 as uuidv4} from 'uuid';
+import '../styles/view-product.css';
 
 export default function ViewProduct(props) {
 
-    const [product, setProduct] = React.useState({})
+    const [product, setPageProduct] = React.useState({})
     const [description, setDescription] = React.useState("");
     const [showEditDescription, setShowEditDescription] = React.useState(false);
     const [sendDescription, setSendDescription] = React.useState(false);
+    const [variants, setVariants] = React.useState([]);
+    const [currentThumbnail, setCurrentThumbnail] = React.useState("");
 
     React.useEffect(() => {
-        setProduct(props.currentProduct);
-    }, []);
+        try {
+            setVariants(props.currentProduct.sync_variants)
+            setPageProduct(props.currentProduct);
+        } catch(err) {
+            console.log(err);
+        }
+    }, [])
+
+    const mappedVariants = variants.map((variant) => {
+        return <option 
+                    key={uuidv4()}
+                    value={variant.id}
+                >{variant.name}</option>
+    })
+
+    const testMapped = variants.map((variant) => {
+        return <img 
+                    src={variant.files[1].preview_url}
+                />
+    })
 
     React.useEffect(() => {
         try {
@@ -41,6 +63,7 @@ export default function ViewProduct(props) {
 
     return (
         <div className="product-page">
+            <button type="button" onClick={() => props.setPage("home")}>Back</button>
             <button type="button" onClick={() => setShowEditDescription(true)}>Edit</button>
             {showEditDescription && 
                 <div><textarea 
@@ -49,8 +72,16 @@ export default function ViewProduct(props) {
                 ></textarea>
                 <button type="button" onClick={() => setSendDescription(true)}>Update</button>
             </div>}
-            {product.name}
-            {product.description}
+            <img
+                className="view-product-thumbnail" 
+                src={product.thumbnail_url} 
+            />
+            <p>{product.name}</p>
+            <p>{product.description}</p>
+            <select>
+                {mappedVariants}
+            </select>
+            {testMapped}
         </div>
     )
 }

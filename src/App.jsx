@@ -14,18 +14,22 @@ function App() {
 
   const [products, setProducts] = React.useState([])
   const [page, setPage] = React.useState('home');
-  const [currentProduct, setCurrentProduct] = React.useState(null)
-  // React.useEffect(() => {
-  //   const url = "http://localhost:3000/admin/update-database"
-  //   // const url = 'http://localhost:3000/admin/categories';
-  //   async function test() {
-  //     await fetch(url, {
-  //       method: "GET",
-  //       mode: "cors",
-  //     }).then((res) => res.json()).then((data) => setShirt(data));
-  //   }
-  //   test();
-  // }, []);
+  const [currentProduct, setCurrentProduct] = React.useState(null);
+  const [updateDatabase, setUpdateDatabase] = React.useState(false);
+
+  React.useEffect(() => {
+    if (updateDatabase) {
+      const url = "http://localhost:3000/admin/update-database"
+      // const url = 'http://localhost:3000/admin/categories';
+      async function test() {
+        await fetch(url, {
+          method: "GET",
+          mode: "cors",
+        }).then((res) => res.json()).then((data) => setShirt(data));
+      }
+      test();
+    }
+  }, [updateDatabase]);
 
   React.useEffect(() => {
     try {
@@ -55,6 +59,7 @@ function App() {
 
   return (
     <div className="App">
+      <button type="button" onClick={() => setUpdateDatabase((prev) => !prev)}>Update Database</button>
       <Header />
       {page === "home" && <div className="card-container">
         {mappedProducts}
