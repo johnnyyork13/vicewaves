@@ -17,13 +17,19 @@ export default function ShoppingCart(props) {
         />
     })
 
+    
     return (
         <div className="shopping-cart-background">
             <div className="shopping-cart">
                 <button
                     className="exit-btn" 
                     onClick={() => props.setShowShoppingCart(false)}>Exit</button>
-                {mappedShoppingCartContents}
+                <div className="shopping-cart-items-container">
+                    {mappedShoppingCartContents}
+                </div>
+                <button
+                    className="checkout-btn"
+                    onClick={() => props.setPage("checkout")}>Checkout</button>
             </div>
         </div>
     )

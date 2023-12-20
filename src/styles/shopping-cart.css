@@ -19,6 +19,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.shopping-cart-items-container {
+    max-height: 70%;
+    overflow-y: auto;
+    margin-bottom: 20px;
 }
 
 .exit-btn {

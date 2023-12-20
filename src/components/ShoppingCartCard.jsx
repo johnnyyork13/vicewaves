@@ -8,7 +8,11 @@ export default function ShoppingCartCard(props) {
     React.useEffect(() => {
         if (removeItem) {
             try {
-                localStorage.removeItem(props.product.id);
+                const cart = JSON.parse(localStorage.getItem("cart"))
+                console.log(cart);
+                const filteredCart = cart.filter((product) => product.id !== props.product.id && product);
+                console.log(filteredCart);
+                localStorage.setItem("cart", JSON.stringify(filteredCart));
                 props.setShoppingCartContents((prev) => prev.filter((product) => product.id !== props.product.id && product));
                 setRemoveItem(false);
             } catch(err) {
@@ -16,10 +20,11 @@ export default function ShoppingCartCard(props) {
             }
         }
     }, [removeItem])
+    
 
-    React.useEffect(() => {
-        localStorage.setItem(props.product.id, JSON.stringify(props.product));
-    }, [props.shoppingCartContents])
+    // React.useEffect(() => {
+    //     localStorage.setItem(props.product.id, JSON.stringify(props.product));
+    // }, [props.shoppingCartContents])
 
     function handleQuantityChange(e) {
         props.setShoppingCartContents((prev) => prev.map((product) => product.id === props.product.id ? ({
@@ -29,15 +34,15 @@ export default function ShoppingCartCard(props) {
     }
     
     function handleViewProduct() {
-        props.setPage("viewProduct");
         props.setCurrentProduct(props.product);
+        props.setPage("viewProduct");
         props.setShowShoppingCart(false);
     }
 
     return (
         <div className="shopping-cart-card">
             {props.product && <>
-                <img src={props.product.thumbnail_url} />
+                <img src={props.product && props.product.files[1].preview_url} />
                 <div className="shopping-cart-buttons">
                     <span>{props.product.name}</span>
                     <button onClick={handleViewProduct}>View</button>

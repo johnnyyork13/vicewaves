@@ -22,6 +22,7 @@ export default function ViewTagPage(props) {
             console.log(err);
         }
     }, [props.viewTag]);
+    
 
     return (
         <div className="view-tag-page">

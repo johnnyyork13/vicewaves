@@ -12,6 +12,7 @@ export default function Header(props) {
         props.setViewTag(value);
     }
 
+    
     return (
         <header>
             <nav>

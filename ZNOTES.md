@@ -13,6 +13,11 @@ Add icon on shopping cart to indicate items are in it
 Fix styling on shopping cart where it always fits the height of the screen
 Add notifications for when items are in cart
 Validate inputs on forms
+Add close cart functionality when user clicks outside of cart component
+    also make sure it closes when already on checkout page
+ADD PRIVACY AND PAYMENT NOTICES ON CHECKOUT PAGE FOR PAYPAL
+Optimize localStorage API calls
+Figure out why there are so many re renders
 
 PRODUCT TAGS
 shirt

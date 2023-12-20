@@ -10,6 +10,7 @@ import CardContainer from './components/CardContainer';
 import ViewProduct from './components/ViewProduct';
 import ViewTagPage from './components/ViewTagPage';
 import ShoppingCart from './components/ShoppingCart';
+import Checkout from './components/Checkout';
 
 import Admin from './components/Admin';
 
@@ -26,14 +27,18 @@ function App() {
 
   React.useEffect(() => {
     try {
-      for (const key in localStorage) {
-        const product = JSON.parse(localStorage.getItem(key));
-        if (product) {
-          setShoppingCartContents((prev) => ([
-            ...prev,
-            product
-          ]))
-        }
+      // for (const key in localStorage) {
+      //   const product = JSON.parse(localStorage.getItem(key));
+      //   if (product && product.name && product.external_id) {
+      //     setShoppingCartContents((prev) => ([
+      //       ...prev,
+      //       product
+      //     ]))
+      //   }
+      // }
+
+      if (JSON.parse(localStorage.getItem("cart"))) {
+        setShoppingCartContents(JSON.parse(localStorage.getItem("cart")));
       }
     } catch(err) {
       console.log(err);
@@ -52,11 +57,13 @@ function App() {
         .catch((err) => console.log(err));
       }
       getAllProducts();
+      setShowShoppingCart(false);
     } catch(err) {
       console.log(err);
     }
   }, [page])
 
+  
   return (
     <div className="App">
       {showShoppingCart && 
@@ -104,6 +111,15 @@ function App() {
         setShoppingCartContents={setShoppingCartContents}
         shoppingCartContents={shoppingCartContents}
       />
+      }
+
+      {page === "checkout" &&
+        <Checkout 
+          root={root}
+          setPage={setPage}
+          shoppingCartContents={shoppingCartContents}
+          setShoppingCartContents={setShoppingCartContents}
+        />
       }
 
 

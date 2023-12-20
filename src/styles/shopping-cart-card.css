@@ -1,6 +1,7 @@
 .shopping-cart-card {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 30px;
 }
 
 .shopping-cart-card img {

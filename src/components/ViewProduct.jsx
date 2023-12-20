@@ -14,6 +14,7 @@ export default function ViewProduct(props) {
     React.useEffect(() => {
         try {
             const productID = props.currentProduct.sync_variants[0].product.product_id;
+            setMainImage(props.currentProduct.thumbnail_url);
             async function getSizeChart() {
                 const url = props.root + '/products/size/' + productID;
                 await fetch(url, {
@@ -27,17 +28,24 @@ export default function ViewProduct(props) {
         } catch(err) {
             console.log(err);
         }
-    }, [])
+    }, [props.currentProduct])
 
     React.useEffect(() => {
         if (addToCart) {
             try {            
                 props.setShoppingCartContents((prev) => [
                     ...prev,
-                    {...props.currentProduct,
+                    {...selectedVariant,
                         quantity: quantity}
                 ])
-                localStorage.setItem(props.currentProduct.id, JSON.stringify(props.currentProduct));
+    
+                const localStoragePrev = JSON.parse(localStorage.getItem("cart"));
+                if (!localStoragePrev) {
+                    localStorage.setItem("cart", JSON.stringify([{...selectedVariant, quantity: quantity}]));
+                } else {
+                    localStorage.setItem("cart", JSON.stringify([...localStoragePrev, {...selectedVariant, quantity: quantity}]))
+                }
+                //localStorage.setItem(props.currentProduct.id, JSON.stringify(props.currentProduct));
                 setAddToCart(false);
             } catch(err) {
                 console.log(err);
@@ -45,6 +53,7 @@ export default function ViewProduct(props) {
         }
 
     }, [addToCart])
+    
 
     function handleAddToCart() {
         let itemExists = false;
@@ -80,7 +89,6 @@ export default function ViewProduct(props) {
                 </option>
     })
 
-
     return (
         <div className="view-product">
             <div className="product-images">
@@ -97,6 +105,12 @@ export default function ViewProduct(props) {
                         {mappedVariants}
                     </select>
                 </label>
+                {sizeCharts && <a onClick={() => setShowSizeCharts((prev) => !prev)}>Show Size Chart</a>}
+                {showSizeCharts && 
+                <div className="size-charts">
+                    <img src={sizeCharts && sizeCharts[0].image_url} />
+                    <img src={sizeCharts && sizeCharts[1].image_url} />
+                </div>}
                 <label htmlFor="quantity">Quantity
                     <input
                         onChange={handleQuantityChange} 
@@ -106,10 +120,7 @@ export default function ViewProduct(props) {
                         min="1"
                         />
                 </label>
-                {showSizeCharts && 
-                <div className="size-charts">
-                    <img src={sizeCharts && sizeCharts[0].image_url} />
-                </div>}
+                
                 <p className="product-description">{props.currentProduct.description}</p>
                 <button 
                     className="add-to-cart-btn"
