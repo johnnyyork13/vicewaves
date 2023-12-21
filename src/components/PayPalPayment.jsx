@@ -4,14 +4,12 @@ import useScript from '../hooks/useScript';
 
 export default function PayPalPayment(props) {
 
-    const [testOrder, setTestOrder] = React.useState(false);
-
-    console.log(props.clientId);
+    const [recipient, setRecipient] = React.useState(null);
     
-    useScript(`https://www.paypal.com/sdk/js?components=buttons,card-fields&client-id=${props.clientId}`)
+    // useScript(`https://www.paypal.com/sdk/js?components=buttons,card-fields&client-id=${props.clientId}`)
 
     React.useEffect(() => {
-        if (testOrder) {
+        if (recipient) {
             try {
                 const url = props.root + '/products/order';
                 fetch(url, {
@@ -21,6 +19,7 @@ export default function PayPalPayment(props) {
                         "Content-Type":"application/json",
                     },
                     body: JSON.stringify({
+                        recipient: recipient,
                         cart: props.shoppingCartContents
                     })
                 }).then((res) => res.json())
@@ -30,7 +29,7 @@ export default function PayPalPayment(props) {
                 console.log(err);
             }
         }
-    }, [testOrder])
+    }, [recipient])
 
     async function createOrder() {
         const url = props.root + '/create-paypal-order';
@@ -67,10 +66,19 @@ export default function PayPalPayment(props) {
             })
           })
           .then((response) => response.json())
-          .then((orderData) => {
-                const name = orderData.payer.name.given_name;
+          .then((order) => {
+                console.log(order);
+                const name = order.payer.name.given_name;
                 alert(`Transaction completed by ${name}`);
-                setTestOrder(true);
+                const info = order.purchase_units[0].shipping
+                setRecipient({
+                    name: info.name.full_name,
+                    address1: info.address.address_line_1,
+                    city: info.address.admin_area_2,
+                    state_code: info.address.admin_area_1,
+                    country_code: info.address.country_code,
+                    zip: info.address.postal_code,
+                });
           });
 
     }
