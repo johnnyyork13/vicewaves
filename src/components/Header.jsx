@@ -95,10 +95,7 @@ export default function Header(props) {
                             <a>ITEM</a>
                             <a>ITEM</a>
                             <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
+
                         </div>
                     </div>
                 </div>

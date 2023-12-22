@@ -107,7 +107,9 @@ export default function ViewProduct(props) {
                         <button onClick={() => setShowSizeCharts(false)}>Close</button>
                         <div className="size-charts-section-container">
                             <div className="size-chart-section">
-                                <img src={sizeCharts && sizeCharts[0].image_url} />
+                                <div className="size-chart-img-container">
+                                    <img src={sizeCharts && sizeCharts[0].image_url} />
+                                </div>
                                 <div className="size-chart-text">
                                     <p dangerouslySetInnerHTML={{__html: `${sizeCharts[0].description}`}}></p>
                                     <br></br>
@@ -117,7 +119,9 @@ export default function ViewProduct(props) {
                                 </div>
                             </div>
                             <div className="size-chart-section">
-                                <img src={sizeCharts && sizeCharts[1].image_url} />
+                                <div className="size-chart-img-container">
+                                    <img src={sizeCharts && sizeCharts[1].image_url} />
+                                </div>
                                 <div className="size-chart-text">
                                     <p dangerouslySetInnerHTML={{__html: `${sizeCharts[1].image_description}`}}></p>
                                     <br></br>

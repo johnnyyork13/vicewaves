@@ -52,7 +52,9 @@ export default function ShoppingCartCard(props) {
     return (
         <div className="shopping-cart-card">
             {props.product && <>
-                <img src={props.product && props.product.files[1].preview_url} />
+                <img
+                    onClick={handleViewProduct} 
+                    src={props.product && props.product.files[1].preview_url} />
                 <div className="shopping-cart-buttons">
                     <span className="shopping-cart-product-name">{props.product.name}</span>
                     <label>Edit Quantity:
@@ -61,7 +63,7 @@ export default function ShoppingCartCard(props) {
                             type="number"
                             value={props.product.quantity}
                             min="1"
-                            />
+                        />
                     </label>
                     <div className="shopping-cart-buttons-group">
                         <button

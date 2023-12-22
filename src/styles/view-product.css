@@ -124,9 +124,14 @@
     align-items: center;
 }
 
+.size-chart-img-container {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+}
+
 .size-charts img {
-    height: 80%;
-    max-width: 30%;
+    height: 100%;
 }
 
 .size-chart-text {

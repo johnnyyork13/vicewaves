@@ -2,19 +2,22 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding: 20px;
     color: white;
     font-size: 1.3rem;
     font-weight: bolder;
     letter-spacing: 1px;
     border-bottom: 2px solid var(--color-two);
     height: 64px;
-    margin-left: 50px;
-    margin-right: 50px;
+    position: relative;
+    background-color: var(--gradient-start);
+    width: 100%;
+    padding-bottom: 15px;
+    z-index: 3;
 }
 
 nav {
     display: flex;    
+    margin-left: 30px;
 }
 
 .nav-btn-container {
@@ -47,8 +50,9 @@ nav {
 
 
 .shop-dropdown {
-    border-bottom: 2px solid var(--color-two);
-    border-right: 2px solid var(--color-two);
+    border-bottom: 5px solid var(--color-four);
+    border-right: 5px solid var(--color-four);
+    box-shadow: 2px 2px 0px 2px var(--color-two);
     visibility: hidden;
     position: absolute;
     background-color: var(--gradient-start);
@@ -59,26 +63,30 @@ nav {
     padding: 50px;
     gap: 50px;
     padding-top: 20px;
+    z-index: 4;
 }
 
 .shop-dropdown p {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    text-decoration: underline;
 }
 
 .shop-dropdown-section a {
     margin-top: 5px;
     width: fit-content;
     display: block;
-    color: var(--color-nine);
+    /* color: var(--color-nine); */
+    color: white;
 }
 
 .shop-dropdown-section a:hover {
     cursor: pointer;
-    color: white;
+    color: var(--color-one);
 }
 
 .nav-icon-container {
     display: flex;
+    margin-right: 30px;
 }
 
 .nav-icon-container a, .nav-icon-container > p {

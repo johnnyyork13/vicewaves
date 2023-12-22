@@ -1,5 +1,22 @@
-.view-tag-page-hero {
-    border: 1px solid red;
-    height: 200px;
+.view-tag-page-hero-container {
+    height: 400px;
     margin-bottom: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+}
+
+.view-tag-hero {
+    height: 100%;
+    width: 100%;
+}
+
+.view-tag-hero-text {
+    position: absolute;
+    color: white;
+    font-size: 5rem;
 }
