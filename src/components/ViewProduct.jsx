@@ -5,16 +5,16 @@ import '../styles/view-product.css';
 export default function ViewProduct(props) {
 
     const [selectedVariant, setSelectedVariant] = React.useState(props.currentProduct.sync_variants[0])
+    const [mainImage, setMainImage] = React.useState("");
     const [addToCart, setAddToCart] = React.useState(false);
     const [sizeCharts, setSizeCharts] = React.useState(null);
     const [showSizeCharts, setShowSizeCharts] = React.useState(false);
-    const [mainImage, setMainImage] = React.useState(props.currentProduct.thumbnail_url);
     const [quantity, setQuantity] = React.useState(1);
 
     React.useEffect(() => {
         try {
+            setMainImage(selectedVariant.files[1].preview_url);
             const productID = props.currentProduct.sync_variants[0].product.product_id || props.currentProduct.id;
-            setMainImage(props.currentProduct.thumbnail_url);
             async function getSizeChart() {
                 const url = props.root + '/products/size/' + productID;
                 await fetch(url, {
@@ -59,7 +59,7 @@ export default function ViewProduct(props) {
     function handleAddToCart() {
         let itemExists = false;
         props.shoppingCartContents.forEach((product) => {
-            if (product.parentProduct.id === Number(props.currentProduct.id)) {
+            if (product.id === selectedVariant.id) {
                 itemExists = true;
             }
         })
@@ -82,6 +82,10 @@ export default function ViewProduct(props) {
         setQuantity(e.target.value);
     }
 
+    function handleVariantImageClick(imageURL) {
+        setMainImage(imageURL)
+    }
+
     const mappedVariants = props.currentProduct.sync_variants && props.currentProduct.sync_variants.map((variant) => {
         return <option
                     key={uuidv4()}
@@ -98,6 +102,30 @@ export default function ViewProduct(props) {
                     })}
                 </div>
     })
+
+    const existingPreviewURL = [];
+    props.currentProduct.sync_variants &&
+        props.currentProduct.sync_variants.forEach((variant) => {
+        const imageLink = variant.files[1].preview_url;
+        if (!existingPreviewURL.includes(imageLink)) {
+            existingPreviewURL.push(imageLink);
+            }
+        // existingPreviewURL.push(imageLink);
+        })
+
+    const mappedVariantImages = existingPreviewURL.map((image, index) => {
+        return <div key={uuidv4()} onClick={() => handleVariantImageClick(image, index)} className="variant-image">
+                                    <img src={image} />
+                              </div>
+    })
+
+    function moveSlideshowLeft(e) {
+        e.target.parentElement.previousSibling.scrollLeft += -100;
+    }
+
+    function moveSlideshowRight(e) {
+        e.target.parentElement.previousSibling.scrollLeft += 100; 
+    }
 
     return (
         <div className="view-product">
@@ -136,7 +164,11 @@ export default function ViewProduct(props) {
             <div className="product-images">
                 <img src={mainImage} className="product-image-main" />
                 <div className="product-images-slideshow">
-
+                    {mappedVariantImages}
+                </div>
+                <div className="scroll-buttons">
+                    <button onClick={moveSlideshowLeft} className="main-btn slideshow-btn">{'<'}</button>
+                    <button onClick={moveSlideshowRight} className="main-btn slideshow-btn">{'>'}</button>
                 </div>
             </div>
             <div className="product-sidebar">

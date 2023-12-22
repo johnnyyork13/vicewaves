@@ -13,6 +13,7 @@
 .view-tag-hero {
     height: 100%;
     width: 100%;
+    box-shadow: 4px 4px 1px 1px var(--color-two);
 }
 
 .view-tag-hero-text {

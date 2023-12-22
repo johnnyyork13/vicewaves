@@ -9,9 +9,7 @@ export default function ShoppingCartCard(props) {
         if (removeItem) {
             try {
                 const cart = JSON.parse(localStorage.getItem("cart"))
-                console.log(cart);
                 const filteredCart = cart.filter((product) => product.id !== props.product.id && product);
-                console.log(filteredCart);
                 localStorage.setItem("cart", JSON.stringify(filteredCart));
                 props.setShoppingCartContents((prev) => prev.filter((product) => product.id !== props.product.id && product));
                 setRemoveItem(false);
@@ -57,6 +55,7 @@ export default function ShoppingCartCard(props) {
                     src={props.product && props.product.files[1].preview_url} />
                 <div className="shopping-cart-buttons">
                     <span className="shopping-cart-product-name">{props.product.name}</span>
+                    <span className="shopping-cart-product-name">${Number(Number(props.product.retail_price) * props.product.quantity).toFixed(2)}</span>
                     <label>Edit Quantity:
                         <input
                             onChange={handleQuantityChange}

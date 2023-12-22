@@ -56,14 +56,45 @@ export default function Checkout(props) {
 
     return (
         <div className="checkout">
-            <PayPalScriptProvider options={initialOptions}>
-                <PayPalPayment 
-                    root={props.root}
-                    shoppingCartContents={props.shoppingCartContents}
-                    setPayerInfo={setPayerInfo}
-                />
-            </PayPalScriptProvider>
+            <div className="paypal-container">
+                <p className="paypal-header">Checkout Information</p>
+                <br></br>
+                <div className="checkout-extra">
+                    <div className="checkout-extra-section">
+                        <p className="checkout-extra-subheader">Account</p>
+                        <p className="checkout-extra-info-text">{props.currentUser.email}</p>
+                    </div>
+                    <div className="checkout-extra-section">
+                        <div className="checkout-extra-checkbox-container">
+                            <input name="promo" type="checkbox" placeholder='CODE' />
+                            <label>Email me with news and offers</label>
+                        </div>
+                    </div>
+                    <div className="checkout-extra-section">
+                        <p className="checkout-extra-subheader">Phone</p>
+                        <p className="checkout-extra-info-text">{props.currentUser.phone}</p>
+                    </div>
+                    <div className="checkout-extra-section">
+                        <p className="checkout-extra-subheader">Discount Code or Gift Card</p>
+                        <div className="checkout-extra-input-container">
+                            <input name="promo" type="text" placeholder='CODE' />
+                            <button className="main-btn">APPLY</button>
+                        </div>
+                    </div>
+                    
+                </div>
+                <br></br>
+                <p className="paypal-header">Payment Options</p>
+                <PayPalScriptProvider options={initialOptions}>
+                    <PayPalPayment 
+                        root={props.root}
+                        shoppingCartContents={props.shoppingCartContents}
+                        setPayerInfo={setPayerInfo}
+                    />
+                </PayPalScriptProvider>
+            </div>
             <div className="checkout-totals-container">
+                <p className="checkout-totals-header">Billing Address and Information</p>
                 {payerInfo && <div className="checkout-shipping-info">
                     <p>{payerInfo.name}</p>
                     <p>{payerInfo.address1}</p>
@@ -72,13 +103,14 @@ export default function Checkout(props) {
                     <br></br>
                 </div>}
                 <div className="checkout-subtotal">
-                    Subtotal: {totals.subTotal}
+                    Subtotal: ${totals.subTotal}
                 </div>
                 <div className="checkout-tax">
-                    Tax: {totals.tax}
+                    Tax: ${totals.tax.toFixed(2)}
                 </div>
+                <br></br>
                 <div className="checkout-total">
-                    Total: {totals.total}
+                    Total: ${totals.total}
                 </div>
                 
             </div>

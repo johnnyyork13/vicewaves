@@ -3,14 +3,52 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 50px;
     margin-top: 30px;
+    margin-bottom: 50px;
 }
 
 .product-images {
     margin-left: 50px;
+    display: grid;
+    grid-template-rows: 1fr 150px 35px;
+    gap: 20px;
 }
 
 .product-image-main {
     width: 100%;
+    box-shadow: 4px 4px 1px 1px var(--color-two);
+}
+
+.product-images-slideshow {
+    height: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 150px;
+    gap: 20px;  
+    overflow: hidden;
+    position: relative;
+    scroll-behavior: smooth;
+    padding-right: 5px;
+}
+
+.product-images-slideshow img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.scroll-buttons {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.slideshow-btn {
+    width: 50%;
+}
+
+.variant-image {
+    height: 100%;
+    box-shadow: 4px 4px 1px 1px var(--color-two);
 }
 
 .product-sidebar {
@@ -88,20 +126,20 @@
 }
 
 .size-charts {
-    background-color: var(--gradient-start);
     margin: 100px;
     padding: 30px;
-    color: white;
+    color: var(--color-eight);
     font-size: 1.2rem;
     display: grid;
     grid-template-columns: 1fr .3fr;
     position: relative;
-    box-shadow: 5px 5px 2px 2px var(--gradient-end);
+    background-color: white;
+    box-shadow: 4px 4px 1px 1px var(--color-two);
 }
 
 .size-charts button {
-    color: white;
-    background-color: var(--gradient-start);
+    color: var(--color-eight);
+    background-color: white;
     border: none;
     font-size: 1.5rem;
     right: 10px;
@@ -132,6 +170,9 @@
 
 .size-charts img {
     height: 100%;
+    /* box-shadow: 4px 4px 1px 1px var(--color-two); */
+    /* border-top: 1px solid var(--color-two);
+    border-left: 1px solid var(--color-two); */
 }
 
 .size-chart-text {
@@ -139,11 +180,11 @@
 }
 
 .measurement-container {
-    background-color: var(--color-ten);
+    background-color: var(--color-eight);
     color: white;
     padding: 20px;
     margin-top: 30px;
-    box-shadow: 5px 5px 2px 2px var(--gradient-end);
+    box-shadow: 5px 5px 2px 2px var(--color-two);
 }
 
 .measurement-container > p:first-child {

@@ -1,16 +1,9 @@
 TODO
-Add filters
-Add filter page
 Add search bar
-Add categories
-Add cart system
-Add payments
-Add login
 Add orders (prototype working)
 Add orders history that saves a user's orders in database
 Make navbar toggle on click instead of hover
 Add icon on shopping cart to indicate items are in it
-Fix styling on shopping cart where it always fits the height of the screen
 Add notifications for when items are in cart
 Validate inputs on forms
 Add close cart functionality when user clicks outside of cart component
@@ -20,6 +13,7 @@ Optimize localStorage API calls
 Figure out why there are so many re renders
 Add spinner to paypal module when loading
 Add apartment and other codes for payments
+Add Total to cart
 
 PRODUCT TAGS
 shirt

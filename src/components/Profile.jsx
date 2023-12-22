@@ -37,16 +37,26 @@ export default function Profile(props) {
                 <div className="profile-details">
                     <p className="profile-details-header">Account Details</p>
                     <p className="profile-header">Account Holder Name</p>
-                    <p className="profile-text">
+                    <div className="profile-text">
                         <p>{user.name}</p>
-                    </p>
+                    </div>
+                    <br></br>
+                    <p className="profile-header">PHONE</p>
+                    <div className="profile-text">
+                        <p>{user.phone}</p>
+                    </div>
+                    <br></br>
+                    <p className="profile-header">EMAIL</p>
+                    <div className="profile-text">
+                        <p>{user.email}</p>
+                    </div>
                     <br></br>
                     <p className="profile-header">Shipping Address</p>
-                    <p className="profile-text">
+                    <div className="profile-text">
                         <p>{user.address1}</p>
                         <p>{user.city}, {user.state_code}</p>
                         <p>{user.country_code} {user.zip}</p>
-                    </p>
+                    </div>
                     <button 
                         className="profile-edit-btn main-btn"
                     >Edit</button>
