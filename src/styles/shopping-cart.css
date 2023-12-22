@@ -1,5 +1,5 @@
 .shopping-cart-background {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,.6);
@@ -10,11 +10,9 @@
 }
 
 .shopping-cart {
-    border: 1px solid red;
     right: 0;
     top: 0;
     width: 400px;
-    background-color: white;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -22,6 +20,8 @@
     overflow-y: auto;
     padding-left: 20px;
     padding-right: 20px;
+    background: linear-gradient(var(--gradient-start), var(--gradient-end));
+    color: white;
 }
 
 .shopping-cart-items-container {
@@ -33,4 +33,19 @@
 .exit-btn {
     align-self: end;
     margin-bottom: 20px;
+    background-color: rgba(0,0,0,.01);
+    color: white;
+    font-weight: bolder;
+    font-family: "Hauser";
+    font-size: 1.5rem;
+    border: none;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.checkout-btn {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    height: 40px;
 }

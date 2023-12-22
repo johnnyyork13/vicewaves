@@ -1,0 +1,8 @@
+.checkout {
+    display: grid;
+    grid-template-columns: .6fr .4fr;
+    grid-template-rows: 1fr;
+    gap: 50px;
+}
+
+

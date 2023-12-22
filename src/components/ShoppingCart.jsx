@@ -28,7 +28,7 @@ export default function ShoppingCart(props) {
                     {mappedShoppingCartContents}
                 </div>
                 <button
-                    className="checkout-btn"
+                    className="checkout-btn main-btn"
                     onClick={() => props.setPage("checkout")}>Checkout</button>
             </div>
         </div>

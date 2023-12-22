@@ -1,0 +1,36 @@
+.login {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    color: white;
+}
+
+.login-form {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.login-form label {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+}
+
+.login-input {
+    height: 35px;
+    margin-bottom: 20px;
+}
+
+.login-form button {
+    height: 40px;
+}
+
+footer {
+    align-self: flex-end !important;
+}

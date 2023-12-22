@@ -2,6 +2,11 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 50px;
+    margin-top: 30px;
+}
+
+.product-images {
+    margin-left: 50px;
 }
 
 .product-image-main {
@@ -11,10 +16,137 @@
 .product-sidebar {
     display: flex;
     flex-direction: column;
+    color: white;
+    margin-right: 50px;
+}
+
+.product-name {
+    font-size: 2.2rem;
+    text-align: center;
+}
+
+.product-price {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar-label {
+    font-size: 1.5rem;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-label select {
+    height: 30px;
+    box-sizing: border-box;
+    margin-left: 5px;
+    width: 100%;
+    font-size: 1.2rem;
+    background-color: var(--color-nine);
+    border: 2px solid var(--color-ten);
+    color: white;
+    font-family: "Hauser";
+    padding-left: 10px;
+}
+
+.show-size-charts {
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+.product-description {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.quantity-label {
+    align-self: center;
+}
+
+.quantity-label input {
+    margin-left: 5px;
+    height: 20px;
+    background-color: var(--color-nine);
+    border: 2px solid var(--color-ten);
+    color: white;
+    font-family: "Hauser";
+    padding-left: 10px;
+}
+
+.size-charts-background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background-color: rgba(0,0,0,.5);
+    display: flex;
     justify-content: center;
-    border: 1px solid red;
+    align-items: center;
+    z-index: 3;
+}
+
+.size-charts {
+    background-color: var(--gradient-start);
+    margin: 100px;
+    padding: 30px;
+    color: white;
+    font-size: 1.2rem;
+    display: grid;
+    grid-template-columns: 1fr .3fr;
+    position: relative;
+    box-shadow: 5px 5px 2px 2px var(--gradient-end);
+}
+
+.size-charts button {
+    color: white;
+    background-color: var(--gradient-start);
+    border: none;
+    font-size: 1.5rem;
+    right: 10px;
+    top: 10px;
+    font-weight: bolder;
+    cursor: pointer;
+    position: absolute;
+}
+
+.size-charts-section-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.size-chart-section {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    align-items: center;
+}
+
+.size-charts img {
+    height: 80%;
+    max-width: 30%;
+}
+
+.size-chart-text {
+    width: 70%;
+}
+
+.measurement-container {
+    background-color: var(--color-ten);
+    color: white;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: 5px 5px 2px 2px var(--gradient-end);
+}
+
+.measurement-container > p:first-child {
+    font-size: 1.8rem;
 }
 
 .add-to-cart-btn {
-    height: 30px;
+    height: 35px;
+    margin-top: 20px;
+    box-sizing: border-box;
 }

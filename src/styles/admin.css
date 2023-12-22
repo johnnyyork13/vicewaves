@@ -1,3 +1,11 @@
+.admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
 .admin-section {
     display: flex;
     width: 500px;

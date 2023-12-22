@@ -34,25 +34,37 @@ export default function ShoppingCartCard(props) {
     }
     
     function handleViewProduct() {
-        props.setCurrentProduct(props.product);
+        props.setCurrentProduct(props.product.parentProduct);
         props.setPage("viewProduct");
         props.setShowShoppingCart(false);
     }
+
+    console.log("SHOPPING", props.product);
 
     return (
         <div className="shopping-cart-card">
             {props.product && <>
                 <img src={props.product && props.product.files[1].preview_url} />
                 <div className="shopping-cart-buttons">
-                    <span>{props.product.name}</span>
-                    <button onClick={handleViewProduct}>View</button>
-                    <input 
-                        onChange={handleQuantityChange}
-                        type="number" 
-                        value={props.product.quantity}
-                        min="1"
-                        ></input>
-                    <button onClick={() => setRemoveItem(true)}>Remove</button>
+                    <span className="shopping-cart-product-name">{props.product.name}</span>
+                    <label>Edit Quantity:
+                        <input
+                            onChange={handleQuantityChange}
+                            type="number"
+                            value={props.product.quantity}
+                            min="1"
+                            />
+                    </label>
+                    <div className="shopping-cart-buttons-group">
+                        <button
+                            className="main-btn shopping-cart-btn"
+                            onClick={() => setRemoveItem(true)}>
+                        Remove</button>
+                        <button
+                            className="main-btn shopping-cart-btn"
+                            onClick={handleViewProduct}>
+                        View</button>
+                    </div>
                 </div>
             </>}
         </div>

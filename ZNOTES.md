@@ -18,6 +18,8 @@ Add close cart functionality when user clicks outside of cart component
 ADD PRIVACY AND PAYMENT NOTICES ON CHECKOUT PAGE FOR PAYPAL
 Optimize localStorage API calls
 Figure out why there are so many re renders
+Add spinner to paypal module when loading
+Add apartment and other codes for payments
 
 PRODUCT TAGS
 shirt

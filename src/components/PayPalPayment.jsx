@@ -5,9 +5,8 @@ import useScript from '../hooks/useScript';
 export default function PayPalPayment(props) {
 
     const [recipient, setRecipient] = React.useState(null);
-    
     // useScript(`https://www.paypal.com/sdk/js?components=buttons,card-fields&client-id=${props.clientId}`)
-
+    
     React.useEffect(() => {
         if (recipient) {
             try {
@@ -15,6 +14,7 @@ export default function PayPalPayment(props) {
                 fetch(url, {
                     method: "POST",
                     mode: 'cors',
+                    credentials: "include",
                     headers: {
                         "Content-Type":"application/json",
                     },
@@ -35,6 +35,7 @@ export default function PayPalPayment(props) {
         const url = props.root + '/create-paypal-order';
         return fetch(url, {
             method: "POST", 
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -48,7 +49,9 @@ export default function PayPalPayment(props) {
             //         },
             //     ],
             // }),
-            body: JSON.stringify({cart: props.shoppingCartContents})
+            body: JSON.stringify({
+                cart: props.shoppingCartContents,
+            })
         })
             .then((response) => response.json())
             .then((order) => order.id)
@@ -84,9 +87,10 @@ export default function PayPalPayment(props) {
     }
 
     return (
-        <PayPalButtons
+            <PayPalButtons
                 createOrder={createOrder}
                 onApprove={onApprove}
-        />
+            />
+
     )
 }

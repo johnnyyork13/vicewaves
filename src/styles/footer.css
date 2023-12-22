@@ -1,0 +1,43 @@
+footer {
+    background-color: var(--gradient-end);
+    height: 300px;
+    width: 100%;
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding-top: 30px;
+    border-top: 2px solid var(--color-eight);
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+}
+
+.footer-links a {
+    margin-top: 5px;
+}
+
+.footer-email-container {
+    height: 35px;
+    display: flex;
+}
+
+.footer-input {
+    height: 100%;
+    width: 50%;
+    padding-left: 10px;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+}
+
+.footer-btn {
+    box-sizing: border-box;
+    width: fit-content;
+    height: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 5px;
+}

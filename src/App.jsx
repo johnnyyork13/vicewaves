@@ -11,6 +11,10 @@ import ViewProduct from './components/ViewProduct';
 import ViewTagPage from './components/ViewTagPage';
 import ShoppingCart from './components/ShoppingCart';
 import Checkout from './components/Checkout';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import Footer from './components/Footer';
+import Profile from './components/Profile';
 
 import Admin from './components/Admin';
 
@@ -24,19 +28,28 @@ function App() {
   const [currentProduct, setCurrentProduct] = React.useState(null);
   const [showShoppingCart, setShowShoppingCart] = React.useState(false);
   const [shoppingCartContents, setShoppingCartContents] = React.useState([])
+  const [currentUser, setCurrentUser] = React.useState(null);
 
   React.useEffect(() => {
     try {
-      // for (const key in localStorage) {
-      //   const product = JSON.parse(localStorage.getItem(key));
-      //   if (product && product.name && product.external_id) {
-      //     setShoppingCartContents((prev) => ([
-      //       ...prev,
-      //       product
-      //     ]))
-      //   }
-      // }
+      //log user again if valid cookie
+      async function attemptLoginUser() {
+        const url = root + '/login'
+        await fetch(url, {
+          method: "GET",
+          mode: 'cors',
+          credentials: 'include'
+        }).then((res) => res.json())
+        .then((res) => {
+          if (res) {
+            // console.log('relogin', res);
+            setCurrentUser(res);
+          }
+        })
+      }
+      attemptLoginUser();
 
+      //reload shopping cart from localStorage
       if (JSON.parse(localStorage.getItem("cart"))) {
         setShoppingCartContents(JSON.parse(localStorage.getItem("cart")));
       }
@@ -77,9 +90,12 @@ function App() {
       }
       
       <Header 
+        root={root}
         setPage={setPage}
         setViewTag={setViewTag}
         setShowShoppingCart={setShowShoppingCart}
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
       />
 
 
@@ -119,9 +135,24 @@ function App() {
           setPage={setPage}
           shoppingCartContents={shoppingCartContents}
           setShoppingCartContents={setShoppingCartContents}
+          currentUser={currentUser}
         />
       }
 
+      {page === "login" &&
+        <Login 
+          root={root}
+          setPage={setPage}
+          setCurrentUser={setCurrentUser}
+        />
+      }
+
+      {page === "signup" &&
+        <Signup 
+          root={root}
+          setPage={setPage}
+        />
+      }
 
       {page === "admin" && 
         <Admin
@@ -129,6 +160,14 @@ function App() {
           currentProduct={currentProduct}
         />
       }
+
+      {page === "profile" && 
+        <Profile 
+          root={root}
+          currentUser={currentUser}
+        />
+      }
+      <Footer />
     </div>
   )
 }
