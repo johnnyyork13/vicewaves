@@ -62,7 +62,7 @@
 }
 
 .quantity-label {
-    align-self: center;
+    align-self: flex-end;
 }
 
 .quantity-label input {

@@ -81,11 +81,15 @@ nav {
     display: flex;
 }
 
-.nav-icon-container a {
+.nav-icon-container a, .nav-icon-container > p {
     margin-left: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.nav-icon-container > p {
+    margin-right: 20px;
 }
 
 .nav-icon-container a > * {

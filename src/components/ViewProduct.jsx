@@ -4,8 +4,6 @@ import '../styles/view-product.css';
 
 export default function ViewProduct(props) {
 
-    console.log(props.currentProduct);
-
     const [selectedVariant, setSelectedVariant] = React.useState(props.currentProduct.sync_variants[0])
     const [addToCart, setAddToCart] = React.useState(false);
     const [sizeCharts, setSizeCharts] = React.useState(null);
@@ -61,7 +59,7 @@ export default function ViewProduct(props) {
     function handleAddToCart() {
         let itemExists = false;
         props.shoppingCartContents.forEach((product) => {
-            if (product.id === Number(props.currentProduct.id)) {
+            if (product.parentProduct.id === Number(props.currentProduct.id)) {
                 itemExists = true;
             }
         })
@@ -93,10 +91,10 @@ export default function ViewProduct(props) {
     })
 
     const mappedSizeMeasurements = sizeCharts && sizeCharts[0].measurements.map((measurement) => {
-        return <div className="measurement-container">
+        return <div key={uuidv4()} className="measurement-container">
                     <p>{measurement.type_label}</p>
                     {measurement.values && measurement.values.map((size) => {
-                        return <p>Value: {size.value} Size: {size.size}</p>
+                        return <p key={uuidv4()}>Value: {size.value} Size: {size.size}</p>
                     })}
                 </div>
     })

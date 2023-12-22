@@ -9,3 +9,8 @@
     width: 100%;
     box-shadow: 4px 4px 1px 1px var(--color-two);
 }
+
+.card-info {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}

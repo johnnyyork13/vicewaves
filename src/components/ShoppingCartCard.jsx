@@ -31,6 +31,16 @@ export default function ShoppingCartCard(props) {
             ...product,
             quantity: e.target.value
         }) : product))
+        const cartsInStorage = JSON.parse(localStorage.getItem("cart"));
+        for (const key in cartsInStorage) {
+            if (cartsInStorage[key].id === props.product.id) {
+                cartsInStorage[key] = {
+                    ...cartsInStorage[key],
+                    quantity: e.target.value,
+                }
+            }
+        }
+        localStorage.setItem("cart", JSON.stringify(cartsInStorage));
     }
     
     function handleViewProduct() {
@@ -38,8 +48,6 @@ export default function ShoppingCartCard(props) {
         props.setPage("viewProduct");
         props.setShowShoppingCart(false);
     }
-
-    console.log("SHOPPING", props.product);
 
     return (
         <div className="shopping-cart-card">

@@ -109,8 +109,8 @@ export default function Header(props) {
                     <div className="nav-btn-text">BEST SELLERS </div>
                 </div>
             </nav>
-            {props.currentUser && <p>Welcome back, {props.currentUser.name}</p>}
             <div className="nav-icon-container">
+                {props.currentUser && <p>Welcome back, {props.currentUser.name}</p>}
                 <a><SearchIcon /></a>
                 <a onClick={() => props.setShowShoppingCart((prev) => !prev)}><ShoppingCartOutlinedIcon /></a>
                 <a onClick={() => {

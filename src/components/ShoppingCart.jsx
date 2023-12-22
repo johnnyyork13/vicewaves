@@ -23,7 +23,7 @@ export default function ShoppingCart(props) {
             <div className="shopping-cart">
                 <button
                     className="exit-btn" 
-                    onClick={() => props.setShowShoppingCart(false)}>Exit</button>
+                    onClick={() => props.setShowShoppingCart(false)}>Close</button>
                 <div className="shopping-cart-items-container">
                     {mappedShoppingCartContents}
                 </div>
