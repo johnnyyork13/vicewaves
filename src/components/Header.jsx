@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/header.css';
+import {v4 as uuidv4} from 'uuid';
 
 import SearchIcon from '@mui/icons-material/Search';
 import Person4OutlinedIcon from '@mui/icons-material/Person4Outlined';
@@ -8,7 +9,11 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 export default function Header(props) {
 
     const [sendLogout, setSendLogout] = React.useState(false);
-
+    const [beginSearch, setBeginSearch] = React.useState(false);
+    const [productNamesForSearch, setProductNamesForSearch] = React.useState([]);
+    const [searchKeywords, setSearchKeywords] = React.useState("");
+    const [searchResults, setSearchResults] = React.useState([]);
+    const [selectedSearchResult, setSelectedSearchResult] = React.useState(null);
     //logout hook
     React.useEffect(() => {
         if (sendLogout) {
@@ -35,13 +40,80 @@ export default function Header(props) {
         }
     }, [sendLogout])
 
+    React.useEffect(() => {
+        if (beginSearch) {
+            try {
+                async function getProductNamesForSearch() {
+                    const url = props.root + '/products/search';
+                    await fetch(url, {
+                        method: "GET",
+                        mode: "cors",
+                    }).then((res) => res.json())
+                    .then((res) => setProductNamesForSearch(res.productList))
+                    .catch((err) => console.log(err));
+                }
+                getProductNamesForSearch();
+            } catch(err) {
+                console.log(err);
+            }
+        }
+    },[beginSearch]);
+
+    React.useEffect(() => {
+        if (selectedSearchResult) {
+            try {
+                async function getSearchResultProduct() {
+                    const url = props.root + '/products/search/get-product';
+                    await fetch(url, {
+                        method: "POST",
+                        mode: 'cors',
+                        headers: {
+                            "Content-Type":"application/json",
+                        },
+                        body: JSON.stringify({id: selectedSearchResult.id})
+                    }).then((res) => res.json())
+                    .then((res) => props.setCurrentProduct(res))
+                    .then(() => {
+                            props.setPage("viewProduct")
+                            setSearchResults([]);
+                            setBeginSearch(false);
+                        })
+                    .catch((err) => console.log(err));
+                }
+                getSearchResultProduct();
+            } catch(err) {
+                console.log(err);
+            }
+        }
+    }, [selectedSearchResult])
+
     function handleDropdownClick(value) {
         props.setPage("viewTag");
         props.setViewTag(value);
     }
 
+    function handleSearchInputChange(e) {
+        const results = [];
+        productNamesForSearch.forEach((product) => {
+            if (product.name.toLowerCase().includes(e.target.value.toLowerCase())) {
+                results.push(product);
+            }
+        })
+        setSearchResults(results);
+    }
+
+    function handleSearchResultClick(product) {
+        setSelectedSearchResult(product);
+    }
     
-    
+    const mappedSearchResults = searchResults.map((product) => {
+        return <p
+                    key={uuidv4()}
+                    onClick={() => handleSearchResultClick(product)} 
+                    className="search-result">{product.name}
+                </p>
+    })
+
     return (
         <header>
             <nav>
@@ -108,7 +180,15 @@ export default function Header(props) {
             </nav>
             <div className="nav-icon-container">
                 {props.currentUser && <p>Welcome back, {props.currentUser.name}</p>}
-                <a><SearchIcon /></a>
+                {beginSearch && 
+                    <div className="search-bar-container">
+                        <input className="search-bar" type="search" onChange={handleSearchInputChange} name="search" placeholder="Enter Search Keywords Here"/>
+                        {searchResults.length > 0 && <div className="search-results">
+                            {mappedSearchResults}
+                        </div>}
+                    </div>
+                }
+                <a onClick={() => setBeginSearch((prev) => !prev)}><SearchIcon /></a>
                 <a onClick={() => props.setShowShoppingCart((prev) => !prev)}><ShoppingCartOutlinedIcon /></a>
                 <a onClick={() => {
                     props.currentUser ? props.setPage("profile") : props.setPage("login")

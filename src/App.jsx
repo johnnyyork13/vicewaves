@@ -96,6 +96,7 @@ function App() {
         setShowShoppingCart={setShowShoppingCart}
         currentUser={currentUser}
         setCurrentUser={setCurrentUser}
+        setCurrentProduct={setCurrentProduct}
       />
 
 

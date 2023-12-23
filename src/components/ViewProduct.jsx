@@ -13,7 +13,7 @@ export default function ViewProduct(props) {
 
     React.useEffect(() => {
         try {
-            setMainImage(selectedVariant.files[1].preview_url);
+            setSelectedVariant(props.currentProduct.sync_variants[0]);
             const productID = props.currentProduct.sync_variants[0].product.product_id || props.currentProduct.id;
             async function getSizeChart() {
                 const url = props.root + '/products/size/' + productID;
@@ -29,6 +29,10 @@ export default function ViewProduct(props) {
             console.log(err);
         }
     }, [props.currentProduct])
+
+    React.useEffect(() => {
+        setMainImage(selectedVariant.files[1].preview_url);
+    }, [selectedVariant])
 
     React.useEffect(() => {
         if (addToCart) {
