@@ -14,6 +14,8 @@ Figure out why there are so many re renders
 Add spinner to paypal module when loading
 Add apartment and other codes for payments
 Add Total to cart
+Add styling for users who are not logged in and are visiting checkout page
+Convert admin description textbox to accept html 
 
 PRODUCT TAGS
 shirt

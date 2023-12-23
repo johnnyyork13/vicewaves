@@ -60,20 +60,22 @@ export default function Checkout(props) {
                 <p className="paypal-header">Checkout Information</p>
                 <br></br>
                 <div className="checkout-extra">
-                    <div className="checkout-extra-section">
-                        <p className="checkout-extra-subheader">Account</p>
-                        <p className="checkout-extra-info-text">{props.currentUser.email}</p>
-                    </div>
-                    <div className="checkout-extra-section">
-                        <div className="checkout-extra-checkbox-container">
-                            <input name="promo" type="checkbox" placeholder='CODE' />
-                            <label>Email me with news and offers</label>
+                    {props.currentUser && <>
+                        <div className="checkout-extra-section">
+                            <p className="checkout-extra-subheader">Account</p>
+                            <p className="checkout-extra-info-text">{props.currentUser.email}</p>
                         </div>
-                    </div>
-                    <div className="checkout-extra-section">
-                        <p className="checkout-extra-subheader">Phone</p>
-                        <p className="checkout-extra-info-text">{props.currentUser.phone}</p>
-                    </div>
+                        <div className="checkout-extra-section">
+                            <div className="checkout-extra-checkbox-container">
+                                <input name="promo" type="checkbox" placeholder='CODE' />
+                                <label>Email me with news and offers</label>
+                            </div>
+                        </div>
+                        <div className="checkout-extra-section">
+                            <p className="checkout-extra-subheader">Phone</p>
+                            <p className="checkout-extra-info-text">{props.currentUser.phone}</p>
+                        </div>
+                    </>}
                     <div className="checkout-extra-section">
                         <p className="checkout-extra-subheader">Discount Code or Gift Card</p>
                         <div className="checkout-extra-input-container">
@@ -103,14 +105,14 @@ export default function Checkout(props) {
                     <br></br>
                 </div>}
                 <div className="checkout-subtotal">
-                    Subtotal: ${totals.subTotal}
+                    Subtotal: ${Number(totals.subTotal).toFixed(2)}
                 </div>
                 <div className="checkout-tax">
                     Tax: ${totals.tax.toFixed(2)}
                 </div>
                 <br></br>
                 <div className="checkout-total">
-                    Total: ${totals.total}
+                    Total: ${Number(totals.total).toFixed(2)}
                 </div>
                 
             </div>

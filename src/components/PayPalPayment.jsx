@@ -5,8 +5,19 @@ import useScript from '../hooks/useScript';
 export default function PayPalPayment(props) {
 
     const [recipient, setRecipient] = React.useState(null);
-    // useScript(`https://www.paypal.com/sdk/js?components=buttons,card-fields&client-id=${props.clientId}`)
+    const [cartIdList, setCartIdList] = React.useState([]);
+    const [renderComplete, setRenderComplete] = React.useState(false);
+
+    //pop up order confirmation modal that does not allow click through on background
     
+    React.useEffect(() => {
+        setCartIdList(() => {
+            return props.shoppingCartContents.map((product) => product.id);
+        }, setRenderComplete(true))
+    }, [props.shoppingCartContents])
+
+    console.log(cartIdList);
+
     React.useEffect(() => {
         if (recipient) {
             try {
@@ -50,7 +61,7 @@ export default function PayPalPayment(props) {
             //     ],
             // }),
             body: JSON.stringify({
-                cart: props.shoppingCartContents,
+                cart: cartIdList,
             })
         })
             .then((response) => response.json())
@@ -87,10 +98,12 @@ export default function PayPalPayment(props) {
     }
 
     return (
-            <PayPalButtons
-                createOrder={createOrder}
-                onApprove={onApprove}
-            />
+            <>
+                {renderComplete && <PayPalButtons
+                    createOrder={createOrder}
+                    onApprove={onApprove}
+                />}
+            </>
 
     )
 }
