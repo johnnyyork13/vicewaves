@@ -172,11 +172,11 @@ function App() {
         />
       }
 
-      {page === "faq" && 
+      {/* {page === "faq" && 
         <FAQ 
           
         />
-      }
+      } */}
 
       {page === "about" && 
         <About 

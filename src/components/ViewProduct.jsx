@@ -186,7 +186,7 @@ export default function ViewProduct(props) {
                     </select>
                 </label>
                 {sizeCharts && sizeCharts[0].image_description && <a className="show-size-charts" onClick={() => setShowSizeCharts((prev) => !prev)}>Show Size Chart</a>}
-                <p className="product-description">{props.currentProduct.description}</p>
+                <div className="product-description" dangerouslySetInnerHTML={{__html: props.currentProduct.description}}></div>
                 <label className="quantity-label sidebar-label" htmlFor="quantity">Quantity
                     <input
                         onChange={handleQuantityChange} 

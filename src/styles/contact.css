@@ -1,0 +1,66 @@
+.contact-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.contact {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-header-link {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+}
+
+.contact-header-link:hover {
+    cursor: pointer;
+    color: var(--color-eight);
+}
+
+.contact-header-main {
+    font-size: 2.2rem;
+}
+
+.contact-header {
+    font-size: 1.7rem;
+}
+
+.contact-text {
+    font-size: 1.2rem;
+}
+
+.contact-message-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    min-width: 70%;
+}
+
+.contact-input {
+    height: 30px;
+    margin-bottom: 10px;
+    width: 50%;
+    font-family: "Hauer";
+    font-size: 1.3rem;
+}
+
+.contact-body {
+    resize: none;
+    height: 300px;
+    font-family: "Hauer";
+    font-size: 1.3rem;
+}
+
+.contact-message-btn {
+    height: 35px;
+    margin-top: 10px;
+    width: 50%;
+    align-self: flex-end;
+}
+
