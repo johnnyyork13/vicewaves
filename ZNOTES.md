@@ -20,6 +20,7 @@ Add back buttons on all pages
 Implement functionality when user clicks arrow button on view product page that cycles to next image while 
     also scrolling in the direction
 Change hero images on search pages
+Add password requirements
 
 PRODUCT TAGS
 shirt

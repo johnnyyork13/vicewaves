@@ -30,6 +30,7 @@ export default function Signup(props) {
         confirmPassword: false,
     })
     const [signupUser, setSignupUser] = React.useState(false);
+    const [showSignupModal, setShowSignupModal] = React.useState(false);
 
     React.useEffect(() => {
         if (signupUser) {
@@ -45,9 +46,9 @@ export default function Signup(props) {
                         body: JSON.stringify(user),
                     }).then((res) => res.json())
                     .then((res) => {
-                        console.log(res)
                         setSignupUser(false);
-                    })
+                        setShowSignupModal(true);
+                    }).catch((err) => {console.log(err); setSignupUser(false)})
                 }
                 attemptSignupUser();
             } catch(err) {  
@@ -82,12 +83,25 @@ export default function Signup(props) {
         }
         
         if (allFieldsHaveValues) {
-            setSignupUser(true);
+            if (user.password === user.confirmPassword) {
+                setSignupUser(true);
+            } else {
+                setError((prev) => ({
+                    ...prev,
+                    confirmPassword: true,
+                }))
+            }
         }
     }
 
     return (
         <div className="signup-container">
+            {showSignupModal && <div className="signup-modal-container">
+                <div className="signup-modal">
+                    <p className="signup-modal-header">Account Created!</p>
+                    <button onClick={() => props.setPage("login")} type="button" className="main-btn">Take Me to Login Page</button>
+                </div>
+            </div>}
             <form className="signup">
                 <p className="signup-header-main">Create an Account</p>
                 <label htmlFor="username"><span>Username <span className="signup-error">{!error.username ? "" : "*Please enter a username"}</span></span>
