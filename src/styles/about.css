@@ -1,0 +1,18 @@
+.about-container {
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.about {
+    width: 70%;
+}
+
+.about-header {
+    margin-top: 20px;
+    font-size: 1.7rem;
+}
+
+.about-text {
+    font-size: 1.2rem;
+}

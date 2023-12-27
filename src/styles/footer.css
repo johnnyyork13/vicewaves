@@ -18,6 +18,11 @@ footer {
 
 .footer-links a {
     margin-top: 5px;
+    cursor: pointer;
+}
+
+.footer-links a:hover {
+    color: var(--color-eight);
 }
 
 .footer-email-container {

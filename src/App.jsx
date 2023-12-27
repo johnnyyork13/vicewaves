@@ -15,6 +15,9 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Footer from './components/Footer';
 import Profile from './components/Profile';
+import About from './components/About';
+import Contact from './components/Contact';
+import FAQ from './components/FAQ';
 
 import Admin from './components/Admin';
 
@@ -168,7 +171,29 @@ function App() {
           currentUser={currentUser}
         />
       }
-      <Footer />
+
+      {page === "faq" && 
+        <FAQ 
+          
+        />
+      }
+
+      {page === "about" && 
+        <About 
+          setPage={setPage}
+        />
+
+      }
+
+      {page === "contact" && 
+        <Contact 
+          setPage={setPage}
+        />
+      }
+
+      <Footer 
+        setPage={setPage}
+      />
     </div>
   )
 }

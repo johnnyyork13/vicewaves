@@ -7,9 +7,9 @@ export default function Footer(props) {
         <footer>
             <div className="footer-links footer-section">
                 <a>ORDER TRACKING</a>
-                <a>FAQ</a>
-                <a>ABOUT US</a>
-                <a>CONTACT US</a>
+                <a onClick={() => props.setPage('faq')}>FAQ</a>
+                <a onClick={() => props.setPage('about')}>ABOUT US</a>
+                <a onClick={() => props.setPage('contact')}>CONTACT US</a>
                 <a>PRIVACY</a>
                 <a>TERMS OF SERVICE</a>
                 <br></br>
