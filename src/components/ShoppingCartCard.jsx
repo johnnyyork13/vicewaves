@@ -44,7 +44,9 @@ export default function ShoppingCartCard(props) {
     function handleViewProduct() {
         props.setCurrentProduct(props.product.parentProduct);
         props.setPage("viewProduct");
-        props.setShowShoppingCart(false);
+        if (props.setShowShoppingCart) {
+            props.setShowShoppingCart(false);
+        }
     }
 
     return (

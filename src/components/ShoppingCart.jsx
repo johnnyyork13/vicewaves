@@ -21,8 +21,8 @@ export default function ShoppingCart(props) {
     })
 
     return (
-        <div className="shopping-cart-background">
-            <div className="shopping-cart">
+        <div onClick={() => props.setShowShoppingCart(false)} className="shopping-cart-background">
+            <div onClick={(e) => e.stopPropagation()} className="shopping-cart">
                 <button
                     className="exit-btn" 
                     onClick={() => props.setShowShoppingCart(false)}>Close</button>

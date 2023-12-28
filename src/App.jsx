@@ -17,6 +17,9 @@ import Footer from './components/Footer';
 import Profile from './components/Profile';
 import About from './components/About';
 import Contact from './components/Contact';
+import Privacy from './components/Privacy';
+import TOS from './components/TOS';
+import Refunds from './components/Refunds';
 import FAQ from './components/FAQ';
 
 import Admin from './components/Admin';
@@ -24,7 +27,13 @@ import Admin from './components/Admin';
 function App() {
 
   const root = 'http://localhost:3000';
-
+  const [showDropdown, setShowDropdown] = React.useState(false);
+  const [showAbout, setShowAbout] = React.useState(false);
+  const [showContact, setShowContact] = React.useState(false);
+  const [showPrivacy, setShowPrivacy] = React.useState(false);
+  const [showRefunds, setShowRefunds] = React.useState(false);
+  const [showFAQ, setShowFAQ] = React.useState(false);
+  const [showTOS, setShowTOS] = React.useState(false);
   const [products, setProducts] = React.useState([])
   const [page, setPage] = React.useState('home');
   const [viewTag, setViewTag] = React.useState("none");
@@ -81,7 +90,7 @@ function App() {
 
   
   return (
-    <div className="App">
+    <div className="App" onClick={() => setShowDropdown(false)}>
       {showShoppingCart && 
         <ShoppingCart 
           setShowShoppingCart={setShowShoppingCart}
@@ -97,9 +106,12 @@ function App() {
         setPage={setPage}
         setViewTag={setViewTag}
         setShowShoppingCart={setShowShoppingCart}
+        shoppingCartContents={shoppingCartContents}
         currentUser={currentUser}
         setCurrentUser={setCurrentUser}
         setCurrentProduct={setCurrentProduct}
+        showDropdown={showDropdown}
+        setShowDropdown={setShowDropdown}
       />
 
 
@@ -140,6 +152,7 @@ function App() {
           shoppingCartContents={shoppingCartContents}
           setShoppingCartContents={setShoppingCartContents}
           currentUser={currentUser}
+          setCurrentProduct={setCurrentProduct}
         />
       }
 
@@ -171,12 +184,41 @@ function App() {
           currentUser={currentUser}
         />
       }
-
-      {/* {page === "faq" && 
-        <FAQ 
-          
+      {showAbout && 
+        <About 
+          setPage={setPage}
+          setShowAbout={setShowAbout}
         />
-      } */}
+      }{showContact && 
+        <Contact 
+          setPage={setPage}
+          setShowContact={setShowContact}
+        />
+      }
+      {showPrivacy && 
+        <Privacy 
+          setPage={setPage}
+          setShowPrivacy={setShowPrivacy}
+        />
+      }
+      {showTOS && 
+        <TOS 
+          setPage={setPage}
+          setShowTOS={setShowTOS}
+        />
+      }
+      {showRefunds && 
+        <Refunds 
+          setPage={setPage}
+          setShowRefunds={setShowRefunds}
+        />
+      }
+      {showFAQ &&
+        <FAQ 
+          setPage={setPage}
+          setShowFAQ={setShowFAQ}
+        />
+      }
 
       {page === "about" && 
         <About 
@@ -193,6 +235,12 @@ function App() {
 
       <Footer 
         setPage={setPage}
+        setShowAbout={setShowAbout}
+        setShowContact={setShowContact}
+        setShowPrivacy={setShowPrivacy}
+        setShowTOS={setShowTOS}
+        setShowRefunds={setShowRefunds}
+        setShowFAQ={setShowFAQ}
       />
     </div>
   )

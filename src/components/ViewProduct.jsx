@@ -90,6 +90,16 @@ export default function ViewProduct(props) {
         setMainImage(imageURL)
     }
 
+    function checkIfProductExistsInCart(id) {
+        let productExists = false;
+        props.shoppingCartContents.forEach((product) => {
+            if (product.id === id) {
+                productExists = true;
+            }
+        })
+        return productExists;
+    }
+
     const mappedVariants = props.currentProduct.sync_variants && props.currentProduct.sync_variants.map((variant) => {
         return <option
                     key={uuidv4()}
@@ -138,13 +148,13 @@ export default function ViewProduct(props) {
                     <div className="size-charts">
                         <button onClick={() => setShowSizeCharts(false)}>Close</button>
                         <div className="size-charts-section-container">
+                            <p className="size-charts-header">Insructions</p>
                             <div className="size-chart-section">
                                 <div className="size-chart-img-container">
                                     <img src={sizeCharts && sizeCharts[0].image_url} />
                                 </div>
                                 <div className="size-chart-text">
                                     <p dangerouslySetInnerHTML={{__html: `${sizeCharts[0].description}`}}></p>
-                                    <br></br>
                                     <br></br>
                                     <p dangerouslySetInnerHTML={{__html: `${sizeCharts[0].image_description}`}}></p>
                                     <br></br>
@@ -176,16 +186,28 @@ export default function ViewProduct(props) {
                 </div>
             </div>
             <div className="product-sidebar">
-                <p className="product-name">{props.currentProduct.name}</p>
-                <p className="product-price">$ {selectedVariant && selectedVariant.retail_price}</p>
+                <div className="product-name-container">
+                    <div className="product-name">
+                        <p>{props.currentProduct.name}</p>
+                        <p>${selectedVariant.retail_price}</p>
+                    </div>
+                    {checkIfProductExistsInCart(selectedVariant.id) && <p className="product-in-cart">IN CART</p>}
+                </div>
+                {/* <p className="product-price">$ {selectedVariant && selectedVariant.retail_price}</p> */}
                 <label
                     className="product-size-label sidebar-label" 
-                    htmlFor="size">OPTIONS <select 
-                                    name="size" onChange={handleVariantChange}>
-                        {mappedVariants}
+                    htmlFor="size">OPTIONS 
+                    <select 
+                        name="size" 
+                        onChange={handleVariantChange}
+                        value={selectedVariant.id}
+                    >{mappedVariants}
                     </select>
                 </label>
-                {sizeCharts && sizeCharts[0].image_description && <a className="show-size-charts" onClick={() => setShowSizeCharts((prev) => !prev)}>Show Size Chart</a>}
+                {sizeCharts && sizeCharts[0].image_description && 
+                <p className="show-size-charts" onClick={() => setShowSizeCharts((prev) => !prev)}
+                >Show Size Chart</p>
+                }
                 <div className="product-description" dangerouslySetInnerHTML={{__html: props.currentProduct.description}}></div>
                 <label className="quantity-label sidebar-label" htmlFor="quantity">Quantity
                     <input

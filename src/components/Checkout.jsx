@@ -1,6 +1,8 @@
 import React from 'react';
+import {v4 as uuidv4} from 'uuid';
 import PayPalPayment from './PayPalPayment';
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import ShoppingCartCard from './ShoppingCartCard';
 
 import '../styles/checkout.css';
 
@@ -48,11 +50,24 @@ export default function Checkout(props) {
 
     const totals = calculateTotals();
 
+    const mappedShoppingCartContents = props.shoppingCartContents.map((product) => {
+        return <ShoppingCartCard 
+                key={uuidv4()}
+                product={product}
+                setShoppingCartContents={props.setShoppingCartContents}
+                shoppingCartContents={props.shoppingCartContents}
+                setShowShoppingCart={props.setShowShoppingCart}
+                setPage={props.setPage}
+                setCurrentProduct={props.setCurrentProduct}
+        />
+    })
+
     const initialOptions = {
         clientId: "Aano05ZYLqQlX9V5MNe9jf-QRgEzu7IgVjXSL8SW4CDxUDpt-veg3vIqNfknXFWyc_0u73WqT1PUb18S",
         currency: "USD",
         intent: "capture",
     };
+    
 
     return (
         <div className="checkout">
@@ -87,6 +102,7 @@ export default function Checkout(props) {
                 </div>
                 <br></br>
                 <p className="paypal-header">Payment Options</p>
+                <p className="paypal-text">All payments are encrypted and secured</p>
                 <PayPalScriptProvider options={initialOptions}>
                     <PayPalPayment 
                         root={props.root}
@@ -94,9 +110,17 @@ export default function Checkout(props) {
                         setPayerInfo={setPayerInfo}
                     />
                 </PayPalScriptProvider>
+                <br></br>
+                <a href="https://www.paypal.com/us/legalhub/privacy-full" target="_blank">PayPal Privacy Statement</a>
+                <a href="https://www.paypal.com/us/legalhub/useragreement-full" target="_blank">PayPal User Agreement</a>
             </div>
             <div className="checkout-totals-container">
-                <p className="checkout-totals-header">Billing Address and Information</p>
+                <p className="checkout-totals-header">Your Synthwave Merch</p>
+                <div className="checkout-merch">
+                    {mappedShoppingCartContents}
+                </div>
+                {payerInfo && <p className="checkout-totals-header">Billing Address and Information</p>}
+                {!payerInfo && <p className="checkout-totals-header">Order Amount</p>}
                 {payerInfo && <div className="checkout-shipping-info">
                     <p>{payerInfo.name}</p>
                     <p>{payerInfo.address1}</p>
@@ -105,7 +129,7 @@ export default function Checkout(props) {
                     <br></br>
                 </div>}
                 <div className="checkout-subtotal">
-                    Subtotal: ${Number(totals.subTotal).toFixed(2)}
+                    Subtotal: ${Number(totals.subTotal).toFixed(2)} {`(${props.shoppingCartContents.length} Items)`}
                 </div>
                 <div className="checkout-tax">
                     Tax: ${totals.tax.toFixed(2)}

@@ -14,6 +14,7 @@ export default function Header(props) {
     const [searchKeywords, setSearchKeywords] = React.useState("");
     const [searchResults, setSearchResults] = React.useState([]);
     const [selectedSearchResult, setSelectedSearchResult] = React.useState(null);
+    const [animateCart, setAnimateCart] = React.useState("");
     //logout hook
     React.useEffect(() => {
         if (sendLogout) {
@@ -87,6 +88,13 @@ export default function Header(props) {
         }
     }, [selectedSearchResult])
 
+    React.useEffect(() => {
+        setAnimateCart("animate-cart")
+        setTimeout(() => {
+            setAnimateCart("");
+        }, 1000);
+    }, [props.shoppingCartContents])
+
     function handleDropdownClick(value) {
         props.setPage("viewTag");
         props.setViewTag(value);
@@ -115,14 +123,14 @@ export default function Header(props) {
     })
 
     return (
-        <header>
+        <header onClick={() => props.setShowDropdown(false)}>
             <nav>
                 <div className="nav-btn-container">
                     <div className="nav-btn-text" onClick={() => props.setPage("home")}>HOME</div>
                 </div>
                 <div className="nav-btn-container">
-                    <div className="nav-btn-text nav-btn-text-shop">SHOP <span className="nav-arrow"></span></div>
-                    <div className="nav-btn-dropdown shop-dropdown">
+                    <div onClick={(e) => {e.stopPropagation(); props.setShowDropdown((prev) => !prev)}}className="nav-btn-text nav-btn-text-shop">SHOP <span className="nav-arrow"></span></div>
+                    {props.showDropdown && <div className="nav-btn-dropdown shop-dropdown">
                         <div className="shop-dropdown-section">
                             <p>TOPS</p>
                             <a onClick={() => handleDropdownClick("tshirts")}>T-Shirts</a>
@@ -169,7 +177,7 @@ export default function Header(props) {
                             <a>ITEM</a>
 
                         </div>
-                    </div>
+                    </div>}
                 </div>
                 <div className="nav-btn-container">
                     <div className="nav-btn-text">NEW MERCH</div>
@@ -189,7 +197,10 @@ export default function Header(props) {
                     </div>
                 }
                 <a onClick={() => setBeginSearch((prev) => !prev)}><SearchIcon /></a>
-                <a onClick={() => props.setShowShoppingCart((prev) => !prev)}><ShoppingCartOutlinedIcon /></a>
+                <a className="shopping-cart-icon" onClick={() => props.setShowShoppingCart((prev) => !prev)}>
+                    {props.shoppingCartContents.length > 0 && <div className={`shopping-cart-full ${animateCart}`}></div>}
+                    <ShoppingCartOutlinedIcon />
+                </a>
                 <a onClick={() => {
                     props.currentUser ? props.setPage("profile") : props.setPage("login")
                     

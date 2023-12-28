@@ -1,0 +1,25 @@
+.returns-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,.8);
+}
+
+.returns {
+    background-color: white;
+    margin: 50px;
+    padding: 50px;
+    box-shadow: 4px 4px 1px 1px var(--color-two);
+    position: relative;
+    color: var(--color-eight)
+}
+
+.returns-header-main {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}

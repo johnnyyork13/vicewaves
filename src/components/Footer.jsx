@@ -6,21 +6,23 @@ export default function Footer(props) {
     return (
         <footer>
             <div className="footer-links footer-section">
-                <a>ORDER TRACKING</a>
                 {/* <a onClick={() => props.setPage('faq')}>FAQ</a> */}
-                <a onClick={() => props.setPage('about')}>ABOUT US</a>
-                <a onClick={() => props.setPage('contact')}>CONTACT US</a>
-                <a>PRIVACY</a>
-                <a>TERMS OF SERVICE</a>
+                <a onClick={() => props.setShowAbout(true)}>ABOUT US</a>
+                <a onClick={() => props.setShowContact(true)}>CONTACT US</a>
+                <a onClick={() => props.setShowPrivacy(true)}>PRIVACY</a>
+                <a onClick={() => props.setShowTOS(true)}>TERMS OF SERVICE</a>
+                <a onClick={() => props.setShowRefunds(true)}>REFUND POLICY</a>
+                <a onClick={() => props.setShowFAQ(true)}>FAQ</a>
+                <a>ORDER TRACKING</a>
+                {/* <a>TAKE OUR SURVEY {'(FOR REWARDS)'}</a> */}
                 <br></br>
                 <br></br>
                 <p>SynthMerch, 2023</p>
             </div>
-            <div className="footer-about footer-section">
-                Est anim exercitation cillum qui aliqua commodo commodo in excepteur veniam tempor ullamco velit. Dolor velit deserunt minim sint cupidatat eu culpa excepteur laborum pariatur. Veniam minim in laborum reprehenderit non quis dolore qui nostrud exercitation sint commodo excepteur. In quis ad ea nisi et non amet fugiat dolore laborum id Lorem.
+            <div className="footer-links footer-section">
             </div>
             <div className="footer-email footer-section">
-                <p>Join our email list!</p>
+                <p>GET UPDATES ON SALES AND NEW DESIGNS</p>
                 <div className="footer-email-container">
                     <input
                         className="footer-input"

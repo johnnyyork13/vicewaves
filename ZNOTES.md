@@ -1,19 +1,11 @@
 TODO
 Add orders (prototype working)
 Add orders history that saves a user's orders in database
-Make navbar toggle on click instead of hover
-Add icon on shopping cart to indicate items are in it
-Add notifications for when items are in cart
-Validate inputs on forms
-Add close cart functionality when user clicks outside of cart component
-    also make sure it closes when already on checkout page
-ADD PRIVACY AND PAYMENT NOTICES ON CHECKOUT PAGE FOR PAYPAL
-Figure out why there are so many re renders
-Add spinner to paypal module when loading
+
 Add apartment and other codes for payments
-Add styling for users who are not logged in and are visiting checkout page
+
 link up check out new merch link in about page
-Add FAQ?
+flip arrow up on shop button when dropdown is open
 implement direct message functionality
 implement order tracking
 Add back buttons on all pages
@@ -21,6 +13,10 @@ Implement functionality when user clicks arrow button on view product page that 
     also scrolling in the direction
 Change hero images on search pages
 Add password requirements
+Add see what's new link on about page
+Add edit profile functionality
+
+Add order tracking to profile
 
 PRODUCT TAGS
 shirt

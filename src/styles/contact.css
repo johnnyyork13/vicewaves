@@ -1,15 +1,32 @@
 .contact-container {
     width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.8);
     display: flex;
     justify-content: center;
-    color: white;
+    align-items: center;
+    position: fixed;
+
 }
 
 .contact {
+    background-color: white;
+    color: var(--color-eight);
     width: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 4px 4px 1px 1px var(--color-two);
+    padding: 50px;
+    position: relative;
+}
+
+.close-contact-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
 .contact-header-link {
@@ -25,10 +42,12 @@
 
 .contact-header-main {
     font-size: 2.2rem;
+    color: var(--color-ten);
 }
 
 .contact-header {
     font-size: 1.7rem;
+    color: var(--color-ten);
 }
 
 .contact-text {

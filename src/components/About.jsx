@@ -6,9 +6,14 @@ import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 export default function About(props) {
 
     return (
-        <div className="about-container">
-            <div className="about">
-                <p onClick={() => props.setPage("home")} className="about-text about-header-link"><KeyboardBackspaceIcon />Back Home</p>
+        <div className="about-container" onClick={() => props.setShowAbout(false)}>
+            <div className="about" onClick={(e) => e.stopPropagation()}>
+                <button
+                    type="button"
+                    className="close-about-btn main-btn"
+                    onClick={() => props.setShowAbout(false)}
+                >Close</button>
+                {/* <p onClick={() => props.setPage("home")} className="about-text about-header-link"><KeyboardBackspaceIcon />Back Home</p> */}
                 <p className="about-header-main">About SynthMerch</p>
                 <p className="about-header">Synthwave is life</p>
                 <p className="about-text">Synthwave music
@@ -25,9 +30,9 @@ export default function About(props) {
                 arrive clean and fresh, instead of matted and faded from sitting in a warehouse all day.</p>
                 <p className="about-header">Be a part of the Synthwave movement</p>
                 <p className="about-text">Join a growing community of people who love this beautiful and
-                nostalgic art style.</p>
+                nostalgic art style!</p>
                 <br></br>
-                <p className="about-header about-header-link">See what's new<ArrowOutwardIcon /></p>
+                {/* <p className="about-header about-header-link">See what's new<ArrowOutwardIcon /></p> */}
             </div>
         </div>
     )

@@ -1,0 +1,28 @@
+.tos-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,.8);
+    display: flex;
+    justify-content: center;
+}
+
+.tos {
+    width: 70%;
+    background-color: white;
+    padding: 50px;
+    overflow-y: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    position: relative;
+    box-shadow: 4px 4px 1px 1px var(--color-two);
+}
+
+.close-tos-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}

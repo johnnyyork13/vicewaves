@@ -20,9 +20,14 @@ export default function Contact(props) {
     }
 
     return (
-        <div className="contact-container">
-            <div className="contact">
-                <p onClick={() => props.setPage("home")} className="contact-text contact-header-link"><KeyboardBackspaceIcon />Back Home</p>
+        <div className="contact-container" onClick={() => props.setShowContact(false)}>
+            <div className="contact" onClick={(e) => e.stopPropagation()}>
+                <button
+                    type="button"
+                    className="close-contact-btn main-btn"
+                    onClick={() => props.setShowContact(false)}
+                >Close</button>
+                {/* <p onClick={() => props.setPage("home")} className="contact-text contact-header-link"><KeyboardBackspaceIcon />Back Home</p> */}
                 <p className="contact-header-main">Contact Us</p>
                 <br></br>
                 <p className="contact-header">Customer Support</p>

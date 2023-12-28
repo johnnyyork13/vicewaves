@@ -16,7 +16,6 @@ export default function PayPalPayment(props) {
         }, setRenderComplete(true))
     }, [props.shoppingCartContents])
 
-    console.log(cartIdList);
 
     React.useEffect(() => {
         if (recipient) {
@@ -81,7 +80,6 @@ export default function PayPalPayment(props) {
           })
           .then((response) => response.json())
           .then((order) => {
-                console.log(order);
                 const name = order.payer.name.given_name;
                 alert(`Transaction completed by ${name}`);
                 const info = order.purchase_units[0].shipping
@@ -102,6 +100,7 @@ export default function PayPalPayment(props) {
                 {renderComplete && <PayPalButtons
                     createOrder={createOrder}
                     onApprove={onApprove}
+                    showSpinner={true}
                 />}
             </>
 
