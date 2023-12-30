@@ -102,7 +102,7 @@ export default function Checkout(props) {
                 </div>
                 <br></br>
                 <p className="paypal-header">Payment Options</p>
-                <p className="paypal-text">All payments are encrypted and secured</p>
+                <p className="paypal-text">All payments are encrypted and secure</p>
                 <PayPalScriptProvider options={initialOptions}>
                     <PayPalPayment 
                         root={props.root}

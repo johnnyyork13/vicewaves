@@ -117,7 +117,7 @@ export default function Signup(props) {
                     <input
                         onChange={handleSignupInputChange}
                         value={user.email}
-                        type="text"
+                        type="email"
                         name="email"
                         />
                 </label>
@@ -137,7 +137,7 @@ export default function Signup(props) {
                         name="name"
                         />
                 </label>
-                <label htmlFor="address1"><span>Street <span className="signup-error">{!error.address1 ? "" : "*Please enter a street address"}</span></span>
+                <label htmlFor="address1"><span>Street Address<span className="signup-error">{!error.address1 ? "" : "*Please enter a street address"}</span></span>
                     <input
                         onChange={handleSignupInputChange}
                         value={user.address1}

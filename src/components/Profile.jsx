@@ -1,10 +1,15 @@
 import React from 'react';
 import '../styles/profile.css';
+import UpdatePassword from './UpdatePassword';
+import EditProfile from './EditProfile';
+import { Update } from '@mui/icons-material';
 
 export default function Profile(props) {
 
     const [user, setUser] = React.useState(null);
     const [orders, setOrders] = React.useState(null);
+    const [showEditProfile, setShowEditProfile] = React.useState(false);
+    const [showUpdatePassword, setShowUpdatePassword] = React.useState(false);
 
     React.useEffect(() => {
         try {
@@ -32,6 +37,20 @@ export default function Profile(props) {
 
     return (
         <div className="profile-container">
+            {showUpdatePassword && 
+                <UpdatePassword 
+                    root={props.root}
+                    setShowUpdatePassword={setShowUpdatePassword}
+                    user={user}
+                />
+            }
+            {showEditProfile && 
+                <EditProfile 
+                    setShowEditProfile={setShowEditProfile}
+                    user={user}
+                    root={props.root}
+                />   
+            }
             <p className="main-profile-header">My Account</p>
             {user && <div className="profile">
                 <div className="profile-details">
@@ -58,8 +77,13 @@ export default function Profile(props) {
                         <p>{user.country_code} {user.zip}</p>
                     </div>
                     <button 
+                        onClick={() => setShowEditProfile(true)}
                         className="profile-edit-btn main-btn"
-                    >Edit</button>
+                    >Edit Profile</button>
+                    <button 
+                        onClick={() => setShowUpdatePassword(true)}
+                        className="profile-edit-btn main-btn"
+                    >Update Password</button>
                 </div>
                 <div className="order-details">
                     <p className="profile-header">Order Details</p>

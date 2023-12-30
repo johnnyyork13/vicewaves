@@ -1,11 +1,13 @@
 TODO
 Add orders (prototype working)
 Add orders history that saves a user's orders in database
+Add order tracking to profile
 
+See if shipping is included in items pricing
 Add apartment and other codes for payments
-
+add delete confirmation for items in cart
 link up check out new merch link in about page
-flip arrow up on shop button when dropdown is open
+
 implement direct message functionality
 implement order tracking
 Add back buttons on all pages
@@ -16,7 +18,6 @@ Add password requirements
 Add see what's new link on about page
 Add edit profile functionality
 
-Add order tracking to profile
 
 PRODUCT TAGS
 shirt

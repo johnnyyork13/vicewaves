@@ -17,7 +17,7 @@ export default function Footer(props) {
                 {/* <a>TAKE OUR SURVEY {'(FOR REWARDS)'}</a> */}
                 <br></br>
                 <br></br>
-                <p>SynthMerch, 2023</p>
+                <p>ViceWaves, 2023</p>
             </div>
             <div className="footer-links footer-section">
             </div>

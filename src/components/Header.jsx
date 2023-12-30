@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/header.css';
 import {v4 as uuidv4} from 'uuid';
 
+import logo from '../assets/vice-logo.png';
 import SearchIcon from '@mui/icons-material/Search';
 import Person4OutlinedIcon from '@mui/icons-material/Person4Outlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -125,14 +126,21 @@ export default function Header(props) {
     return (
         <header onClick={() => props.setShowDropdown(false)}>
             <nav>
+                <img onClick={() => props.setPage("home")} src={logo} className="nav-logo"/>
                 <div className="nav-btn-container">
                     <div className="nav-btn-text" onClick={() => props.setPage("home")}>HOME</div>
                 </div>
                 <div className="nav-btn-container">
-                    <div onClick={(e) => {e.stopPropagation(); props.setShowDropdown((prev) => !prev)}}className="nav-btn-text nav-btn-text-shop">SHOP <span className="nav-arrow"></span></div>
+                    <div 
+                        onClick={(e) => {
+                            e.stopPropagation(); 
+                            props.setShowDropdown((prev) => !prev)
+                        }} 
+                        className={`nav-btn-text nav-btn-text-shop`}
+                        >SHOP <span className={`nav-arrow ${props.showDropdown ? 'nav-btn-arrow-spin' : ""}`}></span></div>
                     {props.showDropdown && <div className="nav-btn-dropdown shop-dropdown">
                         <div className="shop-dropdown-section">
-                            <p>TOPS</p>
+                            <p className="dropdown-header">TOPS</p>
                             <a onClick={() => handleDropdownClick("tshirts")}>T-Shirts</a>
                             <a onClick={() => handleDropdownClick("long sleeve shirts")}>Long Sleeves</a>
                             <a>ITEM</a>
@@ -144,7 +152,7 @@ export default function Header(props) {
                             <a>ITEM</a>
                         </div>
                         <div className="shop-dropdown-section">
-                            <p>BOTTOMS</p>
+                            <p className="dropdown-header">BOTTOMS</p>
                             <a onClick={() => handleDropdownClick("sweatpants")}>Sweatpants</a>
                             <a>ITEM</a>
                             <a>ITEM</a>
@@ -156,7 +164,7 @@ export default function Header(props) {
                             <a>ITEM</a>
                         </div>
                         <div className="shop-dropdown-section">
-                            <p>ACCESSORIES</p>
+                            <p className="dropdown-header">ACCESSORIES</p>
                             <a>ITEM</a>
                             <a>ITEM</a>
                             <a>ITEM</a>
@@ -168,7 +176,7 @@ export default function Header(props) {
                             <a>ITEM</a>
                         </div>
                         <div className="shop-dropdown-section">
-                            <p>HOME</p>
+                            <p className="dropdown-header">HOME</p>
                             <a onClick={() => handleDropdownClick("mugs")}>Mugs</a>
                             <a onClick={() => handleDropdownClick("posters")}>Posters</a>
                             <a>ITEM</a>

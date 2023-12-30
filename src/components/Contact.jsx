@@ -30,19 +30,18 @@ export default function Contact(props) {
                 {/* <p onClick={() => props.setPage("home")} className="contact-text contact-header-link"><KeyboardBackspaceIcon />Back Home</p> */}
                 <p className="contact-header-main">Contact Us</p>
                 <br></br>
-                <p className="contact-header">Customer Support</p>
+                <p className="contact-text">Before attempting to contact us, please read through our FAQ.
+                If you are unable to find a solution to your issue there, then you may reach out via email
+                or phone.</p>
+                <br></br>
+                <p className="contact-text">We will try to respond to your inqurity within 48 hours. However,
+                we are a small team, so the response time may be longer during busier seasons. Thanks. </p>
+                <br></br>
+                <p className="contact-header">Email</p>
                 <p className="contact-text">me@johnnyyork.dev</p>
+                <p className="contact-header">Phone</p>
                 <p className="contact-text">(706) 238-0872</p>
                 <br></br>
-                <p className="contact-text">Or</p>
-                <br></br>
-                <p className="contact-header">Send a direct message</p>
-                <div className="contact-message-container">
-                    <input onChange={handleMessageChange} value={message.email} className="contact-email contact-input" type="email" placeholder="Email" name="email" />
-                    <input onChange={handleMessageChange} value={message.subject} className="contact-subject contact-input" type="text" placeholder="Subject" name="subject" />
-                    <textarea onChange={handleMessageChange} value={message.body} className="contact-body" name="body" placeholder="Message Body" />
-                    <button className="main-btn contact-message-btn" type="button" >Send</button>
-                </div>
             </div>
         </div>
     )

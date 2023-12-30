@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center;
     z-index: 3;
+    -webkit-text-stroke: 0px white;
 }
 
 .about {
@@ -37,12 +38,12 @@
 
 .about-header {
     margin-top: 20px;
-    font-size: 1.7rem;
+    font-size: 2rem;
     color: var(--color-ten);
 }
 
 .about-text {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 .about-header-link {

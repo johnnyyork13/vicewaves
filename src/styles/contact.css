@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
     position: fixed;
+    -webkit-text-stroke: 0px white;
 
 }
 
@@ -48,6 +49,8 @@
 .contact-header {
     font-size: 1.7rem;
     color: var(--color-ten);
+    margin-bottom: 10px;
+    margin-top: 20px;
 }
 
 .contact-text {

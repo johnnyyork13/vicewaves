@@ -1,0 +1,94 @@
+.update-profile-success-modal-background {
+    position: fixed;
+    background-color: rgba(0,0,0,.5);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.update-profile-success-modal {
+    background-color: white;
+    color: var(--color-ten);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 4px 4px 1px 1px var(--color-two);
+}
+
+.update-profile-success-modal-header {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+
+
+.edit-profile-container {
+    -webkit-text-stroke: 0px white !important;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background-color: rgba(0,0,0,.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit-profile {
+    padding: 50px;
+    background-color: white;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: 4px 4px 1px 1px var(--color-two);
+}
+
+.close-edit-profile-btn {
+    align-self: flex-end;
+}
+
+.edit-profile-header {
+    color: var(--color-ten);
+    font-size: 2rem;
+    text-align: center;
+}
+
+.edit-profile label {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+    color: var(--color-ten);
+    margin-bottom: 20px;
+}
+
+.edit-profile label span {
+    display: inline;
+}
+
+.edit-profile-label-error {
+    color: var(--color-two);
+}
+
+.edit-profile label input {
+    margin-top: 5px;
+    height: 35px;
+    font-family: "Hauser";
+    color: var(--color-eight);
+    font-size: 1.3rem;
+}
+
+.edit-profile-btn {
+    width: 300px;
+    align-self: center;
+}
+

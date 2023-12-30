@@ -19,6 +19,7 @@ html, body, #root {
     --gradient-start: #7500a2;
     --gradient-end: #180a61; 
     font-family: "Hauser";
+    -webkit-text-stroke: 1px var(--color-ten);
 }
 
 html {

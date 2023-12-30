@@ -1,6 +1,7 @@
 .signup-container {
     display: flex;
     justify-content: center;
+    -webkit-text-stroke: 0px white;
 }
 
 .signup-modal-container {
@@ -19,7 +20,7 @@
 .signup-modal {
     width: 300px;
     height: 200px;
-    background-color: var(--color-eight);
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,6 +33,7 @@
 .signup-modal-header {
     margin-bottom: 20px;
     font-size: 1.5rem;
+    color: var(--color-ten)
 }
 
 .signup {
@@ -61,6 +63,7 @@
     height: 30px;
     min-width: 500px;
     font-family: "Hauer";
+    font-size: 1.4rem;
 }
 
 .signup-btn {
