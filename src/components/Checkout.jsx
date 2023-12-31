@@ -129,7 +129,7 @@ export default function Checkout(props) {
                     <br></br>
                 </div>}
                 <div className="checkout-subtotal">
-                    Subtotal: ${Number(totals.subTotal).toFixed(2)} {`(${props.shoppingCartContents.length} Items)`}
+                    Subtotal: ${Number(totals.subTotal).toFixed(2)} {`(${props.shoppingCartContents.length} Item${props.shoppingCartContents.length > 1 ? "s" : ""})`}
                 </div>
                 <div className="checkout-tax">
                     Tax: ${totals.tax.toFixed(2)}

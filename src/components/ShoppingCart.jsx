@@ -42,7 +42,7 @@ export default function ShoppingCart(props) {
                     <p className="shopping-cart-total">Subtotal: ${shoppingCartTotal.toFixed(2)}</p>
                     <button
                     className="checkout-btn main-btn"
-                    onClick={() => props.setPage("checkout")}>Checkout</button>
+                    onClick={() => {props.setShowShoppingCart(false); props.setPage("checkout")}}>Checkout</button>
                 </>}
             </div>
         </div>
