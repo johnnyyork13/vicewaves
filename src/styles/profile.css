@@ -3,6 +3,7 @@
     flex-direction: column;
     color: white;
     height: 100%;
+    width: 100%;
 }
 
 .main-profile-header {
@@ -11,12 +12,12 @@
 }
 
 .profile {
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 50px;
     padding: 50px;
-    padding-left: 100px;
-    padding-right: 100px;
+
 }
 
 .profile-details-header {

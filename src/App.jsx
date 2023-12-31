@@ -87,7 +87,6 @@ function App() {
       console.log(err);
     }
   }, [page])
-
   
   return (
     <div className="App" onClick={() => setShowDropdown(false)}>
@@ -114,124 +113,126 @@ function App() {
         setShowDropdown={setShowDropdown}
       />
 
-
-      {page === "home" && <>
-      <Hero />
-      <CardContainer 
-        productList={products}
-        setCurrentProduct={setCurrentProduct}
-        setPage={setPage}
-      />
-      </>}
-
-
-      {page === "viewTag" &&
-      <ViewTagPage 
-        root={root}
-        viewTag={viewTag}
-        setCurrentProduct={setCurrentProduct}
-        setPage={setPage}
-      />
-      }
-
-
-      {page === "viewProduct" && 
-      <ViewProduct 
-        root={root}
-        setPage={setPage}
-        currentProduct={currentProduct}
-        setShoppingCartContents={setShoppingCartContents}
-        shoppingCartContents={shoppingCartContents}
-      />
-      }
-
-      {page === "checkout" &&
-        <Checkout 
-          root={root}
-          setPage={setPage}
-          shoppingCartContents={shoppingCartContents}
-          setShoppingCartContents={setShoppingCartContents}
-          currentUser={currentUser}
+      <main>
+        {page === "home" && <>
+        <Hero />
+        <CardContainer 
+          productList={products}
           setCurrentProduct={setCurrentProduct}
-        />
-      }
-
-      {page === "login" &&
-        <Login 
-          root={root}
-          setPage={setPage}
-          setCurrentUser={setCurrentUser}
-        />
-      }
-
-      {page === "signup" &&
-        <Signup 
-          root={root}
           setPage={setPage}
         />
-      }
+        </>}
 
-      {page === "admin" && 
-        <Admin
+
+        {page === "viewTag" &&
+        <ViewTagPage 
           root={root}
+          viewTag={viewTag}
+          setCurrentProduct={setCurrentProduct}
+          setPage={setPage}
+        />
+        }
+
+
+        {page === "viewProduct" && 
+        <ViewProduct 
+          root={root}
+          setPage={setPage}
           currentProduct={currentProduct}
+          setShoppingCartContents={setShoppingCartContents}
+          shoppingCartContents={shoppingCartContents}
         />
-      }
+        }
 
-      {page === "profile" && 
-        <Profile 
-          root={root}
-          currentUser={currentUser}
-        />
-      }
-      {showAbout && 
-        <About 
-          setPage={setPage}
-          setShowAbout={setShowAbout}
-        />
-      }{showContact && 
-        <Contact 
-          setPage={setPage}
-          setShowContact={setShowContact}
-        />
-      }
-      {showPrivacy && 
-        <Privacy 
-          setPage={setPage}
-          setShowPrivacy={setShowPrivacy}
-        />
-      }
-      {showTOS && 
-        <TOS 
-          setPage={setPage}
-          setShowTOS={setShowTOS}
-        />
-      }
-      {showRefunds && 
-        <Refunds 
-          setPage={setPage}
-          setShowRefunds={setShowRefunds}
-        />
-      }
-      {showFAQ &&
-        <FAQ 
-          setPage={setPage}
-          setShowFAQ={setShowFAQ}
-        />
-      }
+        {page === "checkout" &&
+          <Checkout 
+            root={root}
+            setPage={setPage}
+            shoppingCartContents={shoppingCartContents}
+            setShoppingCartContents={setShoppingCartContents}
+            currentUser={currentUser}
+            setCurrentProduct={setCurrentProduct}
+          />
+        }
 
-      {page === "about" && 
-        <About 
-          setPage={setPage}
-        />
+        {page === "login" &&
+          <Login 
+            root={root}
+            setPage={setPage}
+            setCurrentUser={setCurrentUser}
+          />
+        }
 
-      }
+        {page === "signup" &&
+          <Signup 
+            root={root}
+            setPage={setPage}
+          />
+        }
 
-      {page === "contact" && 
-        <Contact 
-          setPage={setPage}
-        />
-      }
+        {page === "admin" && 
+          <Admin
+            root={root}
+            currentProduct={currentProduct}
+          />
+        }
+
+        {page === "profile" && 
+          <Profile 
+            root={root}
+            currentUser={currentUser}
+          />
+        }
+        {showAbout && 
+          <About 
+            setPage={setPage}
+            setShowAbout={setShowAbout}
+          />
+        }{showContact && 
+          <Contact 
+            setPage={setPage}
+            setShowContact={setShowContact}
+          />
+        }
+        {showPrivacy && 
+          <Privacy 
+            setPage={setPage}
+            setShowPrivacy={setShowPrivacy}
+          />
+        }
+        {showTOS && 
+          <TOS 
+            setPage={setPage}
+            setShowTOS={setShowTOS}
+          />
+        }
+        {showRefunds && 
+          <Refunds 
+            setPage={setPage}
+            setShowRefunds={setShowRefunds}
+          />
+        }
+        {showFAQ &&
+          <FAQ 
+            setPage={setPage}
+            setShowFAQ={setShowFAQ}
+          />
+        }
+
+        {page === "about" && 
+          <About 
+            setPage={setPage}
+          />
+
+        }
+
+        {page === "contact" && 
+          <Contact 
+            setPage={setPage}
+          />
+        }
+      </main>
+
 
       <Footer 
         setPage={setPage}

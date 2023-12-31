@@ -28,8 +28,7 @@ export default function Header(props) {
                         mode: 'cors',
                         credentials: 'include'
                     }).then((res) => res.json())
-                    .then((res) => {
-                        console.log(res);
+                    .then(() => {
                         setSendLogout(false);
                         props.setCurrentUser(null);
                         props.setPage("home");
@@ -195,7 +194,7 @@ export default function Header(props) {
                 </div>
             </nav>
             <div className="nav-icon-container">
-                {props.currentUser && <p>Welcome back, {props.currentUser.name}</p>}
+                {/* {props.currentUser && <p>Welcome back, {props.currentUser.name}</p>} */}
                 {beginSearch && 
                     <div className="search-bar-container">
                         <input className="search-bar" type="search" onChange={handleSearchInputChange} name="search" placeholder="Enter Search Keywords Here"/>
@@ -209,10 +208,8 @@ export default function Header(props) {
                     {props.shoppingCartContents.length > 0 && <div className={`shopping-cart-full ${animateCart}`}></div>}
                     <ShoppingCartOutlinedIcon />
                 </a>
-                <a onClick={() => {
-                    props.currentUser ? props.setPage("profile") : props.setPage("login")
-                    
-                }}><Person4OutlinedIcon /></a>
+                {props.currentUser && <a onClick={() => props.setPage("profile")}><Person4OutlinedIcon /></a>}
+                {!props.currentUser && <a onClick={() => props.setPage("login")}>Login</a>}
                 {props.currentUser && props.currentUser.membership === "admin" && <a className="admin-link" onClick={() => props.setPage("admin")}>ADMIN CONSOLE</a>}
                 {props.currentUser && <a className="logout-btn" onClick={() => setSendLogout(true)}>Logout</a>}
             </div>

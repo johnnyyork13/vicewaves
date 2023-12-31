@@ -16,7 +16,8 @@ Implement functionality when user clicks arrow button on view product page that 
 Change hero images on search pages
 Add password requirements
 Add see what's new link on about page
-Add edit profile functionality
+
+add forgot password functionality
 
 
 PRODUCT TAGS
