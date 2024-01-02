@@ -27,7 +27,7 @@ export default function ShoppingCart(props) {
                     className="exit-btn" 
                     onClick={() => props.setShowShoppingCart(false)}>Close</button>
                 {mappedShoppingCartContents.length === 0 && <>
-                    <p className="empty-cart-text">Your cart is currently lacking merchandise of the Synthwave variety...</p>
+                    <p className="empty-cart-text">Your ViceWaves cart is currently empty.</p>
                     <button
                         className="main-btn shopping-cart-browse-btn" 
                         onClick={() => {

@@ -2,14 +2,42 @@ import React from 'react';
 import '../styles/profile.css';
 import UpdatePassword from './UpdatePassword';
 import EditProfile from './EditProfile';
-import { Update } from '@mui/icons-material';
+import {v4 as uuidv4} from 'uuid';
+import { LocalDrinkRounded } from '@mui/icons-material';
 
 export default function Profile(props) {
 
+    const TAX_RATE = 0.10;
+
     const [user, setUser] = React.useState(null);
-    const [orders, setOrders] = React.useState(null);
+    const [orders, setOrders] = React.useState([]);
     const [showEditProfile, setShowEditProfile] = React.useState(false);
     const [showUpdatePassword, setShowUpdatePassword] = React.useState(false);
+    const [selectedOrder, setSelectedOrder] = React.useState(null);
+    const [viewProduct, setViewProduct] = React.useState(null);
+    const [loadingSpinner, setLoadingSpinner] = React.useState(true);
+
+    React.useEffect(() => {
+        if (viewProduct) {
+            try {
+                async function getProductFromDatabase() {
+                    const url = props.root + `/product/get-product-by-variant/${viewProduct}`;
+                    await fetch(url, {
+                        method: "GET",
+                        mode: "cors",
+                        credentials: "include",
+                    }).then((res) => res.json())
+                    .then((res) => {
+                        props.setCurrentProduct(res);
+                        props.setPage("viewProduct");
+                    })
+                }
+                getProductFromDatabase();
+            } catch(err) {
+                console.log(err);
+            }
+        }
+    }, [viewProduct])
 
     React.useEffect(() => {
         try {
@@ -26,8 +54,11 @@ export default function Profile(props) {
                         username: props.currentUser.username
                     })
                 }).then((res) => res.json())
-                .then((res) => setUser(res))
-                .catch((err) => console.log(err));
+                .then((res) => {
+                    setUser(res.user);
+                    setOrders(res.orders);
+                    setLoadingSpinner(false);
+                }).catch((err) => console.log(err));
             }
             getProfileDetails();
         } catch(err) {
@@ -35,8 +66,70 @@ export default function Profile(props) {
         }
     }, [])
 
+    const mappedOrders = orders.map((order) => {
+        let d = new Date(0);
+        d.setUTCSeconds(order.result.created);
+        const convertedDate = `${d.getUTCMonth() + 1}/${d.getUTCDay()}/${d.getUTCFullYear()}`
+        return <div key={uuidv4()} className="profile-order">
+                    <div className="profile-order-text-container">
+                        <a className="profile-order-link"
+                            onClick={() => setSelectedOrder({...order.result, date: convertedDate})}
+                            >Order {order.result.external_id}
+                        </a>
+                        <p className="profile-order-text">
+                            created on: {convertedDate} ({order.result.items.length} item{order.result.items.length > 1 ? "s" : ""})
+                        </p>
+                    </div>
+                    <div 
+                        onClick={() => setSelectedOrder({...order.result, date: convertedDate})}
+                        className="profile-order-view-order-link"
+                    >View</div>
+                </div>
+    })
+
+    let totalOrderCost = 0;
+
+    const mappedOrderCards = selectedOrder && selectedOrder.items.map((product) => {
+        totalOrderCost += Number(product.retail_price) * product.quantity;
+        return <div key={uuidv4()} className="profile-view-order-card">
+            <img   
+                onClick={() => setViewProduct(product.sync_variant_id)}
+                src={product.files[1].thumbnail_url} 
+            />
+            <div className="profile-view-order-card-info">
+                <p className="profile-view-order-card-info-header">{product.name}</p>
+                <p className="profile-view-order-card-info-text">${product.retail_price}</p>
+                <p className="profile-view-order-card-info-text">Quantity: {product.quantity}</p>
+                <a 
+                    onClick={() => setViewProduct(product.sync_variant_id)}
+                    className="profile-view-order-card-info-text"
+                >Go to Product Page</a>
+            </div>
+        </div>
+    })
+
+
     return (
         <div className="profile-container">
+            {selectedOrder && <div className="profile-view-order-background">
+                <div className="profile-view-order">
+                    <button 
+                        className="close-profile-view-order-btn"
+                        onClick={() => setSelectedOrder(null)}
+                    >Close</button>
+                    <p className="profile-view-order-header">Viewing Order {selectedOrder.external_id}</p>
+                    <p className="profile-view-order-subheader">Created on {selectedOrder.date}</p>
+                    <p className="profile-view-order-status">Order Status: <span>{selectedOrder.status}</span></p>
+                    {mappedOrderCards}
+                    <p className="profile-view-order-total">Order Total: <span>{Number(totalOrderCost * TAX_RATE + totalOrderCost).toFixed(2)}</span></p>
+                    <button
+                        onClick={() => setSelectedOrder(null)}
+                        className="main-btn close-profile-view-order-btn-bottom"
+                    >
+                    Back to Profile
+                    </button>
+                </div>
+            </div>}
             {showUpdatePassword && 
                 <UpdatePassword 
                     root={props.root}
@@ -51,7 +144,14 @@ export default function Profile(props) {
                     root={props.root}
                 />   
             }
-            <p className="main-profile-header">My Account</p>
+            <p className="main-profile-header">My Profile</p>
+            {loadingSpinner && 
+                <div className="profile-loading-spinner-container">
+                    <div className="profile-loading-spinner">
+                    </div>
+                    <span className="profile-loading-spinner-text">Loading Profile...</span>
+                </div>
+            }
             {user && <div className="profile">
                 <div className="profile-details">
                     <p className="profile-details-header">Account Details</p>
@@ -86,8 +186,8 @@ export default function Profile(props) {
                     >Update Password</button>
                 </div>
                 <div className="order-details">
-                    <p className="profile-header">Order Details</p>
-                    {orders ? "orders go here" : "No orders yet..."}
+                    <p className="order-details-header">Orders</p>
+                    {orders ? mappedOrders : "No orders yet..."}
                 </div>
             </div>
             }

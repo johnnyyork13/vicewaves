@@ -37,7 +37,7 @@ export default function Checkout(props) {
 
     function calculateTotals() {
         let subTotal = null;
-        const taxRate = 0.07;
+        const taxRate = 0.1;
         props.shoppingCartContents.forEach((product) => {
             subTotal += product.retail_price * product.quantity;
         })
@@ -107,7 +107,10 @@ export default function Checkout(props) {
                     <PayPalPayment 
                         root={props.root}
                         shoppingCartContents={props.shoppingCartContents}
+                        setShoppingCartContents={props.setShoppingCartContents}
+                        currentUser={props.currentUser}
                         setPayerInfo={setPayerInfo}
+                        setPage={props.setPage}
                     />
                 </PayPalScriptProvider>
                 <br></br>
@@ -115,12 +118,16 @@ export default function Checkout(props) {
                 <a href="https://www.paypal.com/us/legalhub/useragreement-full" target="_blank">PayPal User Agreement</a>
             </div>
             <div className="checkout-totals-container">
-                <p className="checkout-totals-header">Your Synthwave Merch</p>
+                <p className="checkout-totals-header">Your ViceWaves Merch</p>
                 <div className="checkout-merch">
                     {mappedShoppingCartContents}
                 </div>
                 {payerInfo && <p className="checkout-totals-header">Billing Address and Information</p>}
                 {!payerInfo && <p className="checkout-totals-header">Order Amount</p>}
+                <div className="checkout-subtotal">
+                    Shipping is always on the house with ViceWaves!
+                </div>
+                <br></br>
                 {payerInfo && <div className="checkout-shipping-info">
                     <p>{payerInfo.name}</p>
                     <p>{payerInfo.address1}</p>
@@ -130,6 +137,9 @@ export default function Checkout(props) {
                 </div>}
                 <div className="checkout-subtotal">
                     Subtotal: ${Number(totals.subTotal).toFixed(2)} {`(${props.shoppingCartContents.length} Item${props.shoppingCartContents.length > 1 ? "s" : ""})`}
+                </div>
+                <div className="checkout-subtotal">
+                    Shipping: FREE
                 </div>
                 <div className="checkout-tax">
                     Tax: ${totals.tax.toFixed(2)}

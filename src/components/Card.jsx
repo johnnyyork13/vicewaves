@@ -8,7 +8,6 @@ export default function Card(props) {
         props.setPage("viewProduct");
         props.setCurrentProduct(props.product);
     }
-    
 
     return (
         <div className="card" onClick={handleCardClick}>

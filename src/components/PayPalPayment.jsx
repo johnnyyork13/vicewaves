@@ -4,42 +4,17 @@ import useScript from '../hooks/useScript';
 
 export default function PayPalPayment(props) {
 
-    const [recipient, setRecipient] = React.useState(null);
     const [cartIdList, setCartIdList] = React.useState([]);
     const [renderComplete, setRenderComplete] = React.useState(false);
+    const [orderId, setOrderId] = React.useState(null);
 
     //pop up order confirmation modal that does not allow click through on background
     
     React.useEffect(() => {
         setCartIdList(() => {
-            return props.shoppingCartContents.map((product) => product.id);
+            return props.shoppingCartContents.map((product) => ({id: product.id, quantity: product.quantity}));
         }, setRenderComplete(true))
     }, [props.shoppingCartContents])
-
-
-    React.useEffect(() => {
-        if (recipient) {
-            try {
-                const url = props.root + '/products/order';
-                fetch(url, {
-                    method: "POST",
-                    mode: 'cors',
-                    credentials: "include",
-                    headers: {
-                        "Content-Type":"application/json",
-                    },
-                    body: JSON.stringify({
-                        recipient: recipient,
-                        cart: props.shoppingCartContents
-                    })
-                }).then((res) => res.json())
-                .then((message) => console.log(message))
-                .catch((err) => console.log(err));
-            } catch(err) {
-                console.log(err);
-            }
-        }
-    }, [recipient])
 
     async function createOrder() {
         const url = props.root + '/create-paypal-order';
@@ -49,16 +24,6 @@ export default function PayPalPayment(props) {
             headers: {
                 "Content-Type": "application/json",
             },
-            // use the "body" param to optionally pass additional order information
-            // like product ids and quantities
-            // body: JSON.stringify({
-            //     cart: [
-            //         {
-            //             id: "Synth Merch",
-            //             cost: totalCost,
-            //         },
-            //     ],
-            // }),
             body: JSON.stringify({
                 cart: cartIdList,
             })
@@ -75,33 +40,55 @@ export default function PayPalPayment(props) {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              orderID: data.orderID
+              username: props.currentUser ? props.currentUser.username : null,
+              cart: cartIdList
             })
           })
           .then((response) => response.json())
           .then((order) => {
-                const name = order.payer.name.given_name;
-                alert(`Transaction completed by ${name}`);
-                const info = order.purchase_units[0].shipping
-                setRecipient({
-                    name: info.name.full_name,
-                    address1: info.address.address_line_1,
-                    city: info.address.admin_area_2,
-                    state_code: info.address.admin_area_1,
-                    country_code: info.address.country_code,
-                    zip: info.address.postal_code,
-                });
+                console.log("ORDER RESPONSE", order);
+                setOrderId(order.data.result.id);
           });
+    }
 
+    function handleConfirmedOrder(page) {
+        props.setShoppingCartContents([]);
+        localStorage.removeItem("cart");
+        props.setPage(page);
     }
 
     return (
             <>
-                {renderComplete && <PayPalButtons
-                    createOrder={createOrder}
-                    onApprove={onApprove}
-                    showSpinner={true}
-                />}
+                {orderId && <div className="order-success-modal-background">
+                    <div className="order-success-modal">
+                        <p className="order-success-modal-header">Order #{orderId} Has Been Placed!</p>
+                        {props.currentUser && <p className="order-success-modal-text">
+                            Orders and tracking information can be viewed on your profile when it becomes
+                            available. <a onClick={() => handleConfirmedOrder("profile")}>Go to Profile</a>
+                        </p>}
+                        {!props.currentUser && <>
+                            <p className="order-success-modal-text">
+                                Order and tracking information will be sent via email when it becomes available. 
+                            </p>
+                            <p className="order-success-modal-text">
+                                Also, creating an account only takes a few seconds and provides an easy way to view
+                                all of your orders in one place. <a onClick={() => handleConfirmedOrder("signup")}>Create your account here</a>
+                            </p>
+                        </>}
+                        <button 
+                            className="main-btn order-success-modal-btn"
+                            onClick={() => handleConfirmedOrder("home")}
+                        >Confirm</button>
+                    </div>
+                </div>}
+                {renderComplete && 
+                <div className="paypal-buttons-container">
+                    <PayPalButtons
+                        createOrder={createOrder}
+                        onApprove={onApprove}
+                        showSpinner={true}
+                    />
+                </div>}
             </>
 
     )

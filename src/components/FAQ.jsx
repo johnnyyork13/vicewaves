@@ -17,14 +17,10 @@ export default function FAQ(props) {
                 <p className="faq-text"></p>
 
                 <p className="faq-subheader">SHIPPING</p>
-                <p className="faq-text">ViceWaves ships our products worldwide! Our printing provider
-                operates globally, resulting in a consistently efficient shipping and delivery process.</p>
-
-                <p className="faq-subheader">MANUFACTURING AND SHIPPING INFORMATION</p>
+                <p className="faq-text">ViceWaves currently only ships in the United States. Our printing provider
+                possesses locations all over the country, resulting in a consistently efficient shipping and delivery process.</p>
                 <p className="faq-text">Shipping times usually take between 6-18 business days. This can 
                 be slightly prolonged by congested periods, like holidays. </p>
-                <p className="faq-text">Shipping rates typically range from $4.69 to $11.99 if shipping outside
-                of the United States.</p>
 
                 <p className="faq-subheader">CANCELLING OR CHANGING ORDERS</p>
                 <p className="faq-text">Since our products are made to order, cancelling an order requires
@@ -52,7 +48,7 @@ export default function FAQ(props) {
                 <p className="faq-text">If we do not recieve a response in 15 days, the delivery will be 
                 donated.</p>
 
-                <p className="faq-subheader">TRACKINGS</p>
+                <p className="faq-subheader">TRACKING INFORMATION</p>
                 <p className="faq-text">ViceWaves will provide a tracking number once it is received by our
                 printing facilities. This tracking number can be viewed either on your profile, or through
                 your provided email.</p>

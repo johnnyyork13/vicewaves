@@ -181,6 +181,8 @@ function App() {
           <Profile 
             root={root}
             currentUser={currentUser}
+            setCurrentProduct={setCurrentProduct}
+            setPage={setPage}
           />
         }
         {showAbout && 

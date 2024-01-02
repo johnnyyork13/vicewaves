@@ -156,6 +156,7 @@
     position: relative;
     background-color: white;
     box-shadow: 4px 4px 1px 1px var(--color-two);
+    -webkit-text-stroke: 0px white;
 }
 
 .size-charts button {

@@ -38,7 +38,7 @@ export default function Contact(props) {
                 we are a small team, so the response time may be longer during busier seasons. Thanks. </p>
                 <br></br>
                 <p className="contact-header">Email</p>
-                <p className="contact-text">me@johnnyyork.dev</p>
+                <p className="contact-text">support@vicewaves.com</p>
                 <p className="contact-header">Phone</p>
                 <p className="contact-text">(706) 238-0872</p>
                 <br></br>
