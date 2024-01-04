@@ -92,7 +92,7 @@ export default function EditProfile(props) {
                     {showUpdateSuccessModal && 
                         <div className="update-profile-success-modal-background">
                             <div className="update-profile-success-modal">
-                                <p className="update-profile-success-modal-header">Profile Updated Successfully</p>
+                                <p className="update-profile-success-modal-header">Profile Updated Successfully!</p>
                                 <button 
                                     onClick={() => {
                                         props.setShowEditProfile(false)
@@ -159,7 +159,7 @@ export default function EditProfile(props) {
                                 className="edit-profile-input" />
                         </label>
                         <label htmlFor='address2'>
-                            <span className="edit-profile-label-text">Apartment, Suite, or Building {('Optional')}</span>
+                            <span className="edit-profile-label-text">Apartment, Suite, or Building {'(Optional)'}</span>
                             <input 
                                 onChange={handleEditProfileChange}
                                 value={updatedUser.address2} 

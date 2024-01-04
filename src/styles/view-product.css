@@ -76,6 +76,10 @@
     text-align: center;
 }
 
+.product-name-container-small {
+    display: none;
+}
+
 .product-name {
     font-size: 1.9rem;
     margin-left: 5px;
@@ -165,6 +169,7 @@
     width: 100%;
     height: 100%;
     top: 0;
+    left: 0;
     background-color: rgba(0,0,0,.5);
     display: flex;
     justify-content: center;
@@ -187,14 +192,14 @@
 }
 
 .size-charts button {
-    color: var(--color-eight);
+    /* color: var(--color-eight);
     background-color: white;
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.5rem; */
     right: 10px;
     top: 10px;
-    font-weight: bolder;
-    cursor: pointer;
+    /* font-weight: bolder;
+    cursor: pointer; */
     position: absolute;
 }
 
@@ -208,6 +213,7 @@
     font-size: 1.5rem;
     text-align: center;
     margin-bottom: 20px;
+    color: var(--color-ten);
 }
 
 .size-chart-section {

@@ -3,7 +3,6 @@ import '../styles/profile.css';
 import UpdatePassword from './UpdatePassword';
 import EditProfile from './EditProfile';
 import {v4 as uuidv4} from 'uuid';
-import { LocalDrinkRounded } from '@mui/icons-material';
 
 export default function Profile(props) {
 
@@ -38,6 +37,10 @@ export default function Profile(props) {
             }
         }
     }, [viewProduct])
+
+    React.useEffect(() => {
+        document.documentElement.scrollTop = 0;
+    }, [selectedOrder])
 
     React.useEffect(() => {
         try {
@@ -114,7 +117,7 @@ export default function Profile(props) {
             {selectedOrder && <div className="profile-view-order-background">
                 <div className="profile-view-order">
                     <button 
-                        className="close-profile-view-order-btn"
+                        className="close-profile-view-order-btn main-btn"
                         onClick={() => setSelectedOrder(null)}
                     >Close</button>
                     <p className="profile-view-order-header">Viewing Order {selectedOrder.external_id}</p>

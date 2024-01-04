@@ -1,40 +1,57 @@
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: inline-block;
+    vertical-align: middle;
+    margin: auto;
+    display: grid;
+    /* justify-content: space-between;
+    align-items: center; */
+    grid-template-columns: .5fr 2fr 1fr;
+    gap: 20px;
+    padding-bottom: 0px;
     padding-top: 20px;
     color: white;
-    font-size: 1.3rem;
+    font-size: 1.8vw;
     font-weight: bolder;
     letter-spacing: 1px;
-    border-bottom: 2px solid var(--color-two);
-    position: relative;
+    /* border-bottom: 2px solid var(--color-two); */
+    width: 90%;
     background-color: var(--gradient-start);
-    width: 100%;
-    padding-bottom: 15px;
+    /* width: 100%; */
     z-index: 3;
     height: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 nav {
-    display: flex;    
-    margin-left: 10px;
-    align-items: flex-end;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.nav-logo-container {
+    width: 100%;
+    height: 100%;
+    transform: translateY(-5px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 .nav-logo {
-    width: 150px;
-    margin-right: 40px;
+    /* width: 150px; */
+    /* margin-right: 40px; */
     cursor: pointer;
 }
 
 .nav-btn-container {
-    margin-right: 30px;    
+    margin-left: 20px;    
 }
 
 .nav-btn-text {
     display: flex;
     align-items: center;
+    white-space: nowrap;
 }
 
 .nav-btn-text:hover {
@@ -57,6 +74,10 @@ nav {
     border-right: 2px solid white;
     background-color: var(--color-two);
     margin-left: 7px;
+}
+
+.nav-arrow-small {
+    transform: translateY(-6px) rotate(45deg);
 }
 
 .nav-btn-arrow-spin {
@@ -94,10 +115,12 @@ nav {
     left: 0;
     z-index: 2;
     display: grid;
-    grid-template-columns: repeat(4, 250px);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     padding: 20px;
     padding-bottom: 10px;
     padding-left: 10px;
+    margin-right: 100px;
     z-index: 4;
 }
 
@@ -109,13 +132,15 @@ nav {
     background-color: var(--color-six);
     border-bottom-left-radius: 15px;
     border-top-right-radius: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
     margin-left: 5px;
     margin-right: 5px;
     text-align: center;
-    font-size: 1.8rem;
+    /* font-size: 1.8rem; */
     color: white;
-    -webkit-text-stroke: 2px;
-    -webkit-text-stroke-color: var(--color-ten);
+    /* -webkit-text-stroke: 2px;
+    -webkit-text-stroke-color: var(--color-ten); */
 }
 
 .shop-dropdown-section a {
@@ -123,7 +148,7 @@ nav {
     margin-left: 20px;
     width: fit-content;
     display: block;
-    font-size: 1.4rem;
+    font-size: 1.8vw;
     /* color: var(--color-nine); */
     color: white;
 }
@@ -140,21 +165,24 @@ nav {
 }
 
 .dropdown-products-container {
-    margin-top: 20px;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 50px;
+    grid-template-columns: repeat(6, minmax(100px, 250px));
+    gap: 30px;
 }
 
 .dropdown-products-container .card-info-header {
-    font-size: 1rem;
+    font-size: 1.8vw;
 }
 
 .nav-icon-container {
     display: flex;
-    margin-right: 30px;
-    align-items: flex-end;
+    align-items: center;
     justify-content: flex-end;
+    /* justify-content: center; */
+}
+
+.hamburger-menu {
+    display: none !important;
 }
 
 .nav-icon-container a, .nav-icon-container > p {
@@ -163,15 +191,16 @@ nav {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .nav-icon-container > p {
-    margin-right: 20px;
+    /* margin-right: 20px; */
 }
 
 .nav-icon-container a > svg {
-    width: 40px;
-    height: 40px;
+    width: 3.2vw;
+    height: 3.2vw;
     cursor: pointer;
 }
 
@@ -224,7 +253,7 @@ nav {
 }
 
 .search-bar-container {
-    width: 100%;
+    width: 300px;
     position: relative;
 }
 
@@ -232,7 +261,7 @@ nav {
     width: 100%;
     font-family: "Hauer";
     padding-left: 10px;
-    font-size: 1.3rem;
+    /* font-size: 1.3rem; */
     border-radius: 10px;
     position: relative;
 }

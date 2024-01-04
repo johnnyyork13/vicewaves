@@ -10,6 +10,7 @@
     align-items: center;
     z-index: 3;
     -webkit-text-stroke: 0px white;
+    overflow-y: auto;
 }
 
 .about {

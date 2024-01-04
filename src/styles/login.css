@@ -5,10 +5,10 @@
     align-items: center;
     padding: 50px;
     color: white;
+    padding-bottom: 100px;
 }
 
 .login-form {
-    height: 100%;
     width: fit-content;
     display: flex;
     flex-direction: column;

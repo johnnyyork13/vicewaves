@@ -1,0 +1,62 @@
+/* SMALL MENU */
+.mobile-nav-container {
+    position: absolute;
+    width: 100%;
+    top: 87px;
+    left: 0;
+}
+
+.mobile-nav {
+    background: linear-gradient(var(--gradient-start), var(--gradient-end));
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 100px;
+    border-bottom: 5px solid var(--color-two);
+}
+
+.mobile-nav-section {
+    margin-left: 10px;
+}
+
+.mobile-nav-section p {
+    margin-top: 4px;
+}
+
+.mobile-nav-section-dropdown-section {
+    margin-left: 20px;
+}
+
+.mobile-nav-section-item-container {
+    margin-left: 20px;
+}
+
+.nav-arrow-small {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    transform: translateY(-3px) rotate(45deg);
+    border: 2px solid var(--gradient-start);
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+    background-color: var(--color-two);
+    margin-left: 7px;
+}
+
+.nav-btn-arrow-small-spin {
+    animation-name: spinArrowSmall;
+    animation-duration: .2s;
+    animation-timing-function: ease-in-out;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+
+@keyframes spinArrowSmall {
+    0% {
+        transform: translateY(-6px) rotate(45deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(225deg);
+    }
+}

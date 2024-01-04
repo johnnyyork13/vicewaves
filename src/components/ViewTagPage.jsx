@@ -1,5 +1,6 @@
 import React from 'react';
 import CardContainer from './CardContainer';
+import Hero from './Hero';
 import heroBlank from '../assets/hero-blank.png';
 
 import '../styles/view-tag-page.css';
@@ -27,10 +28,9 @@ export default function ViewTagPage(props) {
 
     return (
         <div className="view-tag-page">
-            <div className="view-tag-page-hero-container">
-                <img className="view-tag-hero" src={heroBlank} />
-                <p className="view-tag-hero-text">{props.viewTag.toUpperCase()}</p>
-            </div>
+            <Hero 
+                header={props.viewTag.toUpperCase()}
+            />
             <CardContainer 
                 productList={tagList}
                 setCurrentProduct={props.setCurrentProduct}

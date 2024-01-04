@@ -8,11 +8,13 @@
     justify-content: center;
     align-items: center;
     position: fixed;
+    z-index: 3;
     -webkit-text-stroke: 0px white;
 
 }
 
 .contact {
+    margin-top: 30px;
     background-color: white;
     color: var(--color-eight);
     width: 70%;

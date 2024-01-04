@@ -1,0 +1,377 @@
+/* Landscape phones and down */
+@media (max-width: 480px) { 
+
+ }
+
+
+
+
+
+
+
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+
+    /* .App {
+        width: fit-content !important;
+    } */
+
+    .desktop-nav {
+        display: none;
+    }
+
+    /* HEADER */
+
+    header {
+        font-size: 1.7rem;
+        grid-template-columns: 1fr 3fr;
+    }
+
+    .nav-icon-container {
+        position: relative;
+        z-index: 3;
+    }
+
+    .nav-icon-container a > svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .nav-icon-container > * {
+        display: none !important;
+    }
+
+    .hamburger-menu {
+        display: inline-block !important;
+    }
+
+    main {
+        width: 100%;
+    }
+
+    /* HERO */
+
+    .hero {
+        margin: 10px;
+    }
+
+    .hero img {
+        width: 100%;
+        height: auto;
+    }
+
+
+    /* CARD CONTAINER */
+
+    .card-container {
+        margin: 20px;
+        margin-left: 10px;
+        align-items: flex-start;
+        -webkit-text-stroke: 1px var(--color-ten);
+    }
+
+    .card-container-header {
+        width: 100%;
+        margin-left: 0px;
+        margin-right: 0px;
+        -webkit-text-stroke: 1px var(--color-ten);
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    /* CARD */
+
+    .card-info {
+        font-size: 2rem;
+    }
+
+
+    /* VIEW PRODUCT */
+
+    .view-product {
+        grid-template-columns: 1fr;
+    }
+
+    .product-images {
+        margin: 10px;
+        grid-template-rows: 70px 1fr 150px 35px;
+    }
+
+    .product-name-container {
+        display:none;
+    }
+
+    .product-name-container-small {
+        display: inline;
+        margin-top: 30px;
+    }
+
+    .product-sidebar {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .view-product-in-cart {
+        font-size: 1.5rem;
+    }
+
+    .size-charts {
+        width: 100%;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .size-charts-section-container {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .size-chart-section {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .size-chart-img-container {
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .size-chart-text {
+        width: auto;
+    }
+
+    .size-chart-measurements {
+        flex-direction: column;
+    }
+
+    .measurement-container {
+        margin-top: 20px;
+    }
+
+    /* CHECKOUT */
+
+    .checkout {
+        grid-template-columns: 1fr;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .paypal-container {
+        margin: 0px;
+        padding: 10px;
+        order: 2;
+    }
+
+    .paypal-text {
+        margin: 0;
+        white-space: normal;
+        margin-bottom: 10px;
+    }
+
+    /* PROFILE */
+
+    .profile-view-order-background {
+        position: absolute;
+        background-color: rgba(0,0,0,.01);
+    }
+
+    .profile-view-order {
+        margin: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .profile {
+        grid-template-columns: 1fr;
+    }
+
+    .main-profile-header {
+        margin-top: 20px;
+    }
+
+    .profile-details {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .profile-edit-btn, .profile-update-password-btn {
+        width: 100%;
+        height: 35px;
+    }
+
+    .edit-profile-btn {
+        width: 100%;
+    }
+
+    /* EDIT PROFILE */
+
+    .update-profile-success-modal {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .edit-profile-container {
+        position: absolute;
+        background-color: rgba(0,0,0,.01);
+    }
+
+    .edit-profile {
+        overflow: visible;
+        padding: 30px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .update-password-container {
+        width: auto;
+        background-color: rgba(0,0,0,.01);
+    }
+
+    .update-password {
+        margin-left: 10px;
+        margin-right: 10px;
+        width: auto;
+        padding: 20px;
+    }
+
+    .password-update-success-modal-background {
+        width: auto;
+        background-color: rgba(0,0,0,.01);
+    }
+
+    .password-update-success-modal {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 50px;
+    }
+
+    /* SIGNUP */
+
+    .signup-modal-container {
+        position: absolute;
+        background-color: rgba(0,0,0,.01);
+    }
+
+    .signup-modal {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .signup-header-main {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .signup {
+        align-items: center;
+    }
+
+    .signup label {
+        width: 90%;
+    }
+
+    .signup input, .signup select {
+        width: 100%;
+    }
+
+    .signup-btn {
+        width: 90%;
+    }
+
+    /* FOOTER */
+
+    footer {
+        grid-template-columns: 1fr;
+    }
+
+    .about-container {
+        align-items: flex-start;
+    }
+
+    .contact-container {
+        overflow-y: auto;
+        align-items: flex-start;
+    }
+ }
+
+
+
+
+
+
+
+
+
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) { 
+    
+    /* CARD CONTAINER */
+    .card-container-header {
+        -webkit-text-stroke: 1px var(--color-ten);
+    }
+    
+    /* CARD */
+
+    .card-info {
+        font-size: 2.5vw;
+        -webkit-text-stroke: 1px var(--color-ten);
+    }
+
+    /* VIEW PRODUCT */
+
+    .product-images {
+        grid-template-rows: 1fr 100px 35px;
+    }
+
+    .product-images-slideshow {
+        grid-auto-columns: 100px;   
+    }
+
+    /* CHECKOUT */
+
+    .checkout {
+        grid-template-columns: .6fr .4fr;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 50px;
+    }
+
+    .paypal-container {
+        margin: 0px;
+        padding: 10px;
+    }
+
+    .paypal-text {
+        margin: 0;
+        white-space: normal;
+        margin-bottom: 10px;
+    }
+
+    /* PROFILE */
+
+    .profile {
+        width: auto;
+        grid-template-columns: 1fr 1fr;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .profile-order-view-order-link {
+        margin-left: 20px;
+    }
+
+
+ }
+
+/* Large desktop */
+@media (min-width: 1200px) { 
+
+ }

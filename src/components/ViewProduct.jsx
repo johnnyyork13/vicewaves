@@ -158,7 +158,7 @@ export default function ViewProduct(props) {
             {showSizeCharts && 
                 <div className="size-charts-background">
                     <div className="size-charts">
-                        <button onClick={() => setShowSizeCharts(false)}>Close</button>
+                        <button className="main-btn" onClick={() => setShowSizeCharts(false)}>Close</button>
                         <div className="size-charts-section-container">
                             <p className="size-charts-header">Instructions</p>
                             <div className="size-chart-section">
@@ -187,7 +187,13 @@ export default function ViewProduct(props) {
                         </div>
                     </div>
                 </div>}
-            <div className="product-images">
+            <div className="product-images ">
+                <div className="product-name-container product-name-container-small">
+                    <div className="product-name">
+                        <p>{props.currentProduct.name}</p>
+                        <p>${selectedVariant.retail_price}</p>
+                    </div>
+                </div>
                 <img src={mainImage} className="product-image-main" />
                 <div className="product-images-slideshow">
                     {mappedVariantImages}

@@ -36,6 +36,9 @@ export default function Signup(props) {
     const [showSignupModal, setShowSignupModal] = React.useState(false);
     const [usernameExistsModal, setShowUsernameExistsModal] = React.useState(false);
 
+    React.useEffect(() => {
+        document.documentElement.scrollTop = 0;
+    }, [signupUser])
 
     React.useEffect(() => {
         if (signupUser) {

@@ -82,7 +82,7 @@ export default function Login(props) {
     return (
         <div className="login">
             <form className="login-form">
-                <p className="login-header-main">Login to SynthMerch</p>
+                <p className="login-header-main">Login to ViceWaves</p>
                 <label htmlFor="username"><span>Username <span className="login-error">{!error.username ? "" : "*Please enter a username"}</span></span>
                     <input
                         onChange={handleLoginInputChange}

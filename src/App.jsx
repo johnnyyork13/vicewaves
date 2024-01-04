@@ -24,6 +24,8 @@ import FAQ from './components/FAQ';
 
 import Admin from './components/Admin';
 
+import './styles/queries.css';
+
 function App() {
 
   const root = 'http://localhost:3000';
@@ -42,6 +44,7 @@ function App() {
   const [shoppingCartContents, setShoppingCartContents] = React.useState([])
   const [currentUser, setCurrentUser] = React.useState(null);
   const [beginSearch, setBeginSearch] = React.useState(false);
+  const [openSmallMenu, setOpenSmallMenu] = React.useState(false);
 
   React.useEffect(() => {
     try {
@@ -72,6 +75,7 @@ function App() {
   }, [])
 
   React.useEffect(() => {
+    document.documentElement.scrollTop = 0;
     if (page === "home") {
       try {
         async function getAllProducts() {
@@ -97,7 +101,7 @@ function App() {
   }, [page])
   
   return (
-    <div className="App" onClick={() => {setShowDropdown(null); setBeginSearch(false)}}>
+    <div className="App" onClick={() => {setShowDropdown(null); setBeginSearch(false); setOpenSmallMenu(false)}}>
       {showShoppingCart && 
         <ShoppingCart 
           setShowShoppingCart={setShowShoppingCart}
@@ -121,11 +125,15 @@ function App() {
         setShowDropdown={setShowDropdown}
         beginSearch={beginSearch}
         setBeginSearch={setBeginSearch}
+        openSmallMenu={openSmallMenu}
+        setOpenSmallMenu={setOpenSmallMenu}
       />
 
       <main>
         {page === "home" && products && <>
-        <Hero />
+        <Hero 
+          header="SynthMerch"
+        />
         <CardContainer 
           header={"Top Shirts"}
           productList={products.topShirts}

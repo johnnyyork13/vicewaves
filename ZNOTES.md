@@ -8,7 +8,19 @@ Change hero images on search pages
 
 make responsive
 
+make search bar appear over header for easier responsiveness
+add "SEE MORE" option on new merch and best selling merch links
+make search bar show a modal instead of a search bar
+link up socials in footer
+make hero link to somewhere
+add logout confirmation
 
+fix loading spinner on ipad
+
+FONT-SIZES:
+Header-main: 2.2vw
+Header-dropdown-header: 2.2vw (inherited)
+Header-dropdown-a: 1.8vw
 
 
 MAIN CATEGORIES

@@ -1,6 +1,8 @@
 .signup-container {
+    width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     -webkit-text-stroke: 0px white;
 }
 
@@ -39,11 +41,13 @@
     flex-direction: column;
     color: white;
     margin-bottom: 100px;
+    width: 100%;
 }
 
 .signup-header-main {
     font-size: 2.2rem;
     text-align: center;
+    margin-top: 30px;
 }
 
 .signup label {
@@ -51,6 +55,7 @@
     flex-direction: column;
     margin-top: 10px;
     font-size: 1.3rem;
+    width: 100%;
 }
 
 .signup-error {
@@ -59,7 +64,7 @@
 
 .signup input, .signup select {
     height: 30px;
-    min-width: 500px;
+    width: 500px;
     font-family: "Hauer";
     font-size: 1.4rem;
     box-sizing: border-box;

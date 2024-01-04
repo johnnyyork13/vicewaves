@@ -37,6 +37,7 @@
 .profile-loading-spinner-text {
     position: absolute;
     font-size: 2rem;
+    white-space: nowrap;
 }
 
 @keyframes profileSpinner {
@@ -54,6 +55,7 @@
     grid-template-columns: .4fr .6fr;
     gap: 50px;
     padding: 50px;
+    padding-top: 30px;
 
 }
 
@@ -103,13 +105,7 @@
 
 .close-profile-view-order-btn {
     align-self: flex-end;
-    color: var(--color-ten);
-    font-size: 1.8rem;
-    background-color: white;
-    border: none;
-    font-weight: bolder;
     margin-bottom: 20px;
-    cursor: pointer;
 }
 
 .profile-view-order-card {

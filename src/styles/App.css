@@ -22,26 +22,29 @@ html, body, #root {
     -webkit-text-stroke: 1px var(--color-ten);
 }
 
-html {
-    min-height: 100%;
-}
-
 body {
     background: linear-gradient(var(--gradient-start), var(--gradient-end));
+    display: flex;
+    justify-content: center;
+}
+
+#root {
+    display: flex;
+    justify-content: center;
 }
 
 .App {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center !important;
     gap: 20px;
-    padding-top: 0;
     height: 100%;
 }
 
 main {
     max-width: 1300px;
-    min-width: 70%;
+    border-top: 2px solid var(--color-two);
 }
 
 .main-btn {

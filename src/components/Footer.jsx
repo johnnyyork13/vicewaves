@@ -1,5 +1,12 @@
 import React from 'react';
 import '../styles/footer.css';
+import logo from '../assets/vice-logo.png';
+
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import EmailIcon from '@mui/icons-material/Email';
+import { Face } from '@mui/icons-material';
 
 export default function Footer(props) {
 
@@ -19,7 +26,18 @@ export default function Footer(props) {
                 <br></br>
                 <p>ViceWaves, 2023</p>
             </div>
-            <div className="footer-links footer-section">
+            <div className="footer-section-socials">
+                <img src={logo} />
+                <p>ViceWaves was created by artists who love Synthwave and who want to be
+                    a part of the Synthwave movement. If you want to join the movement too, 
+                    reach out to us on one of our socials.
+                </p>
+                <div className="footer-socials">
+                    <InstagramIcon />
+                    <FacebookIcon />
+                    <TwitterIcon />
+                    <EmailIcon />
+                </div>
             </div>
             <div className="footer-email footer-section">
                 <p>GET UPDATES ON SALES AND NEW DESIGNS</p>

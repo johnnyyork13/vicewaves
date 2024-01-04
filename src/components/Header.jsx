@@ -1,12 +1,17 @@
 import React from 'react';
 import '../styles/header.css';
+
 import {v4 as uuidv4} from 'uuid';
 
 import logo from '../assets/vice-logo.png';
 import SearchIcon from '@mui/icons-material/Search';
 import Person4OutlinedIcon from '@mui/icons-material/Person4Outlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import MenuIcon from '@mui/icons-material/Menu';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import SmallMenu from './SmallMenu';
 import Card from './Card';
+import { Menu } from '@mui/material';
 
 export default function Header(props) {
 
@@ -18,6 +23,7 @@ export default function Header(props) {
     const [animateCart, setAnimateCart] = React.useState("");
     const [dropdownProducts, setDropdownProducts] = React.useState([]);
     const [dropdownProductsLoaded, setDropdownProductsLoaded] = React.useState(false);
+    
 
     React.useEffect(() => {
         try {
@@ -139,6 +145,9 @@ export default function Header(props) {
     function handleDropdownClick(value) {
         props.setPage("viewTag");
         props.setViewTag(value);
+        if (props.openSmallMenu) {
+            props.setOpenSmallMenu(false);
+        }
     }
 
     function handleSearchInputChange(e) {
@@ -174,8 +183,10 @@ export default function Header(props) {
 
     return (
         <header onClick={() => props.setShowDropdown(null)}>
-            <nav>
+            <div className="nav-logo-container">
                 <img onClick={() => props.setPage("home")} src={logo} className="nav-logo"/>
+            </div>
+            <nav className="desktop-nav">
                 <div className="nav-btn-container">
                     <div className="nav-btn-text" onClick={() => props.setPage("home")}>HOME</div>
                 </div>
@@ -288,7 +299,17 @@ export default function Header(props) {
                 {!props.currentUser && <a onClick={() => props.setPage("login")}>Login</a>}
                 {props.currentUser && props.currentUser.membership === "admin" && <a className="admin-link" onClick={() => props.setPage("admin")}>ADMIN CONSOLE</a>}
                 {props.currentUser && <a className="logout-btn" onClick={() => setSendLogout(true)}>Logout</a>}
+                <a onClick={() => props.setOpenSmallMenu((prev) => !prev)} className="hamburger-menu"><MenuIcon /></a>
             </div>
+            {props.openSmallMenu && 
+                <SmallMenu
+                    handleDropdownClick={handleDropdownClick}
+                    setOpenSmallMenu={props.setOpenSmallMenu}
+                    setPage={props.setPage}
+                    setSendLogout={setSendLogout}
+                    currentUser={props.currentUser}
+                    setShowShoppingCart={props.setShowShoppingCart}
+                />}
         </header>
     )
 }

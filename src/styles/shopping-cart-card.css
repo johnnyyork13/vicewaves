@@ -28,6 +28,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.shopping-cart-remove-modal-button-container {
+    display: flex;
 }
 
 .shopping-cart-remove-modal-button-container button {

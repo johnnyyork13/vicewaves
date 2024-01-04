@@ -2,9 +2,20 @@
     box-shadow: 4px 4px 1px 1px var(--color-two);
     margin-left: 50px;
     margin-right: 50px;
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero img {
-    height: 400px;
+    height: auto;
     width: 100%;
+}
+
+.hero p {
+    position: absolute;
+    color: white;
+    font-size: 2rem;
 }
