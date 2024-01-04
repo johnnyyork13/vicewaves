@@ -7,11 +7,13 @@ export default function Signup(props) {
         username: "",
         email: "",
         phone: "",
-        name: "",
+        firstName: "",
+        lastName: "",
         address1: "",
+        address2: "",
         city: "",
-        state_code: "",
-        country_code: "",
+        state_code: "AL",
+        country_code: "US",
         zip: "",
         password: "",
         confirmPassword: "",
@@ -20,7 +22,8 @@ export default function Signup(props) {
         username: false,
         email: false,
         phone: false,
-        name: false,
+        firstName: false,
+        lastName: false,
         address1: false,
         city: false,
         state_code: false,
@@ -31,6 +34,8 @@ export default function Signup(props) {
     })
     const [signupUser, setSignupUser] = React.useState(false);
     const [showSignupModal, setShowSignupModal] = React.useState(false);
+    const [usernameExistsModal, setShowUsernameExistsModal] = React.useState(false);
+
 
     React.useEffect(() => {
         if (signupUser) {
@@ -46,8 +51,13 @@ export default function Signup(props) {
                         body: JSON.stringify(user),
                     }).then((res) => res.json())
                     .then((res) => {
-                        setSignupUser(false);
-                        setShowSignupModal(true);
+                        if (res.success) {
+                            setSignupUser(false);
+                            setShowSignupModal(true);
+                        } else {
+                            setShowUsernameExistsModal(true);
+                            setSignupUser(false);
+                        }
                     }).catch((err) => {console.log(err); setSignupUser(false)})
                 }
                 attemptSignupUser();
@@ -65,10 +75,11 @@ export default function Signup(props) {
     } 
 
     function validateInputFields(e) {
+        const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
         e.preventDefault();
         let allFieldsHaveValues = true;
         for (const key in user) {
-            if (user[key] === "") {
+            if (user[key] === "" || (key === "password" && user[key].length < 8)) {
                 allFieldsHaveValues = false;
                 setError((prev) => ({
                     ...prev,
@@ -80,6 +91,13 @@ export default function Signup(props) {
                     [key]: false,
                 }))
             }
+        }
+
+        if (!phoneRegex.test(user.phone)) {
+            setError((prev) => ({
+                ...prev,
+                phone: true,
+            }))
         }
         
         if (allFieldsHaveValues) {
@@ -102,6 +120,12 @@ export default function Signup(props) {
                     <button onClick={() => props.setPage("login")} type="button" className="main-btn">Take Me to Login Page</button>
                 </div>
             </div>}
+            {usernameExistsModal && <div className="signup-modal-container">
+                <div className="signup-modal">
+                    <p className="signup-modal-header">Username already exists!</p>
+                    <button onClick={() => setShowUsernameExistsModal(false)} type="button" className="main-btn">Continue</button>
+                </div>
+            </div>}
             <form className="signup">
                 <p className="signup-header-main">Create an Account</p>
                 <label htmlFor="username"><span>Username <span className="signup-error">{!error.username ? "" : "*Please enter a username"}</span></span>
@@ -121,7 +145,7 @@ export default function Signup(props) {
                         name="email"
                         />
                 </label>
-                <label htmlFor="phone"><span>Phone Number <span className="signup-error">{!error.phone ? "" : "*Please enter a phone number"}</span></span>
+                <label htmlFor="phone"><span>Phone Number <span className="signup-error">{!error.phone ? "" : "*Please enter a valid phone number"}</span></span>
                     <input
                         onChange={handleSignupInputChange}
                         value={user.phone}
@@ -129,12 +153,20 @@ export default function Signup(props) {
                         name="phone"
                         />
                 </label>
-                <label htmlFor="name"><span>Full Name <span className="signup-error">{!error.name ? "" : "*Please enter your name"}</span></span>
+                <label htmlFor="firstName"><span>First Name <span className="signup-error">{!error.firstName ? "" : "*Please enter your first name"}</span></span>
                     <input
                         onChange={handleSignupInputChange}
-                        value={user.name}
+                        value={user.firstName}
                         type="text"
-                        name="name"
+                        name="firstName"
+                        />
+                </label>
+                <label htmlFor="lastName"><span>Last Name <span className="signup-error">{!error.lastName ? "" : "*Please enter last your name"}</span></span>
+                    <input
+                        onChange={handleSignupInputChange}
+                        value={user.lastName}
+                        type="text"
+                        name="lastName"
                         />
                 </label>
                 <label htmlFor="address1"><span>Street Address<span className="signup-error">{!error.address1 ? "" : "*Please enter a street address"}</span></span>
@@ -144,6 +176,15 @@ export default function Signup(props) {
                         type="text"
                         name="address1"
                         autoComplete="address"
+                        />
+                </label>
+                <label htmlFor="address2"><span>Apartment, Suite, or Building {'(Optional)'}</span>
+                    <input
+                        onChange={handleSignupInputChange}
+                        value={user.address2}
+                        type="text"
+                        name="address2"
+                        autoComplete="address2"
                         />
                 </label>
                 <label htmlFor="city"><span>City <span className="signup-error">{!error.city ? "" : "*Please enter a city"}</span></span>
@@ -156,24 +197,66 @@ export default function Signup(props) {
                         />
                 </label>
                 <label htmlFor="state_code"><span>State <span className="signup-error">{!error.state_code ? "" : "*Please enter a state"}</span></span>
-                    <input
+                    <select
                         onChange={handleSignupInputChange}
                         value={user.state_code}
                         type="text"
                         name="state_code"
                         maxLength="2"
                         autoComplete="state"
-                        />
-                </label>
-                <label htmlFor="country_code"><span>Country <span className="signup-error">{!error.country_code ? "" : "*Please enter a country"}</span></span>
-                    <input
-                        onChange={handleSignupInputChange}
-                        value={user.country_code}
-                        type="text"
-                        name="country_code"
-                        maxLength="2"
-                        autoComplete="country"
-                        />
+                    >
+                        <option value="AL">Alabama</option>
+                        <option value="AK">Alaska</option>
+                        <option value="AZ">Arizona</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="CA">California</option>
+                        <option value="CO">Colorado</option>
+                        <option value="CT">Connecticut</option>
+                        <option value="DE">Delaware</option>
+                        <option value="DC">District Of Columbia</option>
+                        <option value="FL">Florida</option>
+                        <option value="GA">Georgia</option>
+                        <option value="HI">Hawaii</option>
+                        <option value="ID">Idaho</option>
+                        <option value="IL">Illinois</option>
+                        <option value="IN">Indiana</option>
+                        <option value="IA">Iowa</option>
+                        <option value="KS">Kansas</option>
+                        <option value="KY">Kentucky</option>
+                        <option value="LA">Louisiana</option>
+                        <option value="ME">Maine</option>
+                        <option value="MD">Maryland</option>
+                        <option value="MA">Massachusetts</option>
+                        <option value="MI">Michigan</option>
+                        <option value="MN">Minnesota</option>
+                        <option value="MS">Mississippi</option>
+                        <option value="MO">Missouri</option>
+                        <option value="MT">Montana</option>
+                        <option value="NE">Nebraska</option>
+                        <option value="NV">Nevada</option>
+                        <option value="NH">New Hampshire</option>
+                        <option value="NJ">New Jersey</option>
+                        <option value="NM">New Mexico</option>
+                        <option value="NY">New York</option>
+                        <option value="NC">North Carolina</option>
+                        <option value="ND">North Dakota</option>
+                        <option value="OH">Ohio</option>
+                        <option value="OK">Oklahoma</option>
+                        <option value="OR">Oregon</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="RI">Rhode Island</option>
+                        <option value="SC">South Carolina</option>
+                        <option value="SD">South Dakota</option>
+                        <option value="TN">Tennessee</option>
+                        <option value="TX">Texas</option>
+                        <option value="UT">Utah</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia</option>
+                        <option value="WA">Washington</option>
+                        <option value="WV">West Virginia</option>
+                        <option value="WI">Wisconsin</option>
+                        <option value="WY">Wyoming</option>
+                    </select>
                 </label>
                 <label htmlFor="zip"><span>Postal Code <span className="signup-error">{!error.zip ? "" : "*Please enter a postal code"}</span></span>
                     <input
@@ -184,7 +267,18 @@ export default function Signup(props) {
                         autoComplete="zip"
                         />
                 </label>
-                <label htmlFor="password"><span>Password <span className="signup-error">{!error.password ? "" : "*Please enter a password"}</span></span>
+                <label htmlFor="country_code"><span>Country <span className="signup-error">{!error.country_code ? "" : "*Please enter a country"}</span></span>
+                    <input
+                        className="input-country-code"
+                        type="text"
+                        name="country_code"
+                        maxLength="2"
+                        autoComplete="country"
+                        readOnly={true}
+                        placeholder='United States'
+                        />
+                </label>
+                <label htmlFor="password"><span>Password {'(minimum 8 characters)'}<span className="signup-error">{!error.password ? "" : "*Please enter a valid password"}</span></span>
                     <input
                         onChange={handleSignupInputChange}
                         value={user.password}

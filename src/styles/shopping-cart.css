@@ -54,6 +54,10 @@
     font-size: 1.5rem;
     border: none;
     letter-spacing: 1px;
+}
+
+.exit-btn:hover {
+    color: var(--color-two);
     cursor: pointer;
 }
 

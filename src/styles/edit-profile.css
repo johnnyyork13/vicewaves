@@ -79,12 +79,13 @@
     color: var(--color-two);
 }
 
-.edit-profile label input {
+.edit-profile label input, .edit-profile label select {
     margin-top: 5px;
     height: 35px;
     font-family: "Hauser";
     color: var(--color-eight);
     font-size: 1.3rem;
+    box-sizing: border-box;
 }
 
 .edit-profile-btn {

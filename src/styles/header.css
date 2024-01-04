@@ -84,13 +84,13 @@ nav {
 } */
 
 
-.shop-dropdown {
+.nav-btn-dropdown {
     border-bottom: 5px solid var(--color-two);
     border-right: 5px solid var(--color-two);
     box-shadow: 10px 10px 5px 5px rgba(0,0,0,.3);
+    background: linear-gradient(var(--gradient-start), var(--gradient-end));
     visibility: visible;
     position: absolute;
-    background: linear-gradient(var(--gradient-start), var(--gradient-end));
     left: 0;
     z-index: 2;
     display: grid;
@@ -113,7 +113,7 @@ nav {
     margin-right: 5px;
     text-align: center;
     font-size: 1.8rem;
-    color: var(--color-nine);
+    color: white;
     -webkit-text-stroke: 2px;
     -webkit-text-stroke-color: var(--color-ten);
 }
@@ -133,9 +133,28 @@ nav {
     color: var(--color-eight);
 }
 
+.products-dropdown {
+    display: flex;
+    flex-direction: column;
+    border-right: none;
+}
+
+.dropdown-products-container {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 50px;
+}
+
+.dropdown-products-container .card-info-header {
+    font-size: 1rem;
+}
+
 .nav-icon-container {
     display: flex;
     margin-right: 30px;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
 .nav-icon-container a, .nav-icon-container > p {
@@ -205,7 +224,7 @@ nav {
 }
 
 .search-bar-container {
-    width: 500px;
+    width: 100%;
     position: relative;
 }
 
@@ -221,11 +240,18 @@ nav {
 .search-results {
     position: absolute;
     width: 100%;
-    background-color: var(--gradient-start);
-    padding-left: 20px;
-    border: 5px solid var(--color-four);
     border-top: none;
-    box-shadow: 0px 4px 0px 3px var(--color-two);
+    border-bottom: 5px solid var(--color-two);
+    border-right: 5px solid var(--color-two);
+    border-left: 2px solid var(--color-two);
+    box-shadow: 10px 10px 5px 5px rgba(0,0,0,.3);
+    background: linear-gradient(var(--gradient-start), var(--gradient-end));
+}
+
+.search-results p {
+    margin-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .search-result:hover {

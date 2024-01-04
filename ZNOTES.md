@@ -1,20 +1,54 @@
 TODO
 
 Add order tracking to profile
-
-
-Add apartment and other codes for payments
-add delete confirmation for items in cart
-link up check out new merch link in about page
-
-Add back buttons on all pages
-Implement functionality when user clicks arrow button on view product page that cycles to next image while 
-    also scrolling in the direction
-Change hero images on search pages
-Add password requirements
-Add see what's new link on about page
-
 add forgot password functionality
+implement email list
+
+Change hero images on search pages
+
+make responsive
+
+
+
+
+MAIN CATEGORIES
+Tops
+Bottoms
+Accessories
+Home
+
+SUB CATEGORIES
+
+TOPS
+TShirts
+Long Sleeves
+sweatshirts
+Hoodies
+Tank Tops
+windbreakers
+
+BOTTOMS
+denim jeans
+shoes
+shorts
+joggers
+
+ACCESSORIES
+Hats
+beanies
+body pillows
+face masks
+Phone Cases
+Stickers
+
+HOME
+blankets
+towels
+posters
+mugs
+coasters?
+chairs
+
 
 
 PRODUCT TAGS

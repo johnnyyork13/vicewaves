@@ -4,6 +4,7 @@ import '../styles/shopping-cart-card.css';
 export default function ShoppingCartCard(props) {
 
     const [removeItem, setRemoveItem] = React.useState(false);
+    const [showRemoveModal, setShowRemoveModal] = React.useState(false);
 
     React.useEffect(() => {
         if (removeItem) {
@@ -51,6 +52,19 @@ export default function ShoppingCartCard(props) {
 
     return (
         <div className="shopping-cart-card">
+            {showRemoveModal && <div className="shopping-cart-remove-modal-container">
+                <div className="shopping-cart-remove-modal">
+                    <p className="shopping-cart-remove-modal-header">Are you sure you want to remove this?</p>
+                    <div className="shopping-cart-remove-modal-button-container">
+                        <button 
+                            onClick={() => setShowRemoveModal(false)}
+                            className="main-btn">Cancel</button>
+                        <button 
+                            onClick={() => setRemoveItem(true)}
+                            className="main-btn">Confirm</button>
+                    </div>
+                </div>
+            </div>}
             {props.product && <>
                 <img
                     onClick={handleViewProduct} 
@@ -69,7 +83,7 @@ export default function ShoppingCartCard(props) {
                     <div className="shopping-cart-buttons-group">
                         <button
                             className="main-btn shopping-cart-btn"
-                            onClick={() => setRemoveItem(true)}>
+                            onClick={() => setShowRemoveModal(true)}>
                         Remove</button>
                         <button
                             className="main-btn shopping-cart-btn"

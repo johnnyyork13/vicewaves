@@ -63,24 +63,26 @@
 }
 
 .product-name-container {
+    width: 100%;
     position: relative;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
     margin-bottom: 40px;
+    align-self: center;
+    background-color: var(--color-six);
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+    text-align: center;
 }
 
 .product-name {
-    font-size: 2.2rem;
-}
-
-.product-in-cart {
-    font-size: 2rem;
-    color: var(--color-two);
-    background-color: var(--color-eight);
-    padding: 10px;
-    border: 2px solid var(--color-ten);
-    box-shadow: 4px 4px 1px 1px var(--color-two);
+    font-size: 1.9rem;
+    margin-left: 5px;
+    margin-right: 5px;
+    -webkit-text-stroke: 2px;
+    -webkit-text-stroke-color: var(--color-ten);
+    color: white;
 }
 
 .product-price {
@@ -119,11 +121,18 @@
     margin-bottom: 20px;
 }
 
+.quantity-and-in-cart-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .quantity-label {
-    
+    width: 30%;
 }
 
 .quantity-label input {
+    width: 100%;
     margin-top: 10px;
     height: 20px;
     background-color: var(--color-nine);
@@ -131,6 +140,24 @@
     color: white;
     font-family: "Hauser";
     padding-left: 10px;
+}
+
+.product-in-cart {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--color-two);
+    background-color: var(--color-eight);
+    padding: 10px;
+    border: 2px solid var(--color-ten);
+    box-shadow: 4px 4px 1px 1px var(--color-two);
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.view-product-in-cart:hover {
+    cursor: pointer;
+    color: var(--color-two);
 }
 
 .size-charts-background {

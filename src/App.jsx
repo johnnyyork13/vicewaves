@@ -27,20 +27,21 @@ import Admin from './components/Admin';
 function App() {
 
   const root = 'http://localhost:3000';
-  const [showDropdown, setShowDropdown] = React.useState(false);
+  const [showDropdown, setShowDropdown] = React.useState(null);
   const [showAbout, setShowAbout] = React.useState(false);
   const [showContact, setShowContact] = React.useState(false);
   const [showPrivacy, setShowPrivacy] = React.useState(false);
   const [showRefunds, setShowRefunds] = React.useState(false);
   const [showFAQ, setShowFAQ] = React.useState(false);
   const [showTOS, setShowTOS] = React.useState(false);
-  const [products, setProducts] = React.useState([])
+  const [products, setProducts] = React.useState(null)
   const [page, setPage] = React.useState('home');
   const [viewTag, setViewTag] = React.useState("none");
   const [currentProduct, setCurrentProduct] = React.useState(null);
   const [showShoppingCart, setShowShoppingCart] = React.useState(false);
   const [shoppingCartContents, setShoppingCartContents] = React.useState([])
   const [currentUser, setCurrentUser] = React.useState(null);
+  const [beginSearch, setBeginSearch] = React.useState(false);
 
   React.useEffect(() => {
     try {
@@ -71,25 +72,32 @@ function App() {
   }, [])
 
   React.useEffect(() => {
-    try {
-      async function getAllProducts() {
-        const url = root + "/products/all";
-        await fetch(url, {
-          method: "GET",
-          mode: "cors"
-        }).then((res) => res.json())
-        .then((res) => setProducts(res.allProducts))
-        .catch((err) => console.log(err));
+    if (page === "home") {
+      try {
+        async function getAllProducts() {
+          const url = root + "/products/all";
+          await fetch(url, {
+            method: "GET",
+            mode: "cors"
+          }).then((res) => res.json())
+          .then((res) => setProducts({
+            topShirts: res.topShirts,
+            topHome: res.topHome,
+            topBottoms: res.topBottoms,
+            newProducts: res.newProducts,
+          }))
+          .catch((err) => console.log(err));
+        }
+        getAllProducts();
+        setShowShoppingCart(false);
+      } catch(err) {
+        console.log(err);
       }
-      getAllProducts();
-      setShowShoppingCart(false);
-    } catch(err) {
-      console.log(err);
     }
   }, [page])
   
   return (
-    <div className="App" onClick={() => setShowDropdown(false)}>
+    <div className="App" onClick={() => {setShowDropdown(null); setBeginSearch(false)}}>
       {showShoppingCart && 
         <ShoppingCart 
           setShowShoppingCart={setShowShoppingCart}
@@ -111,13 +119,22 @@ function App() {
         setCurrentProduct={setCurrentProduct}
         showDropdown={showDropdown}
         setShowDropdown={setShowDropdown}
+        beginSearch={beginSearch}
+        setBeginSearch={setBeginSearch}
       />
 
       <main>
-        {page === "home" && <>
+        {page === "home" && products && <>
         <Hero />
         <CardContainer 
-          productList={products}
+          header={"Top Shirts"}
+          productList={products.topShirts}
+          setCurrentProduct={setCurrentProduct}
+          setPage={setPage}
+        />
+        <CardContainer 
+          header={"Top Accessories"}
+          productList={products.topHome}
           setCurrentProduct={setCurrentProduct}
           setPage={setPage}
         />
@@ -141,6 +158,7 @@ function App() {
           currentProduct={currentProduct}
           setShoppingCartContents={setShoppingCartContents}
           shoppingCartContents={shoppingCartContents}
+          setShowShoppingCart={setShowShoppingCart}
         />
         }
 
@@ -174,6 +192,8 @@ function App() {
           <Admin
             root={root}
             currentProduct={currentProduct}
+            setCurrentProduct={setCurrentProduct}
+            setPage={setPage}
           />
         }
 

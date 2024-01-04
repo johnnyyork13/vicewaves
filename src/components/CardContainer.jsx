@@ -6,7 +6,6 @@ import {v4 as uuidv4} from 'uuid';
 
 export default function CardContainer(props) {
 
-    
     const mappedCards = props.productList.map((product) => {
         return <Card 
                     key={uuidv4()}
@@ -18,7 +17,10 @@ export default function CardContainer(props) {
 
     return (
         <div className="card-container">
-            {mappedCards}
+            {props.header && <p className="card-container-header">{props.header}</p>}
+            <div className="cards">
+                {mappedCards}
+            </div>
         </div>
     )
 }

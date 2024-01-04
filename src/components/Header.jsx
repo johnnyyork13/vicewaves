@@ -6,16 +6,57 @@ import logo from '../assets/vice-logo.png';
 import SearchIcon from '@mui/icons-material/Search';
 import Person4OutlinedIcon from '@mui/icons-material/Person4Outlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import Card from './Card';
 
 export default function Header(props) {
 
     const [sendLogout, setSendLogout] = React.useState(false);
-    const [beginSearch, setBeginSearch] = React.useState(false);
     const [productNamesForSearch, setProductNamesForSearch] = React.useState([]);
     const [searchKeywords, setSearchKeywords] = React.useState("");
     const [searchResults, setSearchResults] = React.useState([]);
     const [selectedSearchResult, setSelectedSearchResult] = React.useState(null);
     const [animateCart, setAnimateCart] = React.useState("");
+    const [dropdownProducts, setDropdownProducts] = React.useState([]);
+    const [dropdownProductsLoaded, setDropdownProductsLoaded] = React.useState(false);
+
+    React.useEffect(() => {
+        try {
+            setDropdownProductsLoaded(false);
+            if (props.showDropdown === "new") {
+                async function getNewMerch() {
+                    const url = props.root + '/products/new';
+                    await fetch(url, {
+                        method: "GET",
+                        mode: "cors",
+                    }).then((res) => res.json())
+                    .then((res) => {
+                        setDropdownProducts(res)
+                        setDropdownProductsLoaded(true);
+                    })
+                    .catch((err) => console.log(err));
+                }
+                getNewMerch();
+            } else if (props.showDropdown === "best") {
+                async function getBestMerch() {
+                    const url = props.root + '/products/best';
+                    await fetch(url, {
+                        method: "GET",
+                        mode: "cors",
+                    }).then((res) => res.json())
+                    .then((res) => {
+                        setDropdownProducts(res)
+                        setDropdownProductsLoaded(true);
+                    })
+                    .catch((err) => console.log(err));
+                }
+                getBestMerch();
+            }
+        } catch(err) {
+            console.log(err);
+        }
+
+    }, [props.showDropdown])
+
     //logout hook
     React.useEffect(() => {
         if (sendLogout) {
@@ -42,7 +83,7 @@ export default function Header(props) {
     }, [sendLogout])
 
     React.useEffect(() => {
-        if (beginSearch) {
+        if (props.beginSearch) {
             try {
                 async function getProductNamesForSearch() {
                     const url = props.root + '/products/search';
@@ -58,7 +99,7 @@ export default function Header(props) {
                 console.log(err);
             }
         }
-    },[beginSearch]);
+    },[props.beginSearch]);
 
     React.useEffect(() => {
         if (selectedSearchResult) {
@@ -77,7 +118,7 @@ export default function Header(props) {
                     .then(() => {
                             props.setPage("viewProduct")
                             setSearchResults([]);
-                            setBeginSearch(false);
+                            props.setBeginSearch(false);
                         })
                     .catch((err) => console.log(err));
                 }
@@ -122,22 +163,31 @@ export default function Header(props) {
                 </p>
     })
 
+    const mappedDropdownProducts = dropdownProducts.map((product) => {
+        return <Card 
+                    key={uuidv4()}
+                    product={product}
+                    setCurrentProduct={props.setCurrentProduct}
+                    setPage={props.setPage}
+                />
+    })
+
     return (
-        <header onClick={() => props.setShowDropdown(false)}>
+        <header onClick={() => props.setShowDropdown(null)}>
             <nav>
                 <img onClick={() => props.setPage("home")} src={logo} className="nav-logo"/>
                 <div className="nav-btn-container">
                     <div className="nav-btn-text" onClick={() => props.setPage("home")}>HOME</div>
                 </div>
-                <div className="nav-btn-container">
+                {!props.beginSearch && <div className="nav-btn-container">
                     <div 
                         onClick={(e) => {
                             e.stopPropagation(); 
-                            props.setShowDropdown((prev) => !prev)
+                            props.setShowDropdown((prev) => prev === "shop" ? null : "shop")
                         }} 
                         className={`nav-btn-text nav-btn-text-shop`}
-                        >SHOP <span className={`nav-arrow ${props.showDropdown ? 'nav-btn-arrow-spin' : ""}`}></span></div>
-                    {props.showDropdown && <div className="nav-btn-dropdown shop-dropdown">
+                        >SHOP <span className={`nav-arrow ${props.showDropdown === "shop" ? 'nav-btn-arrow-spin' : ""}`}></span></div>
+                    {props.showDropdown === "shop" && <div className="nav-btn-dropdown shop-dropdown">
                         <div className="shop-dropdown-section">
                             <p className="dropdown-header">TOPS</p>
                             <a onClick={() => handleDropdownClick("tshirts")}>T-Shirts</a>
@@ -185,17 +235,43 @@ export default function Header(props) {
 
                         </div>
                     </div>}
-                </div>
-                <div className="nav-btn-container">
-                    <div className="nav-btn-text">NEW MERCH</div>
-                </div>
-                <div className="nav-btn-container">
-                    <div className="nav-btn-text">BEST SELLERS </div>
-                </div>
+                </div>}
+                {!props.beginSearch && <div className="nav-btn-container nav-btn-container-products">
+                    <div 
+                            onClick={(e) => {
+                                e.stopPropagation(); 
+                                props.setShowDropdown((prev) => prev === "new" ? null : "new")
+                            }} 
+                            className={`nav-btn-text nav-btn-text-new`}
+                            >NEW MERCH<span className={`nav-arrow ${props.showDropdown === "new" ? 'nav-btn-arrow-spin' : ""}`}></span></div>
+                    {props.showDropdown === "new" && dropdownProductsLoaded && <div className="nav-btn-dropdown products-dropdown">
+                        <p>Our Freshest Designs</p>
+                        <div className="dropdown-products-container">
+                            {mappedDropdownProducts}
+                        </div>
+                    </div>}
+                </div>}
+                {!props.beginSearch && <div className="nav-btn-container nav-btn-container-new">
+                    <div 
+                            onClick={(e) => {
+                                e.stopPropagation(); 
+                                props.setShowDropdown((prev) => prev === "best" ? null : "best")
+                            }} 
+                            className={`nav-btn-text nav-btn-text-new`}
+                            >BEST SELLING<span className={`nav-arrow ${props.showDropdown === "best" ? 'nav-btn-arrow-spin' : ""}`}></span></div>
+                    {props.showDropdown === "best" && dropdownProductsLoaded && <div className="nav-btn-dropdown products-dropdown">
+                        <p>Our dopest Synthwave Gear</p>
+                        <div className="dropdown-products-container">
+                            {mappedDropdownProducts}
+                        </div>
+                    </div>}
+                </div>}
             </nav>
-            <div className="nav-icon-container">
+            <div className="nav-icon-container"  onClick={(e) => e.stopPropagation()} style={{
+                width: props.beginSearch ? '100%' : ""
+            }}>
                 {/* {props.currentUser && <p>Welcome back, {props.currentUser.name}</p>} */}
-                {beginSearch && 
+                {props.beginSearch && 
                     <div className="search-bar-container">
                         <input className="search-bar" type="search" onChange={handleSearchInputChange} name="search" placeholder="Enter Search Keywords Here"/>
                         {searchResults.length > 0 && <div className="search-results">
@@ -203,7 +279,7 @@ export default function Header(props) {
                         </div>}
                     </div>
                 }
-                <a onClick={() => setBeginSearch((prev) => !prev)}><SearchIcon /></a>
+                <a onClick={() => props.setBeginSearch((prev) => !prev)}><SearchIcon /></a>
                 <a className="shopping-cart-icon" onClick={() => props.setShowShoppingCart((prev) => !prev)}>
                     {props.shoppingCartContents.length > 0 && <div className={`shopping-cart-full ${animateCart}`}></div>}
                     <ShoppingCartOutlinedIcon />

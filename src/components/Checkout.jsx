@@ -12,6 +12,12 @@ export default function Checkout(props) {
     const [payerInfo, setPayerInfo] = React.useState(null);
 
     React.useEffect(() => {
+        if (props.shoppingCartContents.length === 0) {
+            props.setPage('home');
+        }
+    }, [props.shoppingCartContents])
+
+    React.useEffect(() => {
         if (props.currentUser) {
             try {
                 async function getPayerInfo() {
@@ -102,7 +108,7 @@ export default function Checkout(props) {
                 </div>
                 <br></br>
                 <p className="paypal-header">Payment Options</p>
-                <p className="paypal-text">All payments are encrypted and secure</p>
+                <p className="paypal-text">All payments are encrypted and secured</p>
                 <PayPalScriptProvider options={initialOptions}>
                     <PayPalPayment 
                         root={props.root}
@@ -129,8 +135,9 @@ export default function Checkout(props) {
                 </div>
                 <br></br>
                 {payerInfo && <div className="checkout-shipping-info">
-                    <p>{payerInfo.name}</p>
+                    <p>{payerInfo.firstName} {payerInfo.lastName}</p>
                     <p>{payerInfo.address1}</p>
+                    {payerInfo.address2 && <p>{payerInfo.address2}</p>}
                     <p>{payerInfo.city}, {payerInfo.state_code}</p>
                     <p>{payerInfo.country_code} {payerInfo.zip}</p>
                     <br></br>

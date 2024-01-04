@@ -10,6 +10,7 @@ export default function ViewProduct(props) {
     const [sizeCharts, setSizeCharts] = React.useState(null);
     const [showSizeCharts, setShowSizeCharts] = React.useState(false);
     const [quantity, setQuantity] = React.useState(1);
+    const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
 
     React.useEffect(() => {
         try {
@@ -128,16 +129,27 @@ export default function ViewProduct(props) {
         })
 
     const mappedVariantImages = existingPreviewURL.map((image, index) => {
-        return <div key={uuidv4()} onClick={() => handleVariantImageClick(image, index)} className="variant-image">
-                                    <img src={image} />
-                              </div>
+        return <div 
+                    key={uuidv4()} 
+                    onClick={() => handleVariantImageClick(image, index)} 
+                    className="variant-image"
+                    ><img src={image} />
+                    </div>
     })
 
     function moveSlideshowLeft(e) {
+        if (currentImageIndex - 1 >= 0) {
+            setMainImage(existingPreviewURL[currentImageIndex - 1])
+            setCurrentImageIndex((prev) => prev - 1);
+        }
         e.target.parentElement.previousSibling.scrollLeft += -100;
     }
 
     function moveSlideshowRight(e) {
+        if (currentImageIndex + 1 <= existingPreviewURL.length - 1) {
+            setMainImage(existingPreviewURL[currentImageIndex + 1])
+            setCurrentImageIndex((prev) => prev + 1);
+        }
         e.target.parentElement.previousSibling.scrollLeft += 100; 
     }
 
@@ -148,7 +160,7 @@ export default function ViewProduct(props) {
                     <div className="size-charts">
                         <button onClick={() => setShowSizeCharts(false)}>Close</button>
                         <div className="size-charts-section-container">
-                            <p className="size-charts-header">Insructions</p>
+                            <p className="size-charts-header">Instructions</p>
                             <div className="size-chart-section">
                                 <div className="size-chart-img-container">
                                     <img src={sizeCharts && sizeCharts[0].image_url} />
@@ -191,7 +203,6 @@ export default function ViewProduct(props) {
                         <p>{props.currentProduct.name}</p>
                         <p>${selectedVariant.retail_price}</p>
                     </div>
-                    {checkIfProductExistsInCart(selectedVariant.id) && <p className="product-in-cart">IN CART</p>}
                 </div>
                 {/* <p className="product-price">$ {selectedVariant && selectedVariant.retail_price}</p> */}
                 <label
@@ -209,15 +220,24 @@ export default function ViewProduct(props) {
                 >Show Size Chart</p>
                 }
                 <div className="product-description" dangerouslySetInnerHTML={{__html: props.currentProduct.description}}></div>
-                <label className="quantity-label sidebar-label" htmlFor="quantity">Quantity
-                    <input
-                        onChange={handleQuantityChange} 
-                        value={quantity}
-                        type="number" 
-                        placeholder='quantity'
-                        min="1"
-                        />
-                </label>
+                <div className="quantity-and-in-cart-container">
+                    <label className="quantity-label sidebar-label" htmlFor="quantity">Quantity
+                        <input
+                            onChange={handleQuantityChange}
+                            value={quantity}
+                            type="number"
+                            placeholder='quantity'
+                            min="1"
+                            />
+                    </label>
+                    {checkIfProductExistsInCart(selectedVariant.id) && 
+                        <div className="product-in-cart">
+                            <p 
+                                className="view-product-in-cart" 
+                                onClick={() => props.setShowShoppingCart(true)}
+                            >View In Cart</p>
+                    </div>}
+                </div>
                 <button 
                     className="add-to-cart-btn main-btn"
                     onClick={handleAddToCart}

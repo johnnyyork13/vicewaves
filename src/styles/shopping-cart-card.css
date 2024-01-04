@@ -5,6 +5,36 @@
     margin-bottom: 30px;
 }
 
+.shopping-cart-remove-modal-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.5);
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shopping-cart-remove-modal {
+    background-color: white;
+    color: var(--color-ten);
+    -webkit-text-stroke: 0px white !important;
+    box-shadow: 4px 4px 1px 1px var(--color-two);
+    padding: 50px;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.shopping-cart-remove-modal-button-container button {
+    margin: 20px;
+    margin-bottom: 0px;
+}
+
 .shopping-cart-card img {
     width: 30%;
     box-shadow: 4px 4px 1px 1px var(--color-two);

@@ -71,6 +71,10 @@ export default function Login(props) {
         }
 
         if (allFieldsHaveValues) {
+            setUser((prev) => ({
+                ...prev,
+                username: prev.username.toLowerCase()
+            }))
             setLoginUser(true);
         }
     }
@@ -104,7 +108,7 @@ export default function Login(props) {
                     type="submit" 
                     onClick={handleLoginSubmit}>Login</button>
             </form>
-            <a className="new-user-btn" onClick={() => props.setPage('signup')}>New user? Make an account</a>
+            <a className="new-user-btn" onClick={() => props.setPage('signup')}>New user? Create an account</a>
         </div>
     )
 }

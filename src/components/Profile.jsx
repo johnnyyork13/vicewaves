@@ -64,7 +64,7 @@ export default function Profile(props) {
         } catch(err) {
             console.log(err);
         }
-    }, [])
+    }, [showEditProfile])
 
     const mappedOrders = orders.map((order) => {
         let d = new Date(0);
@@ -140,6 +140,7 @@ export default function Profile(props) {
             {showEditProfile && 
                 <EditProfile 
                     setShowEditProfile={setShowEditProfile}
+                    setLoadingSpinner={setLoadingSpinner}
                     user={user}
                     root={props.root}
                 />   
@@ -152,12 +153,12 @@ export default function Profile(props) {
                     <span className="profile-loading-spinner-text">Loading Profile...</span>
                 </div>
             }
-            {user && <div className="profile">
+            {!loadingSpinner && user && <div className="profile">
                 <div className="profile-details">
                     <p className="profile-details-header">Account Details</p>
                     <p className="profile-header">Account Holder Name</p>
                     <div className="profile-text">
-                        <p>{user.name}</p>
+                        <p>{user.firstName} {user.lastName}</p>
                     </div>
                     <br></br>
                     <p className="profile-header">PHONE</p>
@@ -173,8 +174,8 @@ export default function Profile(props) {
                     <p className="profile-header">Shipping Address</p>
                     <div className="profile-text">
                         <p>{user.address1}</p>
-                        <p>{user.city}, {user.state_code}</p>
-                        <p>{user.country_code} {user.zip}</p>
+                        {user.address2 && <p>{user.address2}</p>}
+                        <p>{user.city}, {user.state_code} {user.zip}</p>
                     </div>
                     <button 
                         onClick={() => setShowEditProfile(true)}
@@ -182,11 +183,11 @@ export default function Profile(props) {
                     >Edit Profile</button>
                     <button 
                         onClick={() => setShowUpdatePassword(true)}
-                        className="profile-edit-btn main-btn"
+                        className="profile-update-password-btn main-btn"
                     >Update Password</button>
                 </div>
                 <div className="order-details">
-                    <p className="order-details-header">Orders</p>
+                    <p className="order-details-header">My Orders</p>
                     {orders ? mappedOrders : "No orders yet..."}
                 </div>
             </div>
