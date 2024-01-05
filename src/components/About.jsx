@@ -1,7 +1,6 @@
 import React from 'react';
 import '../styles/about.css';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 
 export default function About(props) {
 

@@ -2,13 +2,11 @@ import React from 'react';
 import './styles/reset.css';
 import './styles/App.css'
 
-import {v4 as uuidv4} from 'uuid';
-
 import Header from './components/Header';
 import Hero from './components/Hero';
 import CardContainer from './components/CardContainer';
 import ViewProduct from './components/ViewProduct';
-import ViewTagPage from './components/ViewTagPage';
+import ViewCategoryPage from './components/ViewCategoryPage';
 import ShoppingCart from './components/ShoppingCart';
 import Checkout from './components/Checkout';
 import Login from './components/Login';
@@ -21,6 +19,7 @@ import Privacy from './components/Privacy';
 import TOS from './components/TOS';
 import Refunds from './components/Refunds';
 import FAQ from './components/FAQ';
+import Search from './components/Search';
 
 import Admin from './components/Admin';
 
@@ -28,7 +27,9 @@ import './styles/queries.css';
 
 function App() {
 
-  const root = 'http://localhost:3000';
+  // const root = 'https://us-central1-vicewaves-back.cloudfunctions.net/api';
+  const root = "http://localhost:3000";
+
   const [showDropdown, setShowDropdown] = React.useState(null);
   const [showAbout, setShowAbout] = React.useState(false);
   const [showContact, setShowContact] = React.useState(false);
@@ -38,13 +39,30 @@ function App() {
   const [showTOS, setShowTOS] = React.useState(false);
   const [products, setProducts] = React.useState(null)
   const [page, setPage] = React.useState('home');
-  const [viewTag, setViewTag] = React.useState("none");
   const [currentProduct, setCurrentProduct] = React.useState(null);
   const [showShoppingCart, setShowShoppingCart] = React.useState(false);
   const [shoppingCartContents, setShoppingCartContents] = React.useState([])
   const [currentUser, setCurrentUser] = React.useState(null);
   const [beginSearch, setBeginSearch] = React.useState(false);
   const [openSmallMenu, setOpenSmallMenu] = React.useState(false);
+  const [categorySearch, setCategorySearch] = React.useState(null);
+
+
+  //reset categories when a new one is clicked
+  // React.useEffect(() => {
+  //   setViewSubCat(null);
+  //   setViewMainCat(null);
+  // }, [viewTag])
+
+  // React.useEffect(() => {
+  //   setViewSubCat(null);
+  //   setViewTag(null);
+  // }, [viewMainCat])
+
+  // React.useEffect(() => {
+  //   setViewTag(null);
+  //   setViewMainCat(null);
+  // }, [viewSubCat])
 
   React.useEffect(() => {
     try {
@@ -115,7 +133,8 @@ function App() {
       <Header 
         root={root}
         setPage={setPage}
-        setViewTag={setViewTag}
+        categorySearch={categorySearch}
+        setCategorySearch={setCategorySearch}
         setShowShoppingCart={setShowShoppingCart}
         shoppingCartContents={shoppingCartContents}
         currentUser={currentUser}
@@ -132,7 +151,10 @@ function App() {
       <main>
         {page === "home" && products && <>
         <Hero 
-          header="SynthMerch"
+          header="Latest SynthWave Merch"
+          setPage={setPage}
+          redirect={"new"}
+          redirectText={"Go Now"}
         />
         <CardContainer 
           header={"Top Shirts"}
@@ -148,11 +170,19 @@ function App() {
         />
         </>}
 
+        {page === "search" && 
+          <Search 
+            root={root}
+            setPage={setPage}
+            setCurrentProduct={setCurrentProduct}
+          />
+        }
 
-        {page === "viewTag" &&
-        <ViewTagPage 
+        {page === "viewCategory" &&
+        <ViewCategoryPage
           root={root}
-          viewTag={viewTag}
+          categorySearch={categorySearch}
+          setCategorySearch={setCategorySearch}
           setCurrentProduct={setCurrentProduct}
           setPage={setPage}
         />

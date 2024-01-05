@@ -88,52 +88,52 @@ export default function Header(props) {
         }
     }, [sendLogout])
 
-    React.useEffect(() => {
-        if (props.beginSearch) {
-            try {
-                async function getProductNamesForSearch() {
-                    const url = props.root + '/products/search';
-                    await fetch(url, {
-                        method: "GET",
-                        mode: "cors",
-                    }).then((res) => res.json())
-                    .then((res) => setProductNamesForSearch(res.productList))
-                    .catch((err) => console.log(err));
-                }
-                getProductNamesForSearch();
-            } catch(err) {
-                console.log(err);
-            }
-        }
-    },[props.beginSearch]);
+    // React.useEffect(() => {
+    //     if (props.beginSearch) {
+    //         try {
+    //             async function getProductNamesForSearch() {
+    //                 const url = props.root + '/products/search';
+    //                 await fetch(url, {
+    //                     method: "GET",
+    //                     mode: "cors",
+    //                 }).then((res) => res.json())
+    //                 .then((res) => setProductNamesForSearch(res.productList))
+    //                 .catch((err) => console.log(err));
+    //             }
+    //             getProductNamesForSearch();
+    //         } catch(err) {
+    //             console.log(err);
+    //         }
+    //     }
+    // },[props.beginSearch]);
 
-    React.useEffect(() => {
-        if (selectedSearchResult) {
-            try {
-                async function getSearchResultProduct() {
-                    const url = props.root + '/products/search/get-product';
-                    await fetch(url, {
-                        method: "POST",
-                        mode: 'cors',
-                        headers: {
-                            "Content-Type":"application/json",
-                        },
-                        body: JSON.stringify({id: selectedSearchResult.id})
-                    }).then((res) => res.json())
-                    .then((res) => props.setCurrentProduct(res))
-                    .then(() => {
-                            props.setPage("viewProduct")
-                            setSearchResults([]);
-                            props.setBeginSearch(false);
-                        })
-                    .catch((err) => console.log(err));
-                }
-                getSearchResultProduct();
-            } catch(err) {
-                console.log(err);
-            }
-        }
-    }, [selectedSearchResult])
+    // React.useEffect(() => {
+    //     if (selectedSearchResult) {
+    //         try {
+    //             async function getSearchResultProduct() {
+    //                 const url = props.root + '/products/search/get-product';
+    //                 await fetch(url, {
+    //                     method: "POST",
+    //                     mode: 'cors',
+    //                     headers: {
+    //                         "Content-Type":"application/json",
+    //                     },
+    //                     body: JSON.stringify({id: selectedSearchResult.id})
+    //                 }).then((res) => res.json())
+    //                 .then((res) => props.setCurrentProduct(res))
+    //                 .then(() => {
+    //                         props.setPage("viewProduct")
+    //                         setSearchResults([]);
+    //                         props.setBeginSearch(false);
+    //                     })
+    //                 .catch((err) => console.log(err));
+    //             }
+    //             getSearchResultProduct();
+    //         } catch(err) {
+    //             console.log(err);
+    //         }
+    //     }
+    // }, [selectedSearchResult])
 
     React.useEffect(() => {
         setAnimateCart("animate-cart")
@@ -142,35 +142,39 @@ export default function Header(props) {
         }, 1000);
     }, [props.shoppingCartContents])
 
-    function handleDropdownClick(value) {
-        props.setPage("viewTag");
-        props.setViewTag(value);
+    function handleDropdownClick(value, categoryType) {
+        props.setCategorySearch({
+            category: categoryType,
+            categorySearchTerm: value
+        });
         if (props.openSmallMenu) {
             props.setOpenSmallMenu(false);
         }
+
+        props.setPage("viewCategory");
     }
 
-    function handleSearchInputChange(e) {
-        const results = [];
-        productNamesForSearch.forEach((product) => {
-            if (product.name.toLowerCase().includes(e.target.value.toLowerCase())) {
-                results.push(product);
-            }
-        })
-        setSearchResults(results);
-    }
+    // function handleSearchInputChange(e) {
+    //     const results = [];
+    //     productNamesForSearch.forEach((product) => {
+    //         if (product.name.toLowerCase().includes(e.target.value.toLowerCase())) {
+    //             results.push(product);
+    //         }
+    //     })
+    //     setSearchResults(results);
+    // }
 
-    function handleSearchResultClick(product) {
-        setSelectedSearchResult(product);
-    }
+    // function handleSearchResultClick(product) {
+    //     setSelectedSearchResult(product);
+    // }
     
-    const mappedSearchResults = searchResults.map((product) => {
-        return <p
-                    key={uuidv4()}
-                    onClick={() => handleSearchResultClick(product)} 
-                    className="search-result">{product.name}
-                </p>
-    })
+    // const mappedSearchResults = searchResults.map((product) => {
+    //     return <p
+    //                 key={uuidv4()}
+    //                 onClick={() => handleSearchResultClick(product)} 
+    //                 className="search-result">{product.name}
+    //             </p>
+    // })
 
     const mappedDropdownProducts = dropdownProducts.map((product) => {
         return <Card 
@@ -201,8 +205,8 @@ export default function Header(props) {
                     {props.showDropdown === "shop" && <div className="nav-btn-dropdown shop-dropdown">
                         <div className="shop-dropdown-section">
                             <p className="dropdown-header">TOPS</p>
-                            <a onClick={() => handleDropdownClick("tshirts")}>T-Shirts</a>
-                            <a onClick={() => handleDropdownClick("long sleeve shirts")}>Long Sleeves</a>
+                            <a onClick={() => handleDropdownClick("tshirts", "sub_category")}>T-Shirts</a>
+                            <a onClick={() => handleDropdownClick("long sleeve shirts", "sub_category")}>Long Sleeves</a>
                             <a>ITEM</a>
                             <a>ITEM</a>
                             <a>ITEM</a>
@@ -213,7 +217,7 @@ export default function Header(props) {
                         </div>
                         <div className="shop-dropdown-section">
                             <p className="dropdown-header">BOTTOMS</p>
-                            <a onClick={() => handleDropdownClick("sweatpants")}>Sweatpants</a>
+                            <a onClick={() => handleDropdownClick("sweatpants", "sub_category")}>Sweatpants</a>
                             <a>ITEM</a>
                             <a>ITEM</a>
                             <a>ITEM</a>
@@ -237,8 +241,8 @@ export default function Header(props) {
                         </div>
                         <div className="shop-dropdown-section">
                             <p className="dropdown-header">HOME</p>
-                            <a onClick={() => handleDropdownClick("mugs")}>Mugs</a>
-                            <a onClick={() => handleDropdownClick("posters")}>Posters</a>
+                            <a onClick={() => handleDropdownClick("mugs", "sub_category")}>Mugs</a>
+                            <a onClick={() => handleDropdownClick("posters", "sub_category")}>Posters</a>
                             <a>ITEM</a>
                             <a>ITEM</a>
                             <a>ITEM</a>
@@ -247,7 +251,7 @@ export default function Header(props) {
                         </div>
                     </div>}
                 </div>}
-                {!props.beginSearch && <div className="nav-btn-container nav-btn-container-products">
+                <div className="nav-btn-container nav-btn-container-products">
                     <div 
                             onClick={(e) => {
                                 e.stopPropagation(); 
@@ -261,8 +265,8 @@ export default function Header(props) {
                             {mappedDropdownProducts}
                         </div>
                     </div>}
-                </div>}
-                {!props.beginSearch && <div className="nav-btn-container nav-btn-container-new">
+                </div>
+                <div className="nav-btn-container nav-btn-container-new">
                     <div 
                             onClick={(e) => {
                                 e.stopPropagation(); 
@@ -276,21 +280,19 @@ export default function Header(props) {
                             {mappedDropdownProducts}
                         </div>
                     </div>}
-                </div>}
+                </div>
             </nav>
-            <div className="nav-icon-container"  onClick={(e) => e.stopPropagation()} style={{
-                width: props.beginSearch ? '100%' : ""
-            }}>
+            <div className="nav-icon-container"  onClick={(e) => e.stopPropagation()}>
                 {/* {props.currentUser && <p>Welcome back, {props.currentUser.name}</p>} */}
-                {props.beginSearch && 
+                {/* {props.beginSearch && 
                     <div className="search-bar-container">
                         <input className="search-bar" type="search" onChange={handleSearchInputChange} name="search" placeholder="Enter Search Keywords Here"/>
                         {searchResults.length > 0 && <div className="search-results">
                             {mappedSearchResults}
                         </div>}
                     </div>
-                }
-                <a onClick={() => props.setBeginSearch((prev) => !prev)}><SearchIcon /></a>
+                } */}
+                <a onClick={() => props.setPage("search")}><SearchIcon /></a>
                 <a className="shopping-cart-icon" onClick={() => props.setShowShoppingCart((prev) => !prev)}>
                     {props.shoppingCartContents.length > 0 && <div className={`shopping-cart-full ${animateCart}`}></div>}
                     <ShoppingCartOutlinedIcon />

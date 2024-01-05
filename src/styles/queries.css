@@ -61,6 +61,17 @@
         height: auto;
     }
 
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .hero-btn {
+        padding: 0px;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: .7rem;
+    }
+
 
     /* CARD CONTAINER */
 
@@ -252,6 +263,12 @@
         padding: 50px;
     }
 
+    /* SHOPPING CART */
+
+    .shopping-cart {
+        margin-left: 20px;
+    }
+
     /* SIGNUP */
 
     .signup-modal-container {
@@ -283,6 +300,25 @@
 
     .signup-btn {
         width: 90%;
+    }
+
+    /* SEARCH */
+
+    .search {
+        width: 90%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .search-input {
+        margin-bottom: 30px;
+        height: 40px;
+    }
+
+    .search-results-container {
+        grid-template-columns: 1fr;
+        margin-top: 20px;
+        padding: 0px;
     }
 
     /* FOOTER */

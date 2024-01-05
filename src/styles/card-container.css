@@ -9,9 +9,10 @@
     align-self: flex-start;
     color: white;
     font-size: 2rem;
-    background-color: var(--color-six);
+    background-color: var(--color-eight);
     border-bottom-left-radius: 15px;
     border-top-right-radius: 15px;
+    border-bottom: 3px solid var(--color-two);
     margin-left: 5px;
     margin-right: 5px;
     padding: 5px;

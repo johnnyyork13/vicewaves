@@ -16,6 +16,9 @@ make hero link to somewhere
 add logout confirmation
 
 fix loading spinner on ipad
+fix view in cart button for ipad
+add category headers for tag pages
+update password text doesn't show up all the way on profile
 
 FONT-SIZES:
 Header-main: 2.2vw

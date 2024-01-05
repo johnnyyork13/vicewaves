@@ -87,8 +87,9 @@ export default function ViewProduct(props) {
         setQuantity(e.target.value);
     }
 
-    function handleVariantImageClick(imageURL) {
+    function handleVariantImageClick(imageURL, index) {
         setMainImage(imageURL)
+        setCurrentImageIndex(index);
     }
 
     function checkIfProductExistsInCart(id) {
