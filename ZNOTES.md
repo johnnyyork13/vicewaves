@@ -6,7 +6,7 @@ implement email list
 
 Change hero images on search pages
 
-make responsive
+
 
 make search bar appear over header for easier responsiveness
 add "SEE MORE" option on new merch and best selling merch links

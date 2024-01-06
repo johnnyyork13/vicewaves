@@ -102,6 +102,7 @@
     margin-bottom: 10px;
 }
 
+
 .sidebar-label select {
     margin-top: 10px;
     height: 30px;
@@ -123,6 +124,17 @@
 .product-description {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.product-description ul {
+    list-style-type: disc !important;
+    margin: 0;
+}
+
+.product-description ul li {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    margin-left: 25px;
 }
 
 .quantity-and-in-cart-container {

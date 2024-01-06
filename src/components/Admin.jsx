@@ -142,6 +142,9 @@ export default function Admin(props) {
                 /> </>}
               </div>
               <div className="admin-main">
+                  <div className="admin-section">
+                    <button className="main-btn update-database-btn" onClick={() => setUpdateDatabase(true)}>Update Database</button>
+                  </div>
                   {updatedProduct && <> <div className="admin-section">
                     <p>Description</p>
                     <textarea
@@ -174,9 +177,6 @@ export default function Admin(props) {
                       value={updatedProduct.sub_category ? updatedProduct.sub_category : ""}
                     />
                     <button className="main-btn" onClick={handleAdminInputSubmit}>Update Product</button>
-                  </div>
-                  <div className="admin-section">
-                    <button className="main-btn" onClick={() => setUpdateDatabase(true)}>Update Database</button>
                   </div>
                   </>}
               </div>
