@@ -157,7 +157,7 @@ function App() {
           redirectText={"Go Now"}
         />
         <CardContainer 
-          header={"Top Shirts"}
+          header={"New Shirts"}
           productList={products.topShirts}
           setCurrentProduct={setCurrentProduct}
           setPage={setPage}

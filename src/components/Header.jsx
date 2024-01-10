@@ -205,8 +205,8 @@ export default function Header(props) {
                     {props.showDropdown === "shop" && <div className="nav-btn-dropdown shop-dropdown">
                         <div className="shop-dropdown-section">
                             <p className="dropdown-header">TOPS</p>
-                            <a onClick={() => handleDropdownClick("tshirts", "sub_category")}>T-Shirts</a>
-                            <a onClick={() => handleDropdownClick("long sleeve shirts", "sub_category")}>Long Sleeves</a>
+                            <a onClick={() => handleDropdownClick("shirts", "sub_category")}>Shirts</a>
+                            <a onClick={() => handleDropdownClick("longsleeves", "sub_category")}>Long Sleeves</a>
                             <a>ITEM</a>
                             <a>ITEM</a>
                             <a>ITEM</a>

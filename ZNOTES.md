@@ -6,7 +6,7 @@ implement email list
 
 Change hero images on search pages
 
-
+fix width issue on profile (scrollbar is visible on orders column on right monitor)
 
 make search bar appear over header for easier responsiveness
 add "SEE MORE" option on new merch and best selling merch links
@@ -19,6 +19,21 @@ fix loading spinner on ipad
 fix view in cart button for ipad
 add category headers for tag pages
 update password text doesn't show up all the way on profile
+
+
+PATTERNS ALLOCATED:
+    SHIRTS
+        Double Sunset
+        Violet Grid
+        Electronic Chase
+        Sol Mountain
+        Emitter
+        New Frontier
+        Vector Drive
+        Leaving Destiny
+        Arrival
+    LONGSLEEVES
+        Leaving Destiny
 
 FONT-SIZES:
 Header-main: 2.2vw
@@ -35,8 +50,8 @@ Home
 SUB CATEGORIES
 
 TOPS
-TShirts
-Long Sleeves
+shirts  
+longsleeves
 sweatshirts
 Hoodies
 Tank Tops
