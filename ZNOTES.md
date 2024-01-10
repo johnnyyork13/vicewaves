@@ -22,18 +22,52 @@ update password text doesn't show up all the way on profile
 
 
 PATTERNS ALLOCATED:
-    SHIRTS
-        Double Sunset
-        Violet Grid
-        Electronic Chase
-        Sol Mountain
-        Emitter
-        New Frontier
-        Vector Drive
-        Leaving Destiny
-        Arrival
-    LONGSLEEVES
-        Leaving Destiny
+    TOPS
+        SHIRTS
+            Double Sunset
+            Violet Grid
+            Electronic Chase
+            Sol Mountain
+            Emitter
+            New Frontier
+            Vector Drive
+            Leaving Destiny
+            Arrival
+            ViceWaves logo
+        LONGSLEEVES
+            Leaving Destiny
+        HOODIES
+            New Frontier
+        SWEATSHIRTS
+            Emitter
+        TANKTOPS
+            ViceWaves Logo
+        3/4 (threequarter)
+            Double Sunset
+    HEADWEAR
+        BEANIES
+            ViceWaves Logo
+        BASEBALL CAPS (baseball)
+            ViceWaves Logo
+        SNAPBACKS
+            ViceWaves Logo
+        TRUCKER HATS (trucker)
+            ViceWaves Logo
+    ACCESSORIES
+        FACEMASK
+            New Frontier
+        PHONECASES
+            Emitter
+        MOUSEPADS
+            Double Frontier
+    DRINKWARE
+        MUGS
+            ViceWaves Logo
+        TUMBLERS
+            Double Sunset
+        WATER BOTTLES
+            Double Sunset
+
 
 FONT-SIZES:
 Header-main: 2.2vw

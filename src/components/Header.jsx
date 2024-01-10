@@ -206,48 +206,30 @@ export default function Header(props) {
                         <div className="shop-dropdown-section">
                             <p className="dropdown-header">TOPS</p>
                             <a onClick={() => handleDropdownClick("shirts", "sub_category")}>Shirts</a>
+                            <a onClick={() => handleDropdownClick("threequarter", "sub_category")}>3/4 Sleeves</a>
                             <a onClick={() => handleDropdownClick("longsleeves", "sub_category")}>Long Sleeves</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
+                            <a onClick={() => handleDropdownClick("hoodies", "sub_category")}>Hoodies</a>
+                            <a onClick={() => handleDropdownClick("sweatshirts", "sub_category")}>Sweatshirts</a>
+                            <a onClick={() => handleDropdownClick("tanktops", "sub_category")}>Tanktops</a>
                         </div>
                         <div className="shop-dropdown-section">
-                            <p className="dropdown-header">BOTTOMS</p>
-                            <a onClick={() => handleDropdownClick("sweatpants", "sub_category")}>Sweatpants</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
+                            <p className="dropdown-header">HEADWEAR</p>
+                            <a onClick={() => handleDropdownClick("beanies", "sub_category")}>Beanies</a>
+                            <a onClick={() => handleDropdownClick("baseball", "sub_category")}>Baseball Caps</a>
+                            <a onClick={() => handleDropdownClick("snapbacks", "sub_category")}>Snapbacks</a>
+                            <a onClick={() => handleDropdownClick("trucker", "sub_category")}>Trucker Hats</a>
                         </div>
                         <div className="shop-dropdown-section">
                             <p className="dropdown-header">ACCESSORIES</p>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
+                            <a onClick={() => handleDropdownClick("facemasks", "sub_category")}>Facemasks</a>
+                            <a onClick={() => handleDropdownClick("phonecases", "sub_category")}>Phone Cases</a>
+                            <a onClick={() => handleDropdownClick("mousepads", "sub_category")}>Mousepads</a>
                         </div>
                         <div className="shop-dropdown-section">
-                            <p className="dropdown-header">HOME</p>
+                            <p className="dropdown-header">DRINKWARE</p>
                             <a onClick={() => handleDropdownClick("mugs", "sub_category")}>Mugs</a>
-                            <a onClick={() => handleDropdownClick("posters", "sub_category")}>Posters</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-                            <a>ITEM</a>
-
+                            <a onClick={() => handleDropdownClick("tumblers", "sub_category")}>Tumblers</a>
+                            <a onClick={() => handleDropdownClick("waterbottles", "sub_category")}>Water Bottles</a>
                         </div>
                     </div>}
                 </div>}

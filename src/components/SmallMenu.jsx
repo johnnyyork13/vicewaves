@@ -50,9 +50,9 @@ export default function SmallMenu(props) {
                                 <p onClick={() => handleOpenSubCat("tops")} className="mobile-nav-section-dropdown-section-header">TOPS<span className={`nav-arrow-small ${openSubCat === "tops" ? 'nav-btn-arrow-small-spin' : ""}`}></span></p>
                                 {openSubCat === "tops" && <div className="mobile-nav-section-item-container">
                                     <p onClick={() => props.handleDropdownClick("shirts", "sub_category")} className="mobile-nav-section-item">Shirts</p>
-                                    <p className="mobile-nav-section-item">Item</p>
-                                    <p className="mobile-nav-section-item">Item</p>
-                                    <p className="mobile-nav-section-item">Item</p>
+                                    <p onClick={() => props.handleDropdownClick("longsleeves", "sub_category")} className="mobile-nav-section-item">Long Sleeves</p>
+                                    <p onClick={() => props.handleDropdownClick("hoodies", "sub_category")} className="mobile-nav-section-item">Hoodies</p>
+                                    <p onClick={() => props.handleDropdownClick("sweatshirts", "sub_category")} className="mobile-nav-section-item">Sweatshirts</p>
                                     <p className="mobile-nav-section-item">Item</p>
                                     <p className="mobile-nav-section-item">Item</p>
                                 </div>}
