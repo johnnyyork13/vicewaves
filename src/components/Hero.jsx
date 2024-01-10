@@ -6,18 +6,26 @@ import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 
 export default function Hero(props) {
 
+    function handleHeroClick() {
+        props.setCategorySearch({
+            category: null,
+            categorySearchTerm: "new",
+        })
+        props.setPage("viewCategory");
+    }
+
     return (
-        <div className="hero" onClick={() => props.setPage(props.redirect)}>
+        <div className="hero" onClick={handleHeroClick}>
             <img src={hero}/>
             <div className="hero-text-container">
                 <p>{props.header}</p>
-                {/* {props.redirect &&
+                {props.redirect &&
                     <button 
                         className="main-btn hero-btn"
                         onClick={() => props.setPage=(props.redirect)}
                     >{props.redirectText}<ArrowOutwardIcon />
                     </button>
-                } */}
+                }
             </div>
         </div>
     )

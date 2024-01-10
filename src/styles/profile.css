@@ -52,7 +52,7 @@
 .profile {
     width: 100%;
     display: grid;
-    grid-template-columns: .4fr .6fr;
+    grid-template-columns: 1fr 2fr;
     gap: 50px;
     padding: 50px;
     padding-top: 30px;

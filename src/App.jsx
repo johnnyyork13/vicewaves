@@ -103,10 +103,10 @@ function App() {
             mode: "cors"
           }).then((res) => res.json())
           .then((res) => setProducts({
-            topShirts: res.topShirts,
-            topHome: res.topHome,
-            topBottoms: res.topBottoms,
-            newProducts: res.newProducts,
+            topSellers: res.topSellers,
+            newShirts: res.newShirts,
+            newAccessories: res.newAccessories,
+            // newProducts: res.newProducts,
           }))
           .catch((err) => console.log(err));
         }
@@ -151,20 +151,27 @@ function App() {
       <main>
         {page === "home" && products && <>
         <Hero 
-          header="Latest SynthWave Merch"
+          header="View Latest SynthWave Merch"
           setPage={setPage}
           redirect={"new"}
           redirectText={"Go Now"}
+          setCategorySearch={setCategorySearch}
         />
         <CardContainer 
           header={"New Shirts"}
-          productList={products.topShirts}
+          productList={products.newShirts}
           setCurrentProduct={setCurrentProduct}
           setPage={setPage}
         />
         <CardContainer 
-          header={"Top Accessories"}
-          productList={products.topHome}
+          header={"New Accessories"}
+          productList={products.newAccessories}
+          setCurrentProduct={setCurrentProduct}
+          setPage={setPage}
+        />
+        <CardContainer 
+          header={"Top Sellers"}
+          productList={products.topSellers}
           setCurrentProduct={setCurrentProduct}
           setPage={setPage}
         />

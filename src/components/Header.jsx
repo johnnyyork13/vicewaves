@@ -241,11 +241,15 @@ export default function Header(props) {
                             }} 
                             className={`nav-btn-text nav-btn-text-new`}
                             >NEW MERCH<span className={`nav-arrow ${props.showDropdown === "new" ? 'nav-btn-arrow-spin' : ""}`}></span></div>
-                    {props.showDropdown === "new" && dropdownProductsLoaded && <div className="nav-btn-dropdown products-dropdown">
-                        <p>Our Freshest Designs</p>
-                        <div className="dropdown-products-container">
-                            {mappedDropdownProducts}
-                        </div>
+                                {props.showDropdown === "new" && dropdownProductsLoaded && <div className="nav-btn-dropdown products-dropdown">
+                                <p>Our Freshest Designs</p>
+                                <div className="dropdown-products-container">
+                                    {mappedDropdownProducts}
+                                </div>
+                                <a 
+                                    onClick={() => handleDropdownClick("new", "tag")}
+                                    className="dropdown-see-more-btn"
+                                    >See All New Merch</a>
                     </div>}
                 </div>
                 <div className="nav-btn-container nav-btn-container-new">
@@ -256,11 +260,15 @@ export default function Header(props) {
                             }} 
                             className={`nav-btn-text nav-btn-text-new`}
                             >BEST SELLING<span className={`nav-arrow ${props.showDropdown === "best" ? 'nav-btn-arrow-spin' : ""}`}></span></div>
-                    {props.showDropdown === "best" && dropdownProductsLoaded && <div className="nav-btn-dropdown products-dropdown">
-                        <p>Our dopest Synthwave Gear</p>
-                        <div className="dropdown-products-container">
-                            {mappedDropdownProducts}
-                        </div>
+                                {props.showDropdown === "best" && dropdownProductsLoaded && <div className="nav-btn-dropdown products-dropdown">
+                                <p>Our dopest Synthwave Gear</p>
+                                <div className="dropdown-products-container">
+                                    {mappedDropdownProducts}
+                                </div>
+                                <a 
+                                    onClick={() => handleDropdownClick("best", "tag")}
+                                    className="dropdown-see-more-btn"
+                                    >See All Best Sellers</a>
                     </div>}
                 </div>
             </nav>

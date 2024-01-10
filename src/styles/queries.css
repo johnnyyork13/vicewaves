@@ -66,10 +66,11 @@
     }
 
     .hero-btn {
-        padding: 0px;
+        display: none;
+        /* padding: 0px;
         padding-left: 5px;
         padding-right: 5px;
-        font-size: .7rem;
+        font-size: .7rem; */
     }
 
 
@@ -190,7 +191,7 @@
 
     .profile-view-order-background {
         position: absolute;
-        background-color: rgba(0,0,0,.01);
+        /* background-color: rgba(0,0,0,.01); */
     }
 
     .profile-view-order {
@@ -230,11 +231,11 @@
 
     .edit-profile-container {
         position: absolute;
-        background-color: rgba(0,0,0,.01);
+        /* background-color: rgba(0,0,0,.01); */
     }
 
     .edit-profile {
-        overflow: visible;
+        overflow-y: auto;
         padding: 30px;
         margin-left: 10px;
         margin-right: 10px;
@@ -242,7 +243,7 @@
 
     .update-password-container {
         width: auto;
-        background-color: rgba(0,0,0,.01);
+        /* background-color: rgba(0,0,0,.01); */
     }
 
     .update-password {
@@ -254,7 +255,7 @@
 
     .password-update-success-modal-background {
         width: auto;
-        background-color: rgba(0,0,0,.01);
+        /* background-color: rgba(0,0,0,.01); */
     }
 
     .password-update-success-modal {
@@ -273,7 +274,7 @@
 
     .signup-modal-container {
         position: absolute;
-        background-color: rgba(0,0,0,.01);
+        /* background-color: rgba(0,0,0,.01); */
     }
 
     .signup-modal {
@@ -300,6 +301,12 @@
 
     .signup-btn {
         width: 90%;
+    }
+
+    /* LOGIN */
+    .forgot-password-modal {
+        margin-left: 20px;
+        margin-right: 20px;
     }
 
     /* SEARCH */
@@ -370,6 +377,12 @@
     .product-images-slideshow {
         grid-auto-columns: 100px;   
     }
+
+
+    .view-product-in-cart {
+        font-size: 1.5rem;
+    }
+
 
     /* CHECKOUT */
 

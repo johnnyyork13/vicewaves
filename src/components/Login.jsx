@@ -12,6 +12,7 @@ export default function Login(props) {
         password: false,
     })
     const [loginUser, setLoginUser] = React.useState(false);
+    const [showForgotPasswordModal, setShowForgotPasswordModal] = React.useState(false);
 
     React.useEffect(() => {
         if (loginUser) {
@@ -81,6 +82,16 @@ export default function Login(props) {
 
     return (
         <div className="login">
+            {showForgotPasswordModal && <div className="forgot-password-modal-container" onClick={() => setShowForgotPasswordModal(false)}>
+                <div className="forgot-password-modal"  onClick={(e) => e.stopPropagation()}>
+                    <button onClick={() => setShowForgotPasswordModal(false)} className="main-btn close-forgot-password-modal-btn">Close</button>
+                    <p>After submitting, an email will be sent to you shortly to reset your password.</p>
+                    <label htmlFor="email">
+                        <input type="email" name="email" placeholder='Enter Your Email'/>
+                    </label>
+                    <button onClick={() => setShowForgotPasswordModal(false)} className="main-btn forgot-password-btn">Submit</button>
+                </div>
+            </div>}
             <form className="login-form">
                 <p className="login-header-main">Login to ViceWaves</p>
                 <label htmlFor="username"><span>Username <span className="login-error">{!error.username ? "" : "*Please enter a username"}</span></span>
@@ -102,6 +113,7 @@ export default function Login(props) {
                         className="login-input"
                         autoComplete="password"
                     />
+                    <a onClick={() => setShowForgotPasswordModal(true)} className="forgot-password-link">Forgot Password?</a>
                 </label>
                 <button 
                     className="main-btn"

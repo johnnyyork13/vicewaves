@@ -5,8 +5,8 @@ import '../styles/refunds.css';
 export default function Refunds(props) {
 
     return (
-        <div className="returns-container">
-            <div className="returns">
+        <div className="returns-container" onClick={() => props.setShowRefunds(false)}>
+            <div className="returns" onClick={(e) => e.stopPropagation()}>
                 <button
                     type="button"
                     className="close-tos-btn main-btn"

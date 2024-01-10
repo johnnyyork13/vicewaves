@@ -20,7 +20,7 @@ export default function Footer(props) {
                 <a onClick={() => props.setShowTOS(true)}>TERMS OF SERVICE</a>
                 <a onClick={() => props.setShowRefunds(true)}>REFUND POLICY</a>
                 <a onClick={() => props.setShowFAQ(true)}>FAQ</a>
-                <a>ORDER TRACKING</a>
+                {/* <a>ORDER TRACKING</a> */}
                 {/* <a>TAKE OUR SURVEY {'(FOR REWARDS)'}</a> */}
                 <br></br>
                 <br></br>
@@ -32,12 +32,12 @@ export default function Footer(props) {
                     a part of the Synthwave movement. If you want to join the movement too, 
                     reach out to us on one of our socials.
                 </p>
-                <div className="footer-socials">
+                {/* <div className="footer-socials">
                     <InstagramIcon />
                     <FacebookIcon />
                     <TwitterIcon />
                     <EmailIcon />
-                </div>
+                </div> */}
             </div>
             <div className="footer-email footer-section">
                 <p>GET UPDATES ON SALES AND NEW DESIGNS</p>

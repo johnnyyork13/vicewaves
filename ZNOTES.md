@@ -4,21 +4,7 @@ Add order tracking to profile
 add forgot password functionality
 implement email list
 
-Change hero images on search pages
-
-fix width issue on profile (scrollbar is visible on orders column on right monitor)
-
-make search bar appear over header for easier responsiveness
-add "SEE MORE" option on new merch and best selling merch links
-make search bar show a modal instead of a search bar
-link up socials in footer
-make hero link to somewhere
 add logout confirmation
-
-fix loading spinner on ipad
-fix view in cart button for ipad
-add category headers for tag pages
-update password text doesn't show up all the way on profile
 
 
 PATTERNS ALLOCATED:
@@ -54,7 +40,7 @@ PATTERNS ALLOCATED:
         TRUCKER HATS (trucker)
             ViceWaves Logo
     ACCESSORIES
-        FACEMASK
+        FACEMASKS
             New Frontier
         PHONECASES
             Emitter
