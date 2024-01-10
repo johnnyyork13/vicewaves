@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ffcb0a;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-width: .25px;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-3 {
+        stroke: #b100bf;
+      }
+
+      .cls-2 {
+        fill: #00cef4;
+        font-family: Hauser, Hauser;
+        font-size: 9px;
+        stroke: #000;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke-width: .75px;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M9.29,8.13c.27-.04.55-.07.85-.07.38,0,.73.04,1.06.1.11,0,.22-.02.34-.02.25,0,.49.02.73.05,0,0,0,0,.01,0,.18,0,.36.01.53.03.11-.39.19-.79.19-1.22,0-2.76-2.24-5-5-5S3,4.24,3,7c0,.38.07.74.16,1.09.24-.03.49-.05.75-.05.1,0,.18,0,.28.01.08,0,.15-.01.23-.01,0,0,0,0,.01,0,.2-.02.4-.05.62-.05.23,0,.45.02.67.04.1,0,.19-.01.29-.01.36,0,.7.04,1.03.1.1,0,.2-.02.31-.02.4,0,.76.06,1.11.13.27-.06.55-.09.84-.09Z"/>
+  <line class="cls-3" x1="0" y1="8" x2="16" y2="8"/>
+  <line class="cls-3" y1="9.5" x2="16" y2="9.5"/>
+  <line class="cls-3" y1="11.5" x2="16" y2="11.5"/>
+  <text class="cls-2" transform="translate(.49 12.13)"><tspan x="0" y="0">VW</tspan></text>
+</svg>

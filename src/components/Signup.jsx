@@ -44,6 +44,7 @@ export default function Signup(props) {
         if (signupUser) {
             try {
                 async function attemptSignupUser() {
+                    console.log('signing up user');
                     const url = props.root + '/sign-up';
                     await fetch(url, {
                         method: "POST",
@@ -82,7 +83,7 @@ export default function Signup(props) {
         e.preventDefault();
         let allFieldsHaveValues = true;
         for (const key in user) {
-            if (user[key] === "" || (key === "password" && user[key].length < 8)) {
+            if (key !== "address2" && user[key] === "" || (key === "password" && user[key].length < 8)) {
                 allFieldsHaveValues = false;
                 setError((prev) => ({
                     ...prev,

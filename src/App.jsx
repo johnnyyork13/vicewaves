@@ -27,8 +27,8 @@ import './styles/queries.css';
 
 function App() {
 
-  // const root = 'https://us-central1-vicewaves-back.cloudfunctions.net/api';
-  const root = "http://localhost:3000";
+  const root = 'https://us-central1-vicewaves-back.cloudfunctions.net/api';
+  // const root = "http://localhost:3000";
 
   const [showDropdown, setShowDropdown] = React.useState(null);
   const [showAbout, setShowAbout] = React.useState(false);
