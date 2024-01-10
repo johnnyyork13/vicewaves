@@ -53,41 +53,35 @@ export default function SmallMenu(props) {
                                     <p onClick={() => props.handleDropdownClick("longsleeves", "sub_category")} className="mobile-nav-section-item">Long Sleeves</p>
                                     <p onClick={() => props.handleDropdownClick("hoodies", "sub_category")} className="mobile-nav-section-item">Hoodies</p>
                                     <p onClick={() => props.handleDropdownClick("sweatshirts", "sub_category")} className="mobile-nav-section-item">Sweatshirts</p>
-                                    <p className="mobile-nav-section-item">Item</p>
-                                    <p className="mobile-nav-section-item">Item</p>
+                                    <p onClick={() => props.handleDropdownClick("tanktops", "sub_category")} className="mobile-nav-section-item">Tanktops</p>
                                 </div>}
                             </div>
 
                             <div className="mobile-nav-section-dropdown-section">
-                                <p onClick={() => handleOpenSubCat("bottoms")} className="mobile-nav-section-dropdown-section-header">BOTTOMS<span className={`nav-arrow-small ${openSubCat === "bottoms" ? 'nav-btn-arrow-small-spin' : ""}`}></span></p>
+                                <p onClick={() => handleOpenSubCat("bottoms")} className="mobile-nav-section-dropdown-section-header">HEADWEAR<span className={`nav-arrow-small ${openSubCat === "bottoms" ? 'nav-btn-arrow-small-spin' : ""}`}></span></p>
                                 {openSubCat === "bottoms" && <div className="mobile-nav-section-item-container">
-                                    <p className="mobile-nav-section-item">Item</p>
-                                    <p className="mobile-nav-section-item">Item</p>
-                                    <p className="mobile-nav-section-item">Item</p>
-                                    <p className="mobile-nav-section-item">Item</p>
-                                    <p className="mobile-nav-section-item">Item</p>
+                                <p onClick={() => props.handleDropdownClick("beanies", "sub_category")} className="mobile-nav-section-item">Beanies</p>
+                                <p onClick={() => props.handleDropdownClick("baseball", "sub_category")} className="mobile-nav-section-item">Baseball Caps</p>
+                                <p onClick={() => props.handleDropdownClick("snapbacks", "sub_category")} className="mobile-nav-section-item">Snapbacks</p>
+                                <p onClick={() => props.handleDropdownClick("trucker", "sub_category")} className="mobile-nav-section-item">Trucker Hats</p>
                                 </div>}
                             </div>
 
                             <div className="mobile-nav-section-dropdown-section">
                                 <p onClick={() => handleOpenSubCat("accessories")} className="mobile-nav-section-dropdown-section-header">ACCESSORIES<span className={`nav-arrow-small ${openSubCat === "accessories" ? 'nav-btn-arrow-small-spin' : ""}`}></span></p>
                                 {openSubCat === "accessories" && <div className="mobile-nav-section-item-container">
-                                    <p className="mobile-nav-section-item">Item</p>
-                                    <p className="mobile-nav-section-item">Item</p>
-                                    <p className="mobile-nav-section-item">Item</p>
-                                    <p className="mobile-nav-section-item">Item</p>
-                                    <p className="mobile-nav-section-item">Item</p>
+                                <p onClick={() => props.handleDropdownClick("facemasks", "sub_category")} className="mobile-nav-section-item">Facemasks</p>
+                                <p onClick={() => props.handleDropdownClick("phonecases", "sub_category")} className="mobile-nav-section-item">Phone Cases</p>
+                                <p onClick={() => props.handleDropdownClick("mousepads", "sub_category")} className="mobile-nav-section-item">Mousepads</p>
                                 </div>}
                             </div>
 
                             <div className="mobile-nav-section-dropdown-section">
-                                <p onClick={() => handleOpenSubCat("home")} className="mobile-nav-section-dropdown-section-header">HOME<span className={`nav-arrow-small ${openSubCat === "home" ? 'nav-btn-arrow-small-spin' : ""}`}></span></p>
+                                <p onClick={() => handleOpenSubCat("home")} className="mobile-nav-section-dropdown-section-header">DRINKWARE<span className={`nav-arrow-small ${openSubCat === "home" ? 'nav-btn-arrow-small-spin' : ""}`}></span></p>
                                 {openSubCat === "home" && <div className="mobile-nav-section-item-container">
-                                    <p onClick={() => props.handleDropdownClick("mugs", "sub_category")} className="mobile-nav-section-item">Mugs</p>
-                                    <p className="mobile-nav-section-item">Item</p>
-                                    <p className="mobile-nav-section-item">Item</p>
-                                    <p className="mobile-nav-section-item">Item</p>
-                                    <p className="mobile-nav-section-item">Item</p>
+                                <p onClick={() => props.handleDropdownClick("mugs", "sub_category")} className="mobile-nav-section-item">Mugs</p>
+                                <p onClick={() => props.handleDropdownClick("tumblers", "sub_category")} className="mobile-nav-section-item">Tumblers</p>
+                                <p onClick={() => props.handleDropdownClick("waterbottles", "sub_category")} className="mobile-nav-section-item">Water Bottles</p>
                                 </div>}
                             </div>
                         </div>}

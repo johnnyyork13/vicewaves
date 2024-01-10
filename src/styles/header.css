@@ -15,7 +15,7 @@ header {
     letter-spacing: 1px;
     /* border-bottom: 2px solid var(--color-two); */
     width: 90%;
-    background-color: var(--gradient-start);
+    /* background-color: var(--gradient-start); */
     /* width: 100%; */
     z-index: 3;
     height: 50px;
