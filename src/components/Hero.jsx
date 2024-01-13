@@ -22,7 +22,7 @@ export default function Hero(props) {
                 {props.redirect &&
                     <button 
                         className="main-btn hero-btn"
-                        onClick={() => props.setPage=(props.redirect)}
+                        onClick={handleHeroClick}
                     >{props.redirectText}<ArrowOutwardIcon />
                     </button>
                 }

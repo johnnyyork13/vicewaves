@@ -24,7 +24,8 @@
 
 .hero p {
     color: white;
-    font-size: 4vw;
+    font-size: 3rem;
+    text-align: center;
 }
 
 .hero-btn {
@@ -34,5 +35,5 @@
     padding: 10px;
     padding-left: 15px;
     padding-right: 15px;
-    font-size: 2vw;
+    font-size: 1.5;
 }

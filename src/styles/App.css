@@ -22,6 +22,44 @@ html, body, #root {
     -webkit-text-stroke: 1px var(--color-ten);
 }
 
+.main-loading-spinner-container {
+    width: 100%;
+    margin-top: 200px;
+    margin-bottom: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.main-loading-spinner {
+    position: absolute;
+    border: 20px solid var(--color-eight);
+    border-top: 20px solid var(--color-two);
+    border-radius: 50%;
+    animation-name: profileSpinner;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    height: 150px;
+    width: 150px;
+}
+
+.main-loading-spinner-text {
+    position: absolute;
+    font-size: 2rem;
+    white-space: nowrap;
+    color: white;
+}
+
+@keyframes mainSpinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 body {
     background: linear-gradient(var(--gradient-start), var(--gradient-end));
     display: flex;

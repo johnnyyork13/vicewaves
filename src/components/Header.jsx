@@ -286,6 +286,9 @@ export default function Header(props) {
                 <a className="shopping-cart-icon" onClick={() => props.setShowShoppingCart((prev) => !prev)}>
                     {props.shoppingCartContents.length > 0 && <div className={`shopping-cart-full ${animateCart}`}></div>}
                     <ShoppingCartOutlinedIcon />
+                    <p 
+                        className={`shopping-cart-icon-number ${animateCart}`}
+                    >{props.shoppingCartContents.length > 0 ? props.shoppingCartContents.length : ""}</p>
                 </a>
                 {props.currentUser && <a onClick={() => props.setPage("profile")}><Person4OutlinedIcon /></a>}
                 {!props.currentUser && <a onClick={() => props.setPage("login")}>Login</a>}

@@ -28,6 +28,7 @@ export default function EditProfile(props) {
                 firstName: props.user.firstName,
                 lastName: props.user.lastName,
                 address1: props.user.address1,
+                address2: props.user.address2 ? props.user.address2 : "",
                 city: props.user.city,
                 state_code: props.user.state_code,
                 country_code: "US",
@@ -68,7 +69,7 @@ export default function EditProfile(props) {
     function handleEditProfileSubmit() {
         let allFieldsHaveValues = true;
         for (const key in updatedUser) {
-            if (updatedUser[key] === "") {
+            if (key !== "address2" && updatedUser[key] === "") {
                 allFieldsHaveValues = false;
                 setEditUserError((prev) => ({
                     ...prev,

@@ -46,7 +46,7 @@ function App() {
   const [beginSearch, setBeginSearch] = React.useState(false);
   const [openSmallMenu, setOpenSmallMenu] = React.useState(false);
   const [categorySearch, setCategorySearch] = React.useState(null);
-
+  const [loadingSpinner, setLoadingSpinner] = React.useState(true);
 
   //reset categories when a new one is clicked
   // React.useEffect(() => {
@@ -102,12 +102,15 @@ function App() {
             method: "GET",
             mode: "cors"
           }).then((res) => res.json())
-          .then((res) => setProducts({
-            topSellers: res.topSellers,
-            newShirts: res.newShirts,
-            newAccessories: res.newAccessories,
-            // newProducts: res.newProducts,
-          }))
+          .then((res) => {
+            setProducts({
+              topSellers: res.topSellers,
+              newShirts: res.newShirts,
+              newAccessories: res.newAccessories,
+              // newProducts: res.newProducts,
+            });
+            setLoadingSpinner(false);
+            })
           .catch((err) => console.log(err));
         }
         getAllProducts();
@@ -149,6 +152,13 @@ function App() {
       />
 
       <main>
+        {loadingSpinner && 
+            <div className="main-loading-spinner-container">
+                <div className="main-loading-spinner">
+                </div>
+                <span className="main-loading-spinner-text">Loading Merch...</span>
+            </div>
+        }
         {page === "home" && products && <>
         <Hero 
           header="View Latest SynthWave Merch"
