@@ -1,8 +1,14 @@
-# React + Vite
+ViceWaves
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This application is a small mock SynthWave-based e-commerce site. 
 
-Currently, two official plugins are available:
+This app simulates a true e-commerce environment by providing cart functionality, payments, and order tracking.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+I built this application to practice payment, database, and third-party API integration. 
+
+
+Live version can be viewed here: https://vicewaves.com
+
+Credits: Artwork was generated with Fooocus and given symmetry with Adobe Photoshop.
+
+
