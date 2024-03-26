@@ -155,6 +155,9 @@ function App() {
         {loadingSpinner && 
             <div className="main-loading-spinner-container">
                 <div className="main-loading-spinner">
+                  <div className="main-loading-spinner-circle circle-one"></div>
+                  <div className="main-loading-spinner-circle circle-two"></div>
+                  <div className="main-loading-spinner-circle circle-three"></div>
                 </div>
                 <span className="main-loading-spinner-text">Loading Merch...</span>
             </div>

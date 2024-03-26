@@ -34,21 +34,13 @@ html, body, #root {
 
 .main-loading-spinner {
     position: absolute;
-    border: 20px solid var(--color-eight);
-    border-top: 20px solid var(--color-two);
-    border-radius: 50%;
+    /* border: 20px solid var(--color-eight);
+    border-top: 20px solid var(--color-two); */
     animation-name: profileSpinner;
-    animation-duration: 2s;
+    animation-duration: 1.5s;
     animation-iteration-count: infinite;
     height: 150px;
     width: 150px;
-}
-
-.main-loading-spinner-text {
-    position: absolute;
-    font-size: 2rem;
-    white-space: nowrap;
-    color: white;
 }
 
 @keyframes mainSpinner {
@@ -58,6 +50,103 @@ html, body, #root {
     100% {
         transform: rotate(360deg);
     }
+}
+
+
+.main-loading-spinner-circle {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-eight);
+    position: absolute;
+}
+
+@keyframes moveBottomLeftCircle {
+    0% {
+        left: 20px;
+        bottom: 20px;
+    }
+    20% {
+        left: 20px;
+        bottom: 20px;
+    }
+    40% {
+        left: 0px;
+        bottom: 0px;
+    }
+    100% {
+        left: 20px;
+        bottom: 20px;
+    }
+}
+
+@keyframes moveBottomRightCircle {
+    0% {
+        right: 20px;
+        bottom: 20px;
+    }
+    20% {
+        right: 20px;
+        bottom: 20px;
+    }
+    40% {
+        right: 0px;
+        bottom: 0px;
+    }
+    100% {
+        right: 20px;
+        bottom: 20px;
+    }
+}
+
+@keyframes moveTopCircle {
+    0% {
+        left: 50px;
+        top: 20px;
+    }
+    20% {
+        left: 50px;
+        top: 20px;
+    }
+    40% {
+        left: 50px;
+        top: 0px;
+    }
+    100% {
+        left: 50px;
+        top: 20px;
+    }
+}
+
+.circle-one {
+    left: 20px;
+    bottom: 20px;
+    animation-name: moveBottomLeftCircle;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+.circle-two {
+    right: 20px;
+    bottom: 20px;
+    animation-name: moveBottomRightCircle;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+.circle-three {
+    left: 50px;
+    top: 20px;
+    animation-name: moveTopCircle;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+.main-loading-spinner-text {
+    position: absolute;
+    font-size: 2rem;
+    white-space: nowrap;
+    color: white;
 }
 
 body {

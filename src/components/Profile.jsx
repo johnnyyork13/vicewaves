@@ -150,11 +150,14 @@ export default function Profile(props) {
             }
             <p className="main-profile-header">My Profile</p>
             {loadingSpinner && 
-                <div className="profile-loading-spinner-container">
-                    <div className="profile-loading-spinner">
-                    </div>
-                    <span className="profile-loading-spinner-text">Loading Profile...</span>
+                <div className="main-loading-spinner-container">
+                <div className="main-loading-spinner">
+                  <div className="main-loading-spinner-circle circle-one"></div>
+                  <div className="main-loading-spinner-circle circle-two"></div>
+                  <div className="main-loading-spinner-circle circle-three"></div>
                 </div>
+                <span className="main-loading-spinner-text">Loading Profile...</span>
+            </div>
             }
             {!loadingSpinner && user && <div className="profile">
                 <div className="profile-details">
